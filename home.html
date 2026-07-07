@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>SXIAUM - Institutional-Grade Blockchain Infrastructure</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Geist:wght@600;700&display=swap"
+                rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet">
+        <style>
+                .triangle-block {
+                        background-color: rgba(147, 51, 234, 0.05);
+                        border: 1px solid rgba(147, 51, 234, 0.25);
+                        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .triangle-block.is-black {
+                        background-color: #000000 !important;
+                        border-color: #262626 !important;
+                }
+
+                /* --- Integration Card Design --- */
+                :root {
+                        --bg-color: transparent;
+                        --grid-color: transparent;
+                        --text-main: #000000;
+                        --text-muted: #46464a;
+                        --accent-pink: #d946ef;
+                        --accent-blue: #06b6d4;
+                        --accent-green: #22c55e;
+                        --code-bg: #111111;
+                }
+
+                .integration-card {
+                        display: flex;
+                        position: relative;
+                        gap: 40px;
+                        background: transparent;
+                        border: none;
+                        border-radius: 16px;
+                        padding: 40px;
+                        overflow: hidden;
+                }
+
+                .connector-line {
+                        position: absolute;
+                        top: 40px;
+                        left: 40px;
+                        width: calc(50% - 40px);
+                        height: 2px;
+                        background: #000000;
+                        z-index: 0;
+                }
+
+                .connector-line::after {
+                        content: '';
+                        position: absolute;
+                        right: 0;
+                        top: -4px;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background: #000000;
+                }
+
+                .left-col {
+                        flex: 1;
+                        padding-top: 30px;
+                        max-width: 450px;
+                        z-index: 1;
+                }
+
+                .feature-tag {
+                        display: inline-block;
+                        border: 2px solid #000000;
+                        padding: 4px 12px;
+                        font-size: 12px;
+                        font-weight: 700;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        margin-bottom: 24px;
+                        color: #000000;
+                        font-family: 'JetBrains Mono', monospace;
+                }
+
+                .left-col h3 {
+                        font-size: 32px;
+                        font-weight: 700;
+                        line-height: 1.2;
+                        margin: 0 0 16px 0;
+                        letter-spacing: -0.5px;
+                        color: #000000;
+                }
+
+                .left-col p {
+                        color: var(--text-muted);
+                        font-size: 15px;
+                        line-height: 1.6;
+                        margin: 0 0 32px 0;
+                }
+
+                .btn-wrapper {
+                        display: inline-block;
+                        position: relative;
+                        padding: 1px;
+                        background: rgba(0, 0, 0, 0.2);
+                        clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+                        transition: background 0.3s ease;
+                }
+
+                .btn-wrapper:hover {
+                        background: rgba(0, 0, 0, 0.4);
+                }
+
+                .btn-docs {
+                        display: flex;
+                        align-items: center;
+                        gap: 16px;
+                        background-color: #000000;
+                        color: #ffffff;
+                        text-decoration: none;
+                        padding: 12px 24px;
+                        font-size: 13px;
+                        font-weight: 600;
+                        letter-spacing: 1px;
+                        clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+                }
+
+                .btn-docs .arrow {
+                        font-size: 10px;
+                }
+
+                .right-col {
+                        flex: 1.2;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 30px;
+                }
+
+                .marker {
+                        position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        border: 1px solid rgba(0, 0, 0, 0.2);
+                }
+
+                .marker.tl {
+                        top: 0;
+                        left: 0;
+                        border-right: none;
+                        border-bottom: none;
+                }
+
+                .marker.tr {
+                        top: 0;
+                        right: 0;
+                        border-left: none;
+                        border-bottom: none;
+                }
+
+                .marker.bl {
+                        bottom: 0;
+                        left: 0;
+                        border-right: none;
+                        border-top: none;
+                }
+
+                .marker.br {
+                        bottom: 0;
+                        right: 0;
+                        border-left: none;
+                        border-top: none;
+                }
+
+                .visual-bg {
+                        position: absolute;
+                        inset: 10px;
+                        background:
+                                radial-gradient(circle at 70% 30%, rgba(217, 70, 239, 0.6), transparent 50%),
+                                radial-gradient(circle at 30% 70%, rgba(6, 182, 212, 0.6), transparent 50%),
+                                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4), transparent 60%);
+                        filter: blur(24px);
+                        opacity: 0.7;
+                        border-radius: 20px;
+                        clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 35%);
+                        z-index: 1;
+                }
+
+                .code-container {
+                        position: relative;
+                        z-index: 2;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                }
+
+                .code-block {
+                        background-color: var(--code-bg);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        border-radius: 8px;
+                        padding: 16px 20px;
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 13px;
+                        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                        color: #d4d4d4;
+                }
+
+                .code-block.small {
+                        align-self: flex-start;
+                        padding: 10px 16px;
+                }
+
+                .code-block pre {
+                        margin: 0;
+                        white-space: pre-wrap;
+                        line-height: 1.6;
+                }
+
+                .token-keyword {
+                        color: var(--accent-pink);
+                }
+
+                .token-function {
+                        color: var(--accent-blue);
+                }
+
+                .token-string {
+                        color: var(--accent-green);
+                }
+
+                .token-comment {
+                        color: #6b7280;
+                }
+
+                .token-tag {
+                        color: var(--accent-pink);
+                }
+
+                .token-attr {
+                        color: #eab308;
+                }
+
+                @media (max-width: 900px) {
+                        .integration-card {
+                                flex-direction: column;
+                                padding: 24px;
+                                gap: 24px;
+                        }
+
+                        .connector-line {
+                                display: none;
+                        }
+
+                        .left-col {
+                                max-width: 100%;
+                                padding-top: 0;
+                        }
+
+                        .right-col {
+                                padding: 20px 0;
+                        }
+                }
+
+                /* --- Capabilities Tech Staircase Layout --- */
+                .capabilities-section {
+                        position: relative;
+                        background-color: #060608;
+                        color: #ffffff;
+                        padding: 80px 0;
+                        margin-top: 60px;
+                        margin-bottom: 80px;
+                        overflow-x: hidden;
+                        background-image:
+                                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                        background-size: 80px 80px;
+                        background-position: center;
+                }
+
+                .capabilities-top-tag {
+                        position: relative;
+                        margin-left: 40px;
+                        margin-bottom: 60px;
+                        padding: 8px 16px;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 12px;
+                        z-index: 10;
+                }
+
+                .capabilities-top-tag .tag-bg {
+                        position: absolute;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        pointer-events: none;
+                }
+
+                .capabilities-top-tag .dot {
+                        width: 6px;
+                        height: 6px;
+                        background-color: #ffffff;
+                        border-radius: 1px;
+                        z-index: 1;
+                }
+
+                .capabilities-top-tag .tag-text {
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 11px;
+                        letter-spacing: 1.5px;
+                        font-weight: 600;
+                        color: #ffffff;
+                        z-index: 1;
+                }
+
+                .capabilities-container {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        box-sizing: border-box;
+                }
+
+                .capabilities-row {
+                        min-height: 160px;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        padding: 16px 0;
+                }
+
+                .capabilities-row-1 .grid-line-top {
+                        position: absolute;
+                        top: 0;
+                        left: calc(45% + 120px);
+                        right: -100vw;
+                        height: 3px;
+                        background: rgba(255, 255, 255, 0.3);
+                        z-index: 1;
+                }
+
+                .capabilities-row-1 .grid-line-top::after,
+                .capabilities-row-2 .grid-line-top::after,
+                .capabilities-row-3 .grid-line-top::after {
+                        content: '';
+                        position: absolute;
+                        left: -4px;
+                        top: -3.5px;
+                        width: 10px;
+                        height: 10px;
+                        background-color: #60a5fa;
+                        border: 2px solid #060608;
+                        border-radius: 50%;
+                        box-shadow: 0 0 0 2px #60a5fa;
+                }
+
+                .capabilities-row-2 .grid-line-top {
+                        position: absolute;
+                        top: 0;
+                        left: calc(22% + 120px);
+                        right: -100vw;
+                        height: 3px;
+                        background: rgba(255, 255, 255, 0.3);
+                        z-index: 1;
+                }
+
+                .capabilities-row-3 .grid-line-top {
+                        position: absolute;
+                        top: 0;
+                        left: 120px;
+                        right: -100vw;
+                        height: 3px;
+                        background: rgba(255, 255, 255, 0.3);
+                        z-index: 1;
+                }
+
+                .capabilities-content-wrapper {
+                        width: 100%;
+                        max-width: 1200px;
+                        margin: 0 auto;
+                        position: relative;
+                        z-index: 2;
+                }
+
+                .capabilities-content-offset {
+                        display: flex;
+                        align-items: center;
+                        transition: transform 0.3s ease;
+                }
+
+                .capabilities-content-offset:hover {
+                        transform: translateX(12px);
+                }
+
+                .capabilities-row-1 .capabilities-content-offset {
+                        margin-left: 45%;
+                }
+
+                .capabilities-row-2 .capabilities-content-offset {
+                        margin-left: 22%;
+                }
+
+                .capabilities-row-3 .capabilities-content-offset {
+                        margin-left: 0%;
+                }
+
+                .capabilities-icon-box {
+                        position: relative;
+                        width: 120px;
+                        height: 120px;
+                        flex-shrink: 0;
+                }
+
+                .capabilities-icon-box .box-svg {
+                        position: absolute;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                }
+
+                .capabilities-icon-box .box-svg path:first-child {
+                        fill: #1e3a8a !important;
+                        stroke: #3b82f6 !important;
+                        stroke-width: 1.5px;
+                }
+
+                .capabilities-icon-box .box-svg path:nth-child(2) {
+                        stroke: #60a5fa !important;
+                        stroke-width: 1.5px;
+                }
+
+                .capabilities-icon-box .number {
+                        position: absolute;
+                        top: 6px;
+                        left: 8px;
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 11px;
+                        color: #93c5fd;
+                }
+
+                .capabilities-icon-box .icon-slot {
+                        position: absolute;
+                        top: 28px;
+                        left: 0;
+                        width: 120px;
+                        height: 92px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                }
+
+                .capabilities-icon-box .icon-slot svg {
+                        width: 42px;
+                        height: 42px;
+                        stroke: #60a5fa;
+                        stroke-width: 1.5;
+                        fill: none;
+                        opacity: 1;
+                }
+
+                .capabilities-row-title {
+                        font-family: 'Caveat', 'Brush Script MT', 'Lucida Handwriting', cursive;
+                        font-size: 32px;
+                        font-weight: 600;
+                        color: #ffffff;
+                        margin-left: 32px;
+                        letter-spacing: 0px;
+                        line-height: 1.15;
+                }
+
+                @media (max-width: 900px) {
+                        .capabilities-row-1 .capabilities-content-offset {
+                                margin-left: 10%;
+                        }
+
+                        .capabilities-row-2 .capabilities-content-offset {
+                                margin-left: 5%;
+                        }
+
+                        .capabilities-row-1 .grid-line-top {
+                                left: calc(10% + 120px);
+                        }
+
+                        .capabilities-row-2 .grid-line-top {
+                                left: calc(5% + 120px);
+                        }
+
+                        .capabilities-row-title {
+                                font-size: 24px;
+                                line-height: 1.2;
+                        }
+                }
+        </style>
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "outline": "#77777b",
+                                                "tertiary-fixed-dim": "#cac6c2",
+                                                "surface": "#fdf8f8",
+                                                "surface-container-lowest": "#ffffff",
+                                                "on-error-container": "#93000a",
+                                                "tertiary": "#000000",
+                                                "tertiary-fixed": "#e7e2dd",
+                                                "surface-container-high": "#ebe7e7",
+                                                "secondary-container": "#00eefc",
+                                                "error": "#ba1a1a",
+                                                "surface-container-low": "#f7f3f2",
+                                                "background": "#fdf8f8",
+                                                "on-surface-variant": "#46464a",
+                                                "on-primary-fixed-variant": "#474647",
+                                                "surface-bright": "#fdf8f8",
+                                                "on-tertiary-container": "#878380",
+                                                "on-background": "#1c1b1b",
+                                                "on-secondary": "#ffffff",
+                                                "on-secondary-fixed": "#002022",
+                                                "on-tertiary-fixed-variant": "#494643",
+                                                "secondary-fixed-dim": "#00dbe9",
+                                                "on-primary-container": "#858384",
+                                                "surface-tint": "#5f5e5f",
+                                                "on-tertiary": "#ffffff",
+                                                "surface-dim": "#ddd9d9",
+                                                "on-error": "#ffffff",
+                                                "tertiary-container": "#1d1b19",
+                                                "inverse-primary": "#c8c6c7",
+                                                "secondary": "#006970",
+                                                "secondary-fixed": "#7df4ff",
+                                                "primary": "#000000",
+                                                "on-primary": "#ffffff",
+                                                "on-secondary-container": "#00686f",
+                                                "error-container": "#ffdad6",
+                                                "primary-fixed-dim": "#c8c6c7",
+                                                "primary-container": "#1c1b1c",
+                                                "surface-container": "#f1edec",
+                                                "inverse-on-surface": "#f4f0ef",
+                                                "primary-fixed": "#e5e2e3",
+                                                "outline-variant": "#c7c6ca",
+                                                "on-secondary-fixed-variant": "#004f54",
+                                                "on-tertiary-fixed": "#1d1b19",
+                                                "on-primary-fixed": "#1c1b1c",
+                                                "surface-variant": "#e5e2e1",
+                                                "surface-container-highest": "#e5e2e1",
+                                                "inverse-surface": "#313030",
+                                                "on-surface": "#1c1b1b"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.125rem",
+                                                "lg": "0.25rem",
+                                                "xl": "0.5rem",
+                                                "full": "0.75rem"
+                                        },
+                                        "spacing": {
+                                                "unit": "4px",
+                                                "margin-desktop": "48px",
+                                                "gutter": "24px",
+                                                "margin-mobile": "16px",
+                                                "container-max": "1280px"
+                                        },
+                                        "fontFamily": {
+                                                "body-md": [
+                                                        "Inter"
+                                                ],
+                                                "technical-sm": [
+                                                        "JetBrains Mono"
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "Geist"
+                                                ],
+                                                "display-lg": [
+                                                        "Geist"
+                                                ],
+                                                "label-caps": [
+                                                        "Geist"
+                                                ],
+                                                "headline-lg": [
+                                                        "Geist"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "body-md": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "1.6",
+                                                                "letterSpacing": "0em",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "technical-sm": [
+                                                        "13px",
+                                                        {
+                                                                "lineHeight": "1.4",
+                                                                "letterSpacing": "0.02em",
+                                                                "fontWeight": "500"
+                                                        }
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "display-lg": [
+                                                        "48px",
+                                                        {
+                                                                "lineHeight": "1.1",
+                                                                "letterSpacing": "-0.04em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "label-caps": [
+                                                        "11px",
+                                                        {
+                                                                "lineHeight": "1",
+                                                                "letterSpacing": "0.1em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                body {
+                        background-color: #fdf8f8;
+                        /* surface */
+                        background-image: linear-gradient(#e5e2e1 1px, transparent 1px), linear-gradient(90deg, #e5e2e1 1px, transparent 1px);
+                        background-size: 32px 32px;
+                        background-position: -1px -1px;
+                }
+        </style>
+        <style>
+                body {
+                        background-color: #ffffff !important;
+                        background-image: linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px) !important;
+                        background-size: 32px 32px !important;
+                        background-position: -1px -1px !important;
+                }
+        </style>
+</head>
+
+<body class="text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+        <!-- TopNavBar -->
+        <header
+                class="fixed top-0 w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-sm border-b border-outline-variant/30 transition-colors duration-300 ease-in-out">
+                <div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+                        <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                                <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                                <span
+                                        class="font-display-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary">SXIAUM</span>
+                        </a>
+                        <nav class="hidden md:flex items-center gap-8 font-body-md text-body-md">
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="technology.html">Technology</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="ecosystem.html">Ecosystem</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="developers.html">Developers</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="Governance.html">Governance</a>
+                        </nav>
+                        <div class="flex items-center gap-4">
+                                <button
+                                        class="hidden md:block px-4 py-2 border border-outline-variant rounded text-primary font-technical-sm text-technical-sm hover:border-primary hover:text-secondary-fixed-dim transition-all duration-300 ease-in-out">Connect</button>
+                                <button
+                                        class="bg-primary text-on-primary px-5 py-2 rounded font-technical-sm text-technical-sm hover:opacity-80 transition-all duration-300 ease-in-out">Launch
+                                        App</button>
+                        </div>
+                </div>
+        </header>
+        <main class="flex-grow pt-24 pb-20">
+                <!-- Hero Section -->
+                <section id="hero-interactive"
+                        class="max-w-container-max mx-auto px-gutter mb-24 relative overflow-hidden bg-neutral-950 text-white min-h-[560px] lg:min-h-[640px] flex items-center">
+                        <div class="absolute inset-0 z-0"><img id="hero-background-image" src="heroback.png"
+                                        alt="SXIAUM punk - futuristic utopian coexistence of technology and nature"
+                                        class="w-full h-full object-cover object-center scale-[1.04] translate-x-[2%]">
+                        </div>
+                        <div class="absolute inset-0 z-[1] bg-gradient-to-r from-black/70 via-black/35 to-black/5">
+                        </div>
+                        <canvas id="hero-pixel-canvas" class="absolute inset-0 z-[2] pointer-events-none"></canvas>
+                        <div class="relative z-10 max-w-3xl px-6 lg:px-12 py-12 lg:py-24">
+                                <h1
+                                        class="font-display-lg text-[40px] md:text-display-lg text-white mb-6 leading-tight">
+                                        Institutional-Grade<br>Blockchain<br>Infrastructure.
+                                </h1>
+                                <p class="text-white text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
+                                        Engineered for high-stakes financial environments: SXIAUM delivers unparalleled
+                                        security, true finality, and limitless scalability through a deterministic
+                                        sharding architecture. The foundation for the next generation of global capital
+                                        markets.
+                                </p>
+                                <div class="flex flex-wrap gap-4">
+                                        <button
+                                                class="bg-white text-black px-6 py-3 rounded flex items-center gap-2 font-technical-sm text-technical-sm hover:opacity-90 transition-all duration-300">
+                                                Explore Documentation
+                                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </button>
+                                        <button
+                                                class="px-6 py-3 border border-neutral-800 rounded flex items-center gap-2 font-technical-sm text-technical-sm hover:border-white transition-all duration-300 bg-neutral-900/80 backdrop-blur-sm text-white">
+                                                View Source
+                                                <span class="material-symbols-outlined text-sm">code</span>
+                                        </button>
+                                </div>
+                        </div>
+                </section>
+
+                <!-- Brand Name Section -->
+                <section
+                        class="max-w-container-max mx-auto px-gutter mt-10 mb-2 flex flex-col justify-center items-center">
+                        <div class="w-full max-w-4xl flex justify-end -mb-4 z-10 relative pr-4 lg:pr-0">
+                                <p class="text-black text-xl md:text-2xl text-right leading-snug"
+                                        style="font-family: 'Brush Script MT', 'Lucida Handwriting', cursive; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">
+                                        A MEV-Resistant, Parallel-Execution<br>
+                                        Layer 1 Blockchain<br>
+                                        with Verkle State Cryptography
+                                </p>
+                        </div>
+                        <h2 class="font-black text-6xl md:text-8xl lg:text-[10rem] tracking-[0.1em] uppercase" style="
+                                background: linear-gradient(180deg, #e9d5ff 0%, #c084fc 35%, #ffffff 45%, #9333ea 50%, #4c1d95 100%);
+                                -webkit-background-clip: text;
+                                -webkit-text-fill-color: transparent;
+                                filter: drop-shadow(0px 3px 0px #7e22ce) drop-shadow(0px 6px 0px #581c87) drop-shadow(0px 9px 0px #3b0764);
+                        ">SXIAUM</h2>
+                </section>
+
+                <!-- Island Image Section Below SXIAUM -->
+                <section id="island-section"
+                        class="max-w-container-max mx-auto px-gutter flex flex-col items-center justify-center relative z-10 -mt-28 mb-2">
+                        <div class="w-full max-w-4xl flex justify-center items-center overflow-visible">
+                                <img src="island.png" alt="SXIAUM Island Node Infrastructure"
+                                        class="w-full max-w-2xl h-auto object-contain drop-shadow-[0_10px_25px_rgba(147,51,234,0.35)] transition-all duration-500 scale-x-[1.4]">
+                        </div>
+                </section>
+
+                <!-- 3D Nexus (Left) and Stats Description (Right) Section -->
+                <section
+                        class="max-w-container-max mx-auto px-gutter mb-28 mt-16 relative min-h-[500px] flex flex-col lg:flex-row items-center justify-between overflow-visible gap-8 lg:gap-12">
+                        <!-- Left Side: 3D Canvas Container & Orbiting Cards -->
+                        <div
+                                class="relative w-full lg:w-1/2 h-[480px] flex justify-center items-center overflow-visible">
+                                <div id="threejs-canvas-section"
+                                        class="absolute inset-0 flex justify-center items-center z-10 pointer-events-none">
+                                </div>
+
+                                <!-- Stat Cards (Orbiting on Left side) - Black Glass Design -->
+                                <div id="orbit-card-0"
+                                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] p-3 rounded-xl bg-black/85 backdrop-blur-md border border-black text-center flex flex-col items-center justify-center pointer-events-none transition-transform duration-[50ms] ease-linear shadow-2xl">
+                                        <h3
+                                                class="font-technical-sm text-[10px] text-gray-300 font-semibold mb-0.5 uppercase tracking-widest">
+                                                Max TPS</h3>
+                                        <div class="flex items-baseline gap-1">
+                                                <span class="font-display-lg text-lg text-white font-bold">4,500+</span>
+                                                <span class="font-technical-sm text-xs text-gray-400">/s</span>
+                                        </div>
+                                </div>
+
+                                <div id="orbit-card-1"
+                                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] p-3 rounded-xl bg-black/85 backdrop-blur-md border border-black text-center flex flex-col items-center justify-center pointer-events-none transition-transform duration-[50ms] ease-linear shadow-2xl">
+                                        <h3
+                                                class="font-technical-sm text-[10px] text-gray-300 font-semibold mb-0.5 uppercase tracking-widest">
+                                                Contract TPS</h3>
+                                        <div class="flex items-baseline gap-1">
+                                                <span class="font-display-lg text-lg text-white font-bold">1,200+</span>
+                                                <span class="font-technical-sm text-xs text-gray-400">/s</span>
+                                        </div>
+                                </div>
+
+                                <div id="orbit-card-2"
+                                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] p-3 rounded-xl bg-black/85 backdrop-blur-md border border-black text-center flex flex-col items-center justify-center pointer-events-none transition-transform duration-[50ms] ease-linear shadow-2xl">
+                                        <h3
+                                                class="font-technical-sm text-[10px] text-gray-300 font-semibold mb-0.5 uppercase tracking-widest">
+                                                Time to Finality</h3>
+                                        <div class="flex items-baseline gap-1">
+                                                <span class="font-display-lg text-lg text-white font-bold">1.2</span>
+                                                <span class="font-technical-sm text-xs text-gray-400">sec</span>
+                                        </div>
+                                </div>
+
+                                <div id="orbit-card-3"
+                                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] p-3 rounded-xl bg-black/85 backdrop-blur-md border border-black text-center flex flex-col items-center justify-center pointer-events-none transition-transform duration-[50ms] ease-linear shadow-2xl">
+                                        <h3
+                                                class="font-technical-sm text-[10px] text-gray-300 font-semibold mb-0.5 uppercase tracking-widest">
+                                                Block Time</h3>
+                                        <div class="flex items-baseline gap-1">
+                                                <span class="font-display-lg text-lg text-white font-bold">1.0</span>
+                                                <span class="font-technical-sm text-xs text-gray-400">sec</span>
+                                        </div>
+                                </div>
+
+                                <div id="orbit-card-4"
+                                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] p-3 rounded-xl bg-black/85 backdrop-blur-md border border-black text-center flex flex-col items-center justify-center pointer-events-none transition-transform duration-[50ms] ease-linear shadow-2xl">
+                                        <h3
+                                                class="font-technical-sm text-[10px] text-gray-300 font-semibold mb-0.5 uppercase tracking-widest">
+                                                State Proof Size</h3>
+                                        <div class="flex items-baseline gap-1">
+                                                <span class="font-display-lg text-lg text-white font-bold">~2.5</span>
+                                                <span class="font-technical-sm text-xs text-gray-400">KB</span>
+                                        </div>
+                                </div>
+
+                                <div id="orbit-card-5"
+                                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] p-3 rounded-xl bg-black/85 backdrop-blur-md border border-black text-center flex flex-col items-center justify-center pointer-events-none transition-transform duration-[50ms] ease-linear shadow-2xl">
+                                        <h3
+                                                class="font-technical-sm text-[10px] text-gray-300 font-semibold mb-0.5 uppercase tracking-widest">
+                                                Parallel Efficiency</h3>
+                                        <div class="flex items-baseline gap-1">
+                                                <span class="font-display-lg text-lg text-white font-bold">8.5</span>
+                                                <span class="font-technical-sm text-xs text-gray-400">x</span>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <!-- Right Side: Medium Three Lines in Black Curved Font -->
+                        <div
+                                class="w-full lg:w-1/2 flex flex-col justify-center items-start pl-0 lg:pl-6 z-20 space-y-6">
+                                <p class="text-black text-2xl md:text-3xl lg:text-4xl leading-relaxed font-semibold"
+                                        style="font-family: 'Caveat', 'Brush Script MT', 'Lucida Handwriting', cursive;">
+                                        High-throughput 4,500+ Max TPS with 1,200+ parallel smart contract execution.
+                                </p>
+                                <p class="text-black text-2xl md:text-3xl lg:text-4xl leading-relaxed font-semibold"
+                                        style="font-family: 'Caveat', 'Brush Script MT', 'Lucida Handwriting', cursive;">
+                                        Sub-second 1.2-second deterministic block finality & 1.0s block propagation.
+                                </p>
+                                <p class="text-black text-2xl md:text-3xl lg:text-4xl leading-relaxed font-semibold"
+                                        style="font-family: 'Caveat', 'Brush Script MT', 'Lucida Handwriting', cursive;">
+                                        Succinct ~2.5 KB Verkle state proof size with an 8.5x parallel OCC speedup.
+                                </p>
+                        </div>
+                </section>
+                <!-- Core Principles Section -->
+                <section class="max-w-container-max mx-auto px-gutter mb-24">
+                        <div class="mb-12">
+                                <h2
+                                        class="font-headline-lg text-6xl md:text-7xl font-bold text-primary mb-4 leading-tight">
+                                        Core Principles</h2>
+                                <p class="text-on-surface-variant max-w-2xl text-lg">Designed from first principles to
+                                        solve the
+                                        blockchain trilemma for enterprise deployment.</p>
+                        </div>
+
+                        <div class="flex flex-col gap-10">
+                                <!-- Card 1: P1 - User Protection First -->
+                                <div class="integration-card">
+                                        <div class="connector-line"></div>
+                                        <div class="left-col">
+                                                <div class="feature-tag">PRINCIPLE 01 // USER PROTECTION FIRST</div>
+                                                <h3>Native Commit-Reveal<br>MEV Elimination</h3>
+                                                <p>MEV protection is a foundational protocol property. Transaction
+                                                        intent is encrypted via SHA-256 commitments C(Tx, r) prior to
+                                                        ordering, eliminating frontrunning, sandwich attacks, and JIT
+                                                        liquidity (π* = 0).</p>
+                                                <div class="btn-wrapper">
+                                                        <a href="#" class="btn-docs">
+                                                                MEV PROOF SPECIFICATION
+                                                                <span class="arrow">▶</span>
+                                                        </a>
+                                                </div>
+                                        </div>
+                                        <div class="right-col">
+                                                <div class="marker tl"></div>
+                                                <div class="marker tr"></div>
+                                                <div class="marker bl"></div>
+                                                <div class="marker br"></div>
+                                                <div class="visual-bg"></div>
+                                                <div
+                                                        class="z-10 w-full aspect-[4/3] flex items-center justify-center relative p-4">
+                                                        <img src="abstract_shape_1.png"
+                                                                class="w-full h-full object-cover rounded"
+                                                                alt="Abstract Principle 01">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <!-- Card 2: P2 - Zero-Migration EVM Compatibility -->
+                                <div class="integration-card">
+                                        <div class="connector-line"></div>
+                                        <div class="left-col">
+                                                <div class="feature-tag">PRINCIPLE 02 // ZERO MIGRATION</div>
+                                                <h3>100% EVM Equivalent<br>& Native Tooling</h3>
+                                                <p>Zero developer migration tax. Deploy any Solidity smart contract
+                                                        unmodified using MetaMask, Hardhat, Foundry, and standard eth_
+                                                        RPC methods transparently wrapped with Commit-Reveal protection.
+                                                </p>
+                                                <div class="btn-wrapper">
+                                                        <a href="#" class="btn-docs">
+                                                                DEVELOPER GUIDES
+                                                                <span class="arrow">▶</span>
+                                                        </a>
+                                                </div>
+                                        </div>
+                                        <div class="right-col">
+                                                <div class="marker tl"></div>
+                                                <div class="marker tr"></div>
+                                                <div class="marker bl"></div>
+                                                <div class="marker br"></div>
+                                                <div class="visual-bg"></div>
+                                                <div
+                                                        class="z-10 w-full aspect-[4/3] flex items-center justify-center relative p-4">
+                                                        <img src="abstract_shape_2.png"
+                                                                class="w-full h-full object-cover rounded"
+                                                                alt="Abstract Principle 02">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <!-- Card 3: P3 - Performance Without Compromise -->
+                                <div class="integration-card">
+                                        <div class="connector-line"></div>
+                                        <div class="left-col">
+                                                <div class="feature-tag">PRINCIPLE 03 // PERFORMANCE</div>
+                                                <h3>Parallel EVM & OCC<br>Execution Engine</h3>
+                                                <p>Throughput via algorithmic innovation rather than hardware
+                                                        escalation. Optimistic Concurrency Control (OCC) and EIP-2930
+                                                        Access Matrix routing deliver 4,500+ TPS with an 8.5x parallel
+                                                        speedup.</p>
+                                                <div class="btn-wrapper">
+                                                        <a href="#" class="btn-docs">
+                                                                BENCHMARK DATA
+                                                                <span class="arrow">▶</span>
+                                                        </a>
+                                                </div>
+                                        </div>
+                                        <div class="right-col">
+                                                <div class="marker tl"></div>
+                                                <div class="marker tr"></div>
+                                                <div class="marker bl"></div>
+                                                <div class="marker br"></div>
+                                                <div class="visual-bg"></div>
+                                                <div
+                                                        class="z-10 w-full aspect-[4/3] flex items-center justify-center relative p-4">
+                                                        <img src="abstract_shape_3.png"
+                                                                class="w-full h-full object-cover rounded"
+                                                                alt="Abstract Principle 03">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <!-- Card 4: P4 - Rust-First Engineering -->
+                                <div class="integration-card">
+                                        <div class="connector-line"></div>
+                                        <div class="left-col">
+                                                <div class="feature-tag">PRINCIPLE 04 // RUST FIRST</div>
+                                                <h3>Zero-Cost Abstractions<br>& Memory Safety</h3>
+                                                <p>Implemented entirely in Rust for maximum throughput, deterministic
+                                                        runtime safety, and zero garbage collection. Powered by libp2p
+                                                        P2P networking and embedded redb storage.</p>
+                                                <div class="btn-wrapper">
+                                                        <a href="#" class="btn-docs">
+                                                                RUST ARCHITECTURE
+                                                                <span class="arrow">▶</span>
+                                                        </a>
+                                                </div>
+                                        </div>
+                                        <div class="right-col">
+                                                <div class="marker tl"></div>
+                                                <div class="marker tr"></div>
+                                                <div class="marker bl"></div>
+                                                <div class="marker br"></div>
+                                                <div class="visual-bg"></div>
+                                                <div
+                                                        class="z-10 w-full aspect-[4/3] flex items-center justify-center relative p-4">
+                                                        <img src="abstract_shape_4.png"
+                                                                class="w-full h-full object-cover rounded"
+                                                                alt="Abstract Principle 04">
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <!-- Card 5: P5 - Future-Proof Architecture -->
+                                <div class="integration-card">
+                                        <div class="connector-line"></div>
+                                        <div class="left-col">
+                                                <div class="feature-tag">PRINCIPLE 05 // FUTURE PROOF</div>
+                                                <h3>Verkle State Trees<br>& ZK-Provable Runtime</h3>
+                                                <p>Replaces legacy Merkle Patricia Tries with 256-branch Verkle Trees
+                                                        (IPA/KZG polynomial commitments), reducing proof sizes by 40x to
+                                                        ~2.5 KB. Fully ZK-provable using SP1 and Groth16.</p>
+                                                <div class="btn-wrapper">
+                                                        <a href="#" class="btn-docs">
+                                                                VERKLE & ZK PAPER
+                                                                <span class="arrow">▶</span>
+                                                        </a>
+                                                </div>
+                                        </div>
+                                        <div class="right-col">
+                                                <div class="marker tl"></div>
+                                                <div class="marker tr"></div>
+                                                <div class="marker bl"></div>
+                                                <div class="marker br"></div>
+                                                <div class="visual-bg"></div>
+                                                <div
+                                                        class="z-10 w-full aspect-[4/3] flex items-center justify-center relative p-4">
+                                                        <img src="abstract_shape_5.png"
+                                                                class="w-full h-full object-cover rounded"
+                                                                alt="Abstract Principle 05">
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+
+                <!-- Capabilities Tech Staircase Section (What SXiaum Can Do For You) -->
+                <section class="capabilities-section">
+                        <!-- Header Tag -->
+                        <div class="capabilities-top-tag">
+                                <svg class="tag-bg" viewBox="0 0 260 36" preserveAspectRatio="none">
+                                        <path d="M6,0 L260,0 L260,30 L254,36 L0,36 L0,6 Z" fill="rgba(255,255,255,0.02)"
+                                                stroke="rgba(255,255,255,0.3)" stroke-width="1" />
+                                </svg>
+                                <div class="dot"></div>
+                                <div class="tag-text">WHAT SXIAUM CAN DO FOR YOU</div>
+                        </div>
+
+                        <!-- Main Staircase Layout -->
+                        <div class="capabilities-container">
+                                <!-- Row 1: Payments -->
+                                <div class="capabilities-row capabilities-row-1">
+                                        <div class="capabilities-content-wrapper">
+                                                <div class="grid-line-top"></div>
+                                                <div class="capabilities-content-offset">
+                                                        <div class="capabilities-icon-box">
+                                                                <svg class="box-svg" viewBox="0 0 120 120"
+                                                                        preserveAspectRatio="none">
+                                                                        <path d="M0,0 L120,0 L120,105 L105,120 L15,120 L0,105 Z"
+                                                                                fill="#060608"
+                                                                                stroke="rgba(255,255,255,0.4)"
+                                                                                stroke-width="1" />
+                                                                        <path d="M0,28 L28,28 L28,0" fill="none"
+                                                                                stroke="rgba(255,255,255,0.4)"
+                                                                                stroke-width="1" />
+                                                                </svg>
+                                                                <div class="number">01</div>
+                                                                <div class="icon-slot">
+                                                                        <svg viewBox="0 0 24 24">
+                                                                                <circle cx="12" cy="12" r="3" />
+                                                                                <path d="M4 12a8 8 0 0 1 14-5.5"
+                                                                                        stroke-linecap="round" />
+                                                                                <polyline points="18 3 18 6.5 14.5 6.5"
+                                                                                        stroke-linecap="round"
+                                                                                        stroke-linejoin="round" />
+                                                                                <path d="M20 12a8 8 0 0 1-14 5.5"
+                                                                                        stroke-linecap="round" />
+                                                                                <polyline points="6 21 6 17.5 9.5 17.5"
+                                                                                        stroke-linecap="round"
+                                                                                        stroke-linejoin="round" />
+                                                                        </svg>
+                                                                </div>
+                                                        </div>
+                                                        <div class="capabilities-row-title">Zero-MEV Order Flow<br>&
+                                                                Frontrunning Protection</div>
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <!-- Row 2: Performance & Speed -->
+                                <div class="capabilities-row capabilities-row-2">
+                                        <div class="capabilities-content-wrapper">
+                                                <div class="grid-line-top"></div>
+                                                <div class="capabilities-content-offset">
+                                                        <div class="capabilities-icon-box">
+                                                                <svg class="box-svg" viewBox="0 0 120 120"
+                                                                        preserveAspectRatio="none">
+                                                                        <path d="M0,0 L120,0 L120,105 L105,120 L15,120 L0,105 Z"
+                                                                                fill="#060608"
+                                                                                stroke="rgba(255,255,255,0.4)"
+                                                                                stroke-width="1" />
+                                                                        <path d="M0,28 L28,28 L28,0" fill="none"
+                                                                                stroke="rgba(255,255,255,0.4)"
+                                                                                stroke-width="1" />
+                                                                </svg>
+                                                                <div class="number">02</div>
+                                                                <div class="icon-slot">
+                                                                        <svg viewBox="0 0 24 24">
+                                                                                <circle cx="12" cy="12" r="9" />
+                                                                                <circle cx="12" cy="12" r="6"
+                                                                                        stroke-dasharray="2 2" />
+                                                                                <path d="M12 8v8 M10 10c0-1 4-1 4 0s-4 1.5-4 2.5 4 1 4 2"
+                                                                                        stroke-linecap="round" />
+                                                                        </svg>
+                                                                </div>
+                                                        </div>
+                                                        <div class="capabilities-row-title">Sub-Second Finality<br>&
+                                                                4,500+ Parallel EVM TPS</div>
+                                                </div>
+                                        </div>
+                                </div>
+
+                                <!-- Row 3: Verkle State Proofs -->
+                                <div class="capabilities-row capabilities-row-3">
+                                        <div class="capabilities-content-wrapper">
+                                                <div class="grid-line-top"></div>
+                                                <div class="capabilities-content-offset">
+                                                        <div class="capabilities-icon-box">
+                                                                <svg class="box-svg" viewBox="0 0 120 120"
+                                                                        preserveAspectRatio="none">
+                                                                        <path d="M0,0 L120,0 L120,105 L105,120 L15,120 L0,105 Z"
+                                                                                fill="#060608"
+                                                                                stroke="rgba(255,255,255,0.4)"
+                                                                                stroke-width="1" />
+                                                                        <path d="M0,28 L28,28 L28,0" fill="none"
+                                                                                stroke="rgba(255,255,255,0.4)"
+                                                                                stroke-width="1" />
+                                                                </svg>
+                                                                <div class="number">03</div>
+                                                                <div class="icon-slot">
+                                                                        <svg viewBox="0 0 24 24">
+                                                                                <line x1="3" y1="20" x2="21" y2="20"
+                                                                                        stroke-linecap="round" />
+                                                                                <line x1="6" y1="20" x2="6" y2="10"
+                                                                                        stroke-linecap="round" />
+                                                                                <line x1="10" y1="20" x2="10" y2="14"
+                                                                                        stroke-linecap="round" />
+                                                                                <path d="M14 20 C14 12, 17 8, 21 5"
+                                                                                        stroke-linecap="round" />
+                                                                                <polyline points="17 5 21 5 21 9"
+                                                                                        stroke-linecap="round"
+                                                                                        stroke-linejoin="round" />
+                                                                        </svg>
+                                                                </div>
+                                                        </div>
+                                                        <div class="capabilities-row-title">~2.5 KB Succinct Proofs<br>&
+                                                                ZK-Provable Cryptography</div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+        </main>
+        <!-- Footer -->
+        <footer
+                class="w-full py-12 bg-surface-container-lowest dark:bg-tertiary-container border-t border-outline-variant mt-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 px-gutter max-w-container-max mx-auto">
+                        <div class="col-span-2 lg:col-span-2">
+                                <div class="flex items-center gap-2 mb-4">
+                                        <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                                        <span
+                                                class="font-headline-lg text-headline-lg-mobile text-primary dark:text-on-primary tracking-tighter">SXIAUM</span>
+                                </div>
+                                <p class="font-technical-sm text-technical-sm text-on-surface-variant max-w-xs mb-6">
+                                        © 2026 SXIAUM Foundation. Institutional-Grade Blockchain Infrastructure.
+                                </p>
+                                <div class="flex gap-4">
+                                        <a class="text-on-surface-variant hover:text-primary transition-colors"
+                                                href="#"><span
+                                                        class="material-symbols-outlined text-[20px]">language</span></a>
+                                        <a class="text-on-surface-variant hover:text-primary transition-colors"
+                                                href="#"><span
+                                                        class="material-symbols-outlined text-[20px]">code</span></a>
+                                        <a class="text-on-surface-variant hover:text-primary transition-colors"
+                                                href="#"><span
+                                                        class="material-symbols-outlined text-[20px]">forum</span></a>
+                                </div>
+                        </div>
+                        <div>
+                                <h4
+                                        class="font-technical-sm text-label-caps text-primary mb-4 uppercase tracking-wider">
+                                        Protocol</h4>
+                                <ul class="space-y-3 font-technical-sm text-technical-sm">
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Network Status</a></li>
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Documentation</a></li>
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Whitepaper</a></li>
+                                </ul>
+                        </div>
+                        <div>
+                                <h4
+                                        class="font-technical-sm text-label-caps text-primary mb-4 uppercase tracking-wider">
+                                        Trust</h4>
+                                <ul class="space-y-3 font-technical-sm text-technical-sm">
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Security Audits</a></li>
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Privacy Policy</a></li>
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Terms of Service</a></li>
+                                </ul>
+                        </div>
+                        <div class="col-span-2 md:col-span-1 lg:col-span-2">
+                                <h4
+                                        class="font-technical-sm text-label-caps text-primary mb-4 uppercase tracking-wider">
+                                        Community</h4>
+                                <ul class="space-y-3 font-technical-sm text-technical-sm">
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Forum</a></li>
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Blog</a></li>
+                                        <li><a class="text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                                        href="#">Careers</a></li>
+                                </ul>
+                        </div>
+                </div>
+        </footer>
+
+        <script>
+                        (() => {
+                                const hero = document.getElementById("hero-interactive");
+                                const image = document.getElementById("hero-background-image");
+                                const canvas = document.getElementById("hero-pixel-canvas");
+
+                                if (!hero || !image || !canvas) return;
+
+                                const ctx = canvas.getContext("2d");
+                                const pointer = { x: 0, y: 0, active: false };
+                                let frameRequested = false;
+                                let dpr = window.devicePixelRatio || 1;
+
+                                const resizeCanvas = () => {
+                                        const rect = hero.getBoundingClientRect();
+                                        dpr = window.devicePixelRatio || 1;
+                                        canvas.width = Math.round(rect.width * dpr);
+                                        canvas.height = Math.round(rect.height * dpr);
+                                        canvas.style.width = `${rect.width}px`;
+                                        canvas.style.height = `${rect.height}px`;
+                                        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                                };
+
+                                const getSourceRect = (tileX, tileY, tileSize, heroRect, imageRect) => {
+                                        const imgX = heroRect.left + tileX - imageRect.left;
+                                        const imgY = heroRect.top + tileY - imageRect.top;
+
+                                        return {
+                                                x: (imgX / imageRect.width) * image.naturalWidth,
+                                                y: (imgY / imageRect.height) * image.naturalHeight,
+                                                sizeX: (tileSize / imageRect.width) * image.naturalWidth,
+                                                sizeY: (tileSize / imageRect.height) * image.naturalHeight,
+                                        };
+                                };
+
+                                const drawTiles = () => {
+                                        frameRequested = false;
+                                        const heroRect = hero.getBoundingClientRect();
+                                        ctx.clearRect(0, 0, heroRect.width, heroRect.height);
+
+                                        if (!pointer.active || !image.complete || !image.naturalWidth) return;
+
+                                        const imageRect = image.getBoundingClientRect();
+                                        const tileSize = 48;
+                                        const radius = 240;
+                                        const startX = Math.floor((pointer.x - radius) / tileSize) * tileSize;
+                                        const endX = Math.ceil((pointer.x + radius) / tileSize) * tileSize;
+                                        const startY = Math.floor((pointer.y - radius) / tileSize) * tileSize;
+                                        const endY = Math.ceil((pointer.y + radius) / tileSize) * tileSize;
+
+                                        ctx.save();
+                                        ctx.imageSmoothingEnabled = false;
+
+                                        for (let y = startY; y <= endY; y += tileSize) {
+                                                for (let x = startX; x <= endX; x += tileSize) {
+                                                        const centerX = x + tileSize / 2;
+                                                        const centerY = y + tileSize / 2;
+                                                        const distance = Math.hypot(centerX - pointer.x, centerY - pointer.y);
+                                                        if (distance > radius) continue;
+
+                                                        const force = 1 - distance / radius;
+                                                        const drawnSize = tileSize;
+                                                        const source = getSourceRect(x, y, tileSize, heroRect, imageRect);
+
+                                                        if (
+                                                                source.x < 0 ||
+                                                                source.y < 0 ||
+                                                                source.x > image.naturalWidth ||
+                                                                source.y > image.naturalHeight
+                                                        ) continue;
+
+                                                        const drawX = x;
+                                                        const drawY = y;
+
+                                                        ctx.globalAlpha = 0.82 + force * 0.18;
+                                                        ctx.drawImage(
+                                                                image,
+                                                                source.x,
+                                                                source.y,
+                                                                source.sizeX,
+                                                                source.sizeY,
+                                                                drawX,
+                                                                drawY,
+                                                                drawnSize,
+                                                                drawnSize
+                                                        );
+
+                                                        ctx.globalAlpha = 0.35 + force * 0.45;
+                                                        ctx.strokeStyle = "rgba(125, 244, 255, 0.72)";
+                                                        ctx.lineWidth = 1;
+                                                        ctx.strokeRect(drawX, drawY, drawnSize, drawnSize);
+                                                }
+                                        }
+
+                                        ctx.restore();
+                                };
+
+                                const requestDraw = () => {
+                                        if (frameRequested) return;
+                                        frameRequested = true;
+                                        requestAnimationFrame(drawTiles);
+                                };
+
+                                hero.addEventListener("pointermove", (event) => {
+                                        const rect = hero.getBoundingClientRect();
+                                        pointer.x = event.clientX - rect.left;
+                                        pointer.y = event.clientY - rect.top;
+                                        pointer.active = true;
+                                        requestDraw();
+                                });
+
+                                hero.addEventListener("pointerleave", () => {
+                                        pointer.active = false;
+                                        requestDraw();
+                                });
+
+                                window.addEventListener("resize", () => {
+                                        resizeCanvas();
+                                        requestDraw();
+                                });
+
+                                if (image.complete) {
+                                        resizeCanvas();
+                                } else {
+                                        image.addEventListener("load", resizeCanvas, { once: true });
+                                }
+                        })();
+        </script>
+        <script>
+                (() => {
+                        const triangleSection = document.getElementById("triangle-grid-section");
+                        if (!triangleSection) return;
+
+                        const rows = triangleSection.querySelectorAll(".triangle-row");
+
+                        const handleScroll = () => {
+                                const windowHeight = window.innerHeight;
+                                const triggerThreshold = windowHeight * 0.85;
+
+                                rows.forEach((row) => {
+                                        const rowRect = row.getBoundingClientRect();
+                                        const blocks = row.querySelectorAll(".triangle-block");
+
+                                        if (rowRect.top < triggerThreshold) {
+                                                blocks.forEach((block) => {
+                                                        block.classList.add("is-black");
+                                                });
+                                        } else {
+                                                blocks.forEach((block) => {
+                                                        block.classList.remove("is-black");
+                                                });
+                                        }
+                                });
+                        };
+
+                        window.addEventListener("scroll", handleScroll, { passive: true });
+                        handleScroll();
+                })();
+        </script>
+        <script>
+                (() => {
+                        const section = document.getElementById("threejs-canvas-section");
+                        if (!section || typeof THREE === "undefined") return;
+
+                        const scene = new THREE.Scene();
+
+                        const camera = new THREE.PerspectiveCamera(45, section.clientWidth / section.clientHeight, 0.1, 100);
+                        camera.position.set(3, 3, 4);
+                        camera.lookAt(0, 0, 0);
+
+                        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                        renderer.setSize(section.clientWidth, section.clientHeight);
+                        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+                        renderer.toneMappingExposure = 1.2;
+                        section.appendChild(renderer.domElement);
+
+                        const cubeGroup = new THREE.Group();
+                        cubeGroup.rotation.set(Math.atan(1 / Math.sqrt(2)), 0, Math.PI / 4);
+
+                        const spinGroup = new THREE.Group();
+                        spinGroup.add(cubeGroup);
+
+                        const chromeMaterial = new THREE.MeshStandardMaterial({
+                                color: 0xa855f7,
+                                metalness: 0.1,
+                                roughness: 0.1,
+                                envMapIntensity: 1.0
+                        });
+
+                        const thickness = 0.08;
+                        const size = 1.5;
+
+                        function createPillar(w, h, d, x, y, z) {
+                                const geometry = new THREE.BoxGeometry(w, h, d);
+                                const mesh = new THREE.Mesh(geometry, chromeMaterial);
+                                mesh.position.set(x, y, z);
+                                cubeGroup.add(mesh);
+                        }
+
+                        const half = size / 2;
+
+                        createPillar(thickness, size, thickness, -half, 0, -half);
+                        createPillar(thickness, size, thickness, half, 0, -half);
+                        createPillar(thickness, size, thickness, -half, 0, half);
+                        createPillar(thickness, size, thickness, half, 0, half);
+
+                        createPillar(size, thickness, thickness, 0, half, -half);
+                        createPillar(size, thickness, thickness, 0, -half, -half);
+                        createPillar(size, thickness, thickness, 0, half, half);
+                        createPillar(size, thickness, thickness, 0, -half, half);
+
+                        createPillar(thickness, thickness, size, -half, half, 0);
+                        createPillar(thickness, thickness, size, half, half, 0);
+                        createPillar(thickness, thickness, size, -half, -half, 0);
+                        createPillar(thickness, thickness, size, half, -half, 0);
+
+                        scene.add(spinGroup);
+
+                        const ambientLight = new THREE.AmbientLight(0x333333);
+                        scene.add(ambientLight);
+
+                        const keyLight1 = new THREE.DirectionalLight(0xffffff, 3);
+                        keyLight1.position.set(5, 5, 5);
+                        scene.add(keyLight1);
+
+                        const keyLight2 = new THREE.DirectionalLight(0xffffff, 2);
+                        keyLight2.position.set(-5, -5, -5);
+                        scene.add(keyLight2);
+
+                        const fillLight = new THREE.PointLight(0xffffff, 1, 10);
+                        fillLight.position.set(0, 2, 0);
+                        scene.add(fillLight);
+
+                        const clock = new THREE.Clock();
+
+                        // Orbiting Stats Elements
+                        const statCards = [
+                                document.getElementById("orbit-card-0"),
+                                document.getElementById("orbit-card-1"),
+                                document.getElementById("orbit-card-2"),
+                                document.getElementById("orbit-card-3"),
+                                document.getElementById("orbit-card-4"),
+                                document.getElementById("orbit-card-5")
+                        ];
+
+                        const animate = () => {
+                                const elapsedTime = clock.getElapsedTime();
+
+                                spinGroup.rotation.y = elapsedTime * 0.25;
+
+                                // Update stat cards positions
+                                const orbitRadiusX = section ? Math.min(section.clientWidth * 0.38, 200) : 180;
+
+                                statCards.forEach((card, index) => {
+                                        if (card) {
+                                                // Using sin for X and cos for Z depth so angle=0 is at front (z=1) and angle=PI/2 is right (x=1)
+                                                // 6 cards = Math.PI / 3 spacing
+                                                const angle = (elapsedTime * 0.3) + (index * (Math.PI / 3));
+
+                                                const x = Math.sin(angle) * orbitRadiusX;
+                                                const depth = Math.cos(angle); // 1 (front) to -1 (back)
+
+                                                // Calculate rotateY based on angle to make them face outward/inward like a cylinder
+                                                const rotateY = angle * (180 / Math.PI);
+
+                                                // Scale based on depth
+                                                const scale = 0.85 + (depth * 0.15); // Scales between 0.7 and 1.0
+                                                const zIndex = depth > 0 ? 20 : 5;
+
+                                                // Apply 3D transforms (y is fixed to -50% for single horizontal line)
+                                                card.style.transform = `translate(calc(-50% + ${x}px), -50%) scale(${scale}) perspective(1000px) rotateY(${rotateY}deg)`;
+                                                card.style.zIndex = zIndex;
+
+                                                // Fade out cards when they are behind the cube
+                                                const opacity = depth < -0.5 ? Math.max(0.1, 1 - Math.abs(depth + 0.5) * 2) : 1;
+                                                card.style.opacity = opacity;
+                                        }
+                                });
+
+                                renderer.render(scene, camera);
+
+                                window.requestAnimationFrame(animate);
+                        };
+
+                        animate();
+
+                        window.addEventListener('resize', () => {
+                                if (!section) return;
+                                camera.aspect = section.clientWidth / section.clientHeight;
+                                camera.updateProjectionMatrix();
+                                renderer.setSize(section.clientWidth, section.clientHeight);
+                                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                        });
+                })();
+        </script>
+</body>
+
+</html>

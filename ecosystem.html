@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SXIAUM - Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#77777b",
+                        "tertiary-fixed-dim": "#cac6c2",
+                        "surface": "#fdf8f8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#000000",
+                        "tertiary-fixed": "#e7e2dd",
+                        "surface-container-high": "#ebe7e7",
+                        "secondary-container": "#00eefc",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f7f3f2",
+                        "background": "#fdf8f8",
+                        "on-surface-variant": "#46464a",
+                        "on-primary-fixed-variant": "#474647",
+                        "surface-bright": "#fdf8f8",
+                        "on-tertiary-container": "#878380",
+                        "on-background": "#1c1b1b",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#002022",
+                        "on-tertiary-fixed-variant": "#494643",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-primary-container": "#858384",
+                        "surface-tint": "#5f5e5f",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#ddd9d9",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#1d1b19",
+                        "inverse-primary": "#c8c6c7",
+                        "secondary": "#006970",
+                        "secondary-fixed": "#7df4ff",
+                        "primary": "#000000",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#00686f",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c8c6c7",
+                        "primary-container": "#1c1b1c",
+                        "surface-container": "#f1edec",
+                        "inverse-on-surface": "#f4f0ef",
+                        "primary-fixed": "#e5e2e3",
+                        "outline-variant": "#c7c6ca",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "on-tertiary-fixed": "#1d1b19",
+                        "on-primary-fixed": "#1c1b1c",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-highest": "#e5e2e1",
+                        "inverse-surface": "#313030",
+                        "on-surface": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "technical-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "label-caps": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "technical-sm": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fdf8f8;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .circuit-pulse {
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from {
+                text-shadow: 0 0 4px rgba(0, 238, 252, 0.2);
+            }
+
+            to {
+                text-shadow: 0 0 12px rgba(0, 238, 252, 0.8);
+            }
+        }
+
+        .bg-biosystem {
+            background-image: url('ecosystem.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @keyframes marquee-ltr {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+
+        .animate-marquee-ltr {
+            animation: marquee-ltr 25s linear infinite;
+        }
+
+        .animate-marquee-ltr:hover {
+            animation-play-state: paused;
+        }
+
+        .card-wrapper-v2 {
+            position: relative;
+            width: 100%;
+            height: 320px;
+        }
+
+        .decorative-triangle-v2 {
+            position: absolute;
+            top: 28px;
+            left: 12px;
+            width: 0;
+            height: 0;
+            border-bottom: 8px solid #111;
+            border-left: 8px solid transparent;
+            z-index: 2;
+        }
+
+        .tech-card-v2 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%, 0 40px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .tech-card-v2::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: #cbd5e1;
+            z-index: -2;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-wrapper-v2:hover .tech-card-v2::before {
+            background-color: #3b82f6;
+        }
+
+        .tech-card-v2::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            background-color: #e0f2fe;
+            clip-path: polygon(39.5px 0, 100% 0, 100% calc(100% - 39.5px), calc(100% - 39.5px) 100%, 0 100%, 0 39.5px);
+            z-index: -1;
+        }
+
+        .card-header-v2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .icon-wrapper-v2 {
+            width: 80px;
+            height: 80px;
+            margin-top: -10px;
+            margin-right: -10px;
+            flex-shrink: 0;
+        }
+
+        .card-footer-v2 {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+        }
+    </style>
+    <style>
+        body {
+            background-color: #ffffff !important;
+            background-image: linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px) !important;
+            background-size: 32px 32px !important;
+            background-position: -1px -1px !important;
+        }
+    </style>
+</head>
+
+<body
+    class="font-body-md text-body-md text-on-surface antialiased min-h-screen relative overflow-x-hidden bg-background">
+    <!-- TopNavBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-sm border-b border-outline-variant/30 transition-colors duration-300 ease-in-out">
+        <div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+            <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                <span
+                    class="font-display-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary">SXIAUM</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 font-body-md text-body-md">
+                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                    href="technology.html">Technology</a>
+                <a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-300 ease-in-out"
+                    href="ecosystem.html">Ecosystem</a>
+                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                    href="developers.html">Developers</a>
+                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                    href="Governance.html">Governance</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button
+                    class="hidden md:block px-4 py-2 border border-outline-variant rounded text-primary font-technical-sm text-technical-sm hover:border-primary hover:text-secondary-fixed-dim transition-all duration-300 ease-in-out">Connect</button>
+                <button
+                    class="bg-primary text-on-primary px-5 py-2 rounded font-technical-sm text-technical-sm hover:opacity-80 transition-all duration-300 ease-in-out">Launch
+                    App</button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="pt-24 pb-24 px-gutter max-w-container-max mx-auto relative z-10">
+        <!-- Hero Section Image Banner -->
+        <section class="mb-12">
+            <div
+                class="min-h-[550px] md:min-h-[650px] lg:min-h-[720px] relative p-8 md:p-14 bg-biosystem flex flex-col justify-start pt-12 md:pt-16">
+                <div class="relative z-10 max-w-4xl">
+                    <h1
+                        class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 drop-shadow-sm leading-snug">
+                        <span class="bg-blue-600 text-white box-decoration-clone px-2">Building Infrastructure for
+                            <br>
+                            The Next Generation <br> Of Decentralized Applications</span>
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <p
+                class="text-on-surface-variant text-black md:text-xl lg:text-2xl italic font-serif max-w-4xl leading-relaxed">
+                The SXIAUM combines the execution layer, developer infrastructure, decentralized finance, identity,
+                governance, storage, security, and future-ready technologies into one unified platform. Every component
+                is designed to work together while remaining modular for developers and enterprises.</p>
+        </section>
+
+        <!-- Stats Frosted Glass Cards Below Hero Section Image -->
+        <section class="mb-16 overflow-hidden">
+            <div class="flex gap-4 w-max animate-marquee-ltr">
+                <!-- First Set -->
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">PEAK TPS</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">4,500+</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">CONTRACT TPS</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">1,200+</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">FINALITY</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">1.2s</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">STATE PROOF</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">~2.5 KB</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">BLOCK TIME</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">1.0s</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">PARALLEL BOOST</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">8.5×</span>
+                </div>
+                <!-- Duplicate Second Set for seamless loop -->
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">PEAK TPS</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">4,500+</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">CONTRACT TPS</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">1,200+</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">FINALITY</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">1.2s</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">STATE PROOF</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">~2.5 KB</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">BLOCK TIME</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">1.0s</span>
+                </div>
+                <div class="w-64 bg-black/60 backdrop-blur-md border border-white/20 p-6 flex flex-col justify-between shadow-md hover:bg-black/80 transition-colors"
+                    style="clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));">
+                    <span class="font-label-caps text-label-caps text-blue-400 mb-2">PARALLEL BOOST</span>
+                    <span class="font-technical-sm text-headline-lg text-blue-500 font-bold">8.5×</span>
+                </div>
+            </div>
+        </section>
+        <!-- Current dApps (Staggered Grid) -->
+        <section class="mb-24 mt-24 lg:mt-32">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary mb-12">Everything Needed
+                to<br> Build, Secure, and
+                Scale</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 lg:pb-16">
+                <!-- Card 1: Core Network -->
+                <div
+                    class="card-wrapper-v2 cursor-pointer group hover:-translate-y-2 transition-transform duration-300 lg:mt-0">
+                    <div class="decorative-triangle-v2"></div>
+                    <div class="tech-card-v2">
+                        <div class="card-header-v2">
+                            <h3 class="text-3xl font-bold text-gray-900 tracking-tight leading-tight w-2/3">Core Network
+                            </h3>
+                            <div class="icon-wrapper-v2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#4338ca" />
+                                            <stop offset="50%" stop-color="#3b82f6" />
+                                            <stop offset="100%" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                        <filter id="shadow1" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="-1" dy="4" stdDeviation="4" flood-opacity="0.15" />
+                                        </filter>
+                                    </defs>
+                                    <path d="M 50 50 L 22 25 M 50 50 L 78 25 M 50 50 L 50 82" stroke="url(#grad1)"
+                                        stroke-width="6" stroke-linecap="round" />
+                                    <circle cx="22" cy="28" r="12" fill="#cbd5e1" />
+                                    <circle cx="22" cy="25" r="12" fill="#ffffff" filter="url(#shadow1)" />
+                                    <circle cx="78" cy="28" r="12" fill="#cbd5e1" />
+                                    <circle cx="78" cy="25" r="12" fill="#ffffff" filter="url(#shadow1)" />
+                                    <circle cx="50" cy="85" r="12" fill="#cbd5e1" />
+                                    <circle cx="50" cy="82" r="12" fill="#ffffff" filter="url(#shadow1)" />
+                                    <circle cx="50" cy="54" r="18" fill="#94a3b8" />
+                                    <circle cx="50" cy="50" r="18" fill="#ffffff" filter="url(#shadow1)" />
+                                    <circle cx="50" cy="50" r="8" fill="url(#grad1)" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-500 mt-4 mb-auto leading-relaxed">The high-performance
+                            Layer-1 that powers every transaction, application, and digital asset.</p>
+                        <div class="card-footer-v2">
+                            <span class="text-gray-900 font-bold">01</span>
+                            <span class="font-medium tracking-widest uppercase text-gray-500">INFRASTRUCTURE</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2: Developer Hub -->
+                <div
+                    class="card-wrapper-v2 cursor-pointer group hover:-translate-y-2 transition-transform duration-300 lg:mt-32">
+                    <div class="decorative-triangle-v2"></div>
+                    <div class="tech-card-v2">
+                        <div class="card-header-v2">
+                            <h3 class="text-3xl font-bold text-gray-900 tracking-tight leading-tight w-2/3">Developer
+                                Hub</h3>
+                            <div class="icon-wrapper-v2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#4338ca" />
+                                            <stop offset="50%" stop-color="#3b82f6" />
+                                            <stop offset="100%" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                        <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="-1" dy="3" stdDeviation="3" flood-opacity="0.15" />
+                                        </filter>
+                                    </defs>
+                                    <g filter="url(#shadow2)">
+                                        <path d="M 50 85 L 20 68 L 20 38 L 50 55 Z" fill="url(#grad2)" />
+                                        <path d="M 50 85 L 80 68 L 80 38 L 50 55 Z" fill="#94a3b8" />
+                                        <path d="M 50 55 L 20 38 L 50 20 L 80 38 Z" fill="#ffffff" />
+                                        <path d="M 55 60 L 70 52 M 55 70 L 70 62" stroke="#cbd5e1" stroke-width="4"
+                                            stroke-linecap="round" />
+                                        <path d="M 45 60 L 30 52 M 45 70 L 30 62" stroke="#ffffff" stroke-width="4"
+                                            stroke-linecap="round" opacity="0.5" />
+                                    </g>
+                                    <path d="M 18 15 L 8 25 L 18 35" stroke="url(#grad2)" stroke-width="5"
+                                        stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                    <path d="M 82 15 L 92 25 L 82 35" stroke="#94a3b8" stroke-width="5"
+                                        stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-500 mt-4 mb-auto leading-relaxed">Build faster with
+                            SDKs, APIs, documentation, and tools designed for modern Web3 development.</p>
+                        <div class="card-footer-v2">
+                            <span class="text-gray-900 font-bold">02</span>
+                            <span class="font-medium tracking-widest uppercase text-gray-500">TOOLING</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3: Wallets -->
+                <div
+                    class="card-wrapper-v2 cursor-pointer group hover:-translate-y-2 transition-transform duration-300 lg:mt-0">
+                    <div class="decorative-triangle-v2"></div>
+                    <div class="tech-card-v2">
+                        <div class="card-header-v2">
+                            <h3 class="text-3xl font-bold text-gray-900 tracking-tight leading-tight w-2/3">Wallets</h3>
+                            <div class="icon-wrapper-v2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="grad3" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#4338ca" />
+                                            <stop offset="50%" stop-color="#3b82f6" />
+                                            <stop offset="100%" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                        <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="-1" dy="4" stdDeviation="4" flood-opacity="0.15" />
+                                        </filter>
+                                    </defs>
+                                    <circle cx="50" cy="50" r="38" fill="url(#grad3)" opacity="0.1" />
+                                    <g transform="translate(50, 50) rotate(-15) translate(-50, -50)"
+                                        filter="url(#shadow3)">
+                                        <rect x="25" y="25" width="60" height="40" rx="6" fill="#cbd5e1" />
+                                        <rect x="25" y="22" width="60" height="40" rx="6" fill="#ffffff" />
+                                        <rect x="15" y="42" width="65" height="42" rx="8" fill="#94a3b8" />
+                                        <rect x="15" y="38" width="65" height="42" rx="8" fill="url(#grad3)" />
+                                        <rect x="25" y="48" width="12" height="10" rx="2" fill="#ffffff"
+                                            opacity="0.8" />
+                                        <path d="M 65 65 L 70 65 M 55 65 L 60 65" stroke="#ffffff" stroke-width="4"
+                                            stroke-linecap="round" opacity="0.6" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-500 mt-4 mb-auto leading-relaxed">Securely store assets,
+                            interact with dApps, stake tokens, and manage your digital identity.</p>
+                        <div class="card-footer-v2">
+                            <span class="text-gray-900 font-bold">03</span>
+                            <span class="font-medium tracking-widest uppercase text-gray-500">CUSTODY</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4: Validators -->
+                <div
+                    class="card-wrapper-v2 cursor-pointer group hover:-translate-y-2 transition-transform duration-300 lg:mt-0">
+                    <div class="decorative-triangle-v2"></div>
+                    <div class="tech-card-v2">
+                        <div class="card-header-v2">
+                            <h3 class="text-3xl font-bold text-gray-900 tracking-tight leading-tight w-2/3">Validators
+                            </h3>
+                            <div class="icon-wrapper-v2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="grad4" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#4338ca" />
+                                            <stop offset="50%" stop-color="#3b82f6" />
+                                            <stop offset="100%" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                        <filter id="shadow4" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="-1" dy="4" stdDeviation="4" flood-opacity="0.15" />
+                                        </filter>
+                                    </defs>
+                                    <g filter="url(#shadow4)">
+                                        <path
+                                            d="M 50 92 C 50 92 82 75 82 35 L 82 20 L 50 10 L 18 20 L 18 35 C 18 75 50 92 50 92 Z"
+                                            fill="#cbd5e1" />
+                                        <path
+                                            d="M 50 88 C 50 88 82 71 82 31 L 82 16 L 50 6 L 18 16 L 18 31 C 18 71 50 88 50 88 Z"
+                                            fill="#ffffff" />
+                                        <path
+                                            d="M 50 80 C 50 80 72 65 72 35 L 72 23 L 50 15 L 28 23 L 28 35 C 28 65 50 80 50 80 Z"
+                                            fill="url(#grad4)" />
+                                        <path d="M 38 45 L 48 55 L 65 35" stroke="#ffffff" stroke-width="7"
+                                            stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-500 mt-4 mb-auto leading-relaxed">A decentralized
+                            network securing the blockchain through consensus and continuous validation.</p>
+                        <div class="card-footer-v2">
+                            <span class="text-gray-900 font-bold">04</span>
+                            <span class="font-medium tracking-widest uppercase text-gray-500">CONSENSUS</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5: Native Token -->
+                <div
+                    class="card-wrapper-v2 cursor-pointer group hover:-translate-y-2 transition-transform duration-300 lg:mt-32">
+                    <div class="decorative-triangle-v2"></div>
+                    <div class="tech-card-v2">
+                        <div class="card-header-v2">
+                            <h3 class="text-3xl font-bold text-gray-900 tracking-tight leading-tight w-2/3">Native Token
+                            </h3>
+                            <div class="icon-wrapper-v2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="arrowColor5" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#4338ca" />
+                                            <stop offset="50%" stop-color="#3b82f6" />
+                                            <stop offset="100%" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                        <filter id="shadow5" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="-1" dy="2" stdDeviation="2" flood-opacity="0.15" />
+                                        </filter>
+                                    </defs>
+                                    <path
+                                        d="M33.8 21.3A42 42 0 0 1 82.6 41.5l-8.4 2.8 19.3 12.1 4.5-22.3-9 3A52 52 0 0 0 27.2 11.5z"
+                                        fill="url(#arrowColor5)" />
+                                    <path
+                                        d="M66.2 78.7A42 42 0 0 1 17.4 58.5l8.4-2.8L6.5 43.6 2 65.9l9-3A52 52 0 0 0 72.8 88.5z"
+                                        fill="url(#arrowColor5)" />
+                                    <g transform="translate(50,50) rotate(-35) translate(-50,-50)"
+                                        filter="url(#shadow5)">
+                                        <path d="M 23 50 C 23 65 77 65 77 50 L 77 55 C 77 70 23 70 23 55 Z"
+                                            fill="#cbd5e1" />
+                                        <path d="M 23 50 C 23 65 77 65 77 50 L 77 52 C 77 67 23 67 23 52 Z"
+                                            fill="#94a3b8" />
+                                        <ellipse cx="50" cy="50" rx="27" ry="13" fill="#ffffff" stroke="#e2e8f0"
+                                            stroke-width="1.5" />
+                                        <ellipse cx="50" cy="50" rx="22" ry="10" fill="none" stroke="#cbd5e1"
+                                            stroke-width="1" />
+                                        <path
+                                            d="M 25 55 L 26 58 M 32 59 L 33 62 M 40 61 L 41 64 M 48 62 L 49 65 M 56 61 L 57 64 M 64 59 L 65 62 M 72 55 L 73 58"
+                                            stroke="#cbd5e1" stroke-width="1" stroke-linecap="round" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-500 mt-4 mb-auto leading-relaxed">Fueling transactions,
+                            staking, governance, and ecosystem participation across the network.</p>
+                        <div class="card-footer-v2">
+                            <span class="text-gray-900 font-bold">05</span>
+                            <span class="font-medium tracking-widest uppercase text-gray-500">UTILITY</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6: Innovation -->
+                <div
+                    class="card-wrapper-v2 cursor-pointer group hover:-translate-y-2 transition-transform duration-300 lg:mt-0">
+                    <div class="decorative-triangle-v2"></div>
+                    <div class="tech-card-v2">
+                        <div class="card-header-v2">
+                            <h3 class="text-3xl font-bold text-gray-900 tracking-tight leading-tight w-2/3">Innovation
+                            </h3>
+                            <div class="icon-wrapper-v2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="grad6" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#4338ca" />
+                                            <stop offset="50%" stop-color="#3b82f6" />
+                                            <stop offset="100%" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                        <filter id="shadow6" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="-1" dy="4" stdDeviation="4" flood-opacity="0.15" />
+                                        </filter>
+                                    </defs>
+                                    <ellipse cx="50" cy="50" rx="35" ry="12" fill="none" stroke="#cbd5e1"
+                                        stroke-width="4" transform="rotate(30 50 50)" />
+                                    <ellipse cx="50" cy="50" rx="35" ry="12" fill="none" stroke="url(#grad6)"
+                                        stroke-width="4" transform="rotate(150 50 50)" />
+                                    <ellipse cx="50" cy="50" rx="35" ry="12" fill="none" stroke="#e2e8f0"
+                                        stroke-width="4" transform="rotate(90 50 50)" />
+                                    <g filter="url(#shadow6)">
+                                        <circle cx="50" cy="54" r="14" fill="#94a3b8" />
+                                        <circle cx="50" cy="50" r="14" fill="#ffffff" />
+                                        <circle cx="19" cy="32" r="5" fill="url(#grad6)" />
+                                        <circle cx="81" cy="68" r="5" fill="url(#grad6)" />
+                                        <circle cx="50" cy="15" r="5" fill="url(#grad6)" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium text-gray-500 mt-4 mb-auto leading-relaxed">Advancing blockchain
+                            through scalable architecture, privacy-focused design, and ongoing protocol research.</p>
+                        <div class="card-footer-v2">
+                            <span class="text-gray-900 font-bold">06</span>
+                            <span class="font-medium tracking-widest uppercase text-gray-500">RESEARCH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Grow Together Section -->
+        <section class="mt-32 mb-12 relative">
+            <div
+                class="relative overflow-hidden bg-[url('people.png')] bg-cover bg-center bg-no-repeat border border-purple-200 shadow-[0_0_50px_rgba(139,92,246,0.1)] py-24 md:py-32 lg:py-40 px-8 md:px-16 lg:px-24 rounded-tl-[3rem] rounded-br-[3rem] flex flex-col justify-center min-h-[600px] lg:min-h-[800px]">
+
+                <!-- Cyberpunk tech accents -->
+                <div class="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-blue-500 rounded-tl-[3rem]">
+                </div>
+                <div
+                    class="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-violet-500 rounded-br-[3rem]">
+                </div>
+                <div class="absolute top-0 right-16 w-48 h-[2px] bg-purple-500/30"></div>
+                <div class="absolute bottom-0 left-16 w-48 h-[2px] bg-blue-500/30"></div>
+
+                <div
+                    class="absolute top-12 md:top-24 left-1/2 transform -translate-x-1/2 w-full max-w-4xl px-6 text-center z-20">
+                    <h2
+                        class="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 mb-6 drop-shadow-sm">
+                        Growing Together</h2>
+                    <h3
+                        class="text-xl md:text-2xl text-blue-600 font-bold mb-0 tracking-[0.2em] uppercase font-technical-sm">
+                        The Future of SXIAUM Starts with Its Community</h3>
+                </div>
+
+                <div
+                    class="absolute bottom-12 md:bottom-24 left-1/2 transform -translate-x-1/2 w-full text-center z-20">
+                    <button
+                        class="relative px-12 py-5 bg-gradient-to-r from-blue-600 via-purple-600 to-violet-600 hover:from-blue-500 hover:via-purple-500 hover:to-violet-500 text-white text-lg font-black tracking-[0.15em] uppercase rounded-sm shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] transition-all duration-300 transform hover:scale-105 overflow-hidden border border-purple-200/50 group">
+                        <span class="relative z-10">Start Building</span>
+                        <div
+                            class="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out">
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-16 max-w-5xl mx-auto text-center px-6 relative z-10">
+                <p class="text-2xl md:text-3xl text-gray-900 font-bold italic leading-relaxed font-serif mb-8">
+                    Every great blockchain ecosystem is built by the people who use it. SXIAUM is designed to bring
+                    together developers, validators, researchers, businesses, and innovators to create secure, scalable,
+                    and impactful decentralized solutions.
+                </p>
+            </div>
+        </section>
+    </main>
+    <!-- Footer (Shared Component) -->
+    <footer
+        class="bg-surface-container-lowest dark:bg-tertiary-container border-t border-outline-variant w-full py-12 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 px-gutter max-w-container-max mx-auto">
+            <div class="col-span-2 lg:col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                    <span
+                        class="font-headline-lg text-headline-lg-mobile text-primary dark:text-on-primary tracking-tighter">SXIAUM</span>
+                </div>
+                <p
+                    class="font-technical-sm text-technical-sm text-on-surface-variant dark:text-on-tertiary-container opacity-100 max-w-sm">
+                    © 2026 SXIAUM Foundation. Institutional-Grade Blockchain Infrastructure.
+                </p>
+            </div>
+            <div class="col-span-2 md:col-span-2 lg:col-span-4 grid grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-technical-sm text-technical-sm text-primary mb-4 font-bold">RESOURCES</h4>
+                    <ul class="space-y-2">
+                        <li><a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all"
+                                href="#">Network Status</a></li>
+                        <li><a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all"
+                                href="#">Documentation</a></li>
+                        <li><a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all"
+                                href="#">Whitepaper</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-technical-sm text-technical-sm text-primary mb-4 font-bold">LEGAL</h4>
+                    <ul class="space-y-2">
+                        <li><a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all"
+                                href="#">Security Audits</a></li>
+                        <li><a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all"
+                                href="#">Privacy Policy</a></li>
+                        <li><a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all"
+                                href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

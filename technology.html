@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>SXIAUM - Technology</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet">
+        <link href="https://fonts.googleapis.com" rel="preconnect">
+        <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"
+                rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet">
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "outline": "#77777b",
+                                                "tertiary-fixed-dim": "#cac6c2",
+                                                "surface": "#fdf8f8",
+                                                "surface-container-lowest": "#ffffff",
+                                                "on-error-container": "#93000a",
+                                                "tertiary": "#000000",
+                                                "tertiary-fixed": "#e7e2dd",
+                                                "surface-container-high": "#ebe7e7",
+                                                "secondary-container": "#00eefc",
+                                                "error": "#ba1a1a",
+                                                "surface-container-low": "#f7f3f2",
+                                                "background": "#fdf8f8",
+                                                "on-surface-variant": "#46464a",
+                                                "on-primary-fixed-variant": "#474647",
+                                                "surface-bright": "#fdf8f8",
+                                                "on-tertiary-container": "#878380",
+                                                "on-background": "#1c1b1b",
+                                                "on-secondary": "#ffffff",
+                                                "on-secondary-fixed": "#002022",
+                                                "on-tertiary-fixed-variant": "#494643",
+                                                "secondary-fixed-dim": "#00dbe9",
+                                                "on-primary-container": "#858384",
+                                                "surface-tint": "#5f5e5f",
+                                                "on-tertiary": "#ffffff",
+                                                "surface-dim": "#ddd9d9",
+                                                "on-error": "#ffffff",
+                                                "tertiary-container": "#1d1b19",
+                                                "inverse-primary": "#c8c6c7",
+                                                "secondary": "#006970",
+                                                "secondary-fixed": "#7df4ff",
+                                                "primary": "#000000",
+                                                "on-primary": "#ffffff",
+                                                "on-secondary-container": "#00686f",
+                                                "error-container": "#ffdad6",
+                                                "primary-fixed-dim": "#c8c6c7",
+                                                "primary-container": "#1c1b1c",
+                                                "surface-container": "#f1edec",
+                                                "inverse-on-surface": "#f4f0ef",
+                                                "primary-fixed": "#e5e2e3",
+                                                "outline-variant": "#c7c6ca",
+                                                "on-secondary-fixed-variant": "#004f54",
+                                                "on-tertiary-fixed": "#1d1b19",
+                                                "on-primary-fixed": "#1c1b1c",
+                                                "surface-variant": "#e5e2e1",
+                                                "surface-container-highest": "#e5e2e1",
+                                                "inverse-surface": "#313030",
+                                                "on-surface": "#1c1b1b"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.125rem",
+                                                "lg": "0.25rem",
+                                                "xl": "0.5rem",
+                                                "full": "0.75rem"
+                                        },
+                                        "spacing": {
+                                                "unit": "4px",
+                                                "margin-desktop": "48px",
+                                                "gutter": "24px",
+                                                "margin-mobile": "16px",
+                                                "container-max": "1280px"
+                                        },
+                                        "fontFamily": {
+                                                "body-md": [
+                                                        "Inter"
+                                                ],
+                                                "technical-sm": [
+                                                        "JetBrains Mono"
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "Inter"
+                                                ],
+                                                "display-lg": [
+                                                        "Inter"
+                                                ],
+                                                "label-caps": [
+                                                        "Inter"
+                                                ],
+                                                "headline-lg": [
+                                                        "Inter"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "body-md": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "1.6",
+                                                                "letterSpacing": "0em",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "technical-sm": [
+                                                        "13px",
+                                                        {
+                                                                "lineHeight": "1.4",
+                                                                "letterSpacing": "0.02em",
+                                                                "fontWeight": "500"
+                                                        }
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "24px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "display-lg": [
+                                                        "48px",
+                                                        {
+                                                                "lineHeight": "1.1",
+                                                                "letterSpacing": "-0.04em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "label-caps": [
+                                                        "11px",
+                                                        {
+                                                                "lineHeight": "1",
+                                                                "letterSpacing": "0.1em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ]
+                                        },
+                                        backgroundImage: {
+                                                'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm39 39V1H1v38h38z' fill='%23e2e8f0' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                .bg-grid-pattern {
+                        background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+                        background-size: 32px 32px;
+                }
+        </style>
+        <style>
+                body {
+                        background-color: #ffffff !important;
+                        background-image: linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px) !important;
+                        background-size: 32px 32px !important;
+                        background-position: -1px -1px !important;
+                }
+        </style>
+</head>
+
+<body
+        class="bg-surface-container-lowest text-on-surface font-body-md antialiased relative min-h-screen bg-grid-pattern">
+        <!-- TopNavBar -->
+        <header
+                class="fixed top-0 w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-sm border-b border-outline-variant/30 transition-colors duration-300 ease-in-out">
+                <div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+                        <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                                <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                                <span
+                                        class="font-display-lg text-headline-lg tracking-tighter text-primary dark:text-on-primary">SXIAUM</span>
+                        </a>
+                        <nav class="hidden md:flex items-center gap-8 font-body-md text-body-md">
+                                <a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-300 ease-in-out"
+                                        href="technology.html">Technology</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="ecosystem.html">Ecosystem</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="developers.html">Developers</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="Governance.html">Governance</a>
+                        </nav>
+                        <div class="flex items-center gap-4">
+                                <button
+                                        class="hidden md:block px-4 py-2 border border-outline-variant rounded text-primary font-technical-sm text-technical-sm hover:border-primary hover:text-secondary-fixed-dim transition-all duration-300 ease-in-out">Connect</button>
+                                <button
+                                        class="bg-primary text-on-primary px-5 py-2 rounded font-technical-sm text-technical-sm hover:opacity-80 transition-all duration-300 ease-in-out">Launch
+                                        App</button>
+                        </div>
+                </div>
+        </header>
+        <!-- Main Content -->
+        <main class="pt-24 pb-20 px-gutter max-w-container-max mx-auto relative z-10">
+                <!-- Hero Section -->
+                <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-center">
+                        <div class="lg:col-span-7 space-y-6">
+                                <div
+                                        class="inline-flex items-center space-x-2 bg-surface-container py-1 px-3 border border-outline-variant rounded">
+                                        <span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                                        <span
+                                                class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Architecture
+                                                Overview</span>
+                                </div>
+                                <h1
+                                        class="font-display-lg text-4xl md:text-5xl lg:text-[3.25rem] text-primary font-bold tracking-tight leading-[1.15]">
+                                        The First MEV-Resistant Layer 1<br>
+                                        <span
+                                                class="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-800 bg-clip-text text-transparent">Blockchain
+                                                Protocol with Built-in Verkle Cryptography.</span>
+                                </h1>
+                                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                                        SXIAUM is engineered from first principles to solve three fundamental
+                                        challenges: Maximal Extractable Value (MEV) exploitation, sequential execution
+                                        bottlenecks, and state storage bloat — unifying a Commit-Reveal mempool,
+                                        Parallel EVM (OCC), Pipelined HotStuff BFT, and Verkle state cryptography.
+                                </p>
+                        </div>
+                        <div class="lg:col-span-5 relative flex justify-center items-center">
+                                <!-- Image Placeholder for Logo -->
+                                <img class="w-full max-w-md object-contain z-10 relative"
+                                        data-alt="A 3D rendering of a neon blue and purple glowing infinity or double-diamond symbol, floating against a clean white technical background with subtle grid lines and stylized technological vine structures wrapping around it. The style is pristine, high-tech, and futuristic."
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDNAs0UoNS43KqNUw3xFOPjs2FvQcj_SgdVApyqwKEslC4UwyaH7zH8R7gw50-ShQ3CkUvtM3draz_AK_cMMFTz1NEtT7mKeBQjnZxw5l1kG9cD66T4qmYBd2R_dBfi2LJfe6h3vCWF8k3I6g6Fd16GxKWod8tC9CmbHgF49HhKFMNeMcDQB4owg8287KMoYngx14FmK4ghWn3O7IOwGkP7va8WJoDo8PpWlr5G5ZlSuzYicvq_ROlBEiUbqBNYZ3TjRkuMIY4RA">
+                        </div>
+                </section>
+                <style>
+                        .protocol-container {
+                                position: relative;
+                                display: grid;
+                                grid-template-columns: 1fr;
+                                gap: 40px;
+                                max-width: 1200px;
+                                width: 100%;
+                                padding: 30px 0;
+                                box-sizing: border-box;
+                        }
+
+                        @media (min-width: 960px) {
+                                .protocol-container {
+                                        grid-template-columns: 1fr 1.2fr;
+                                        gap: 80px;
+                                        padding: 64px 0 60px 0;
+                                }
+                        }
+
+                        .connector-line {
+                                position: absolute;
+                                top: 64px;
+                                left: 0;
+                                width: calc(100% * 1 / 2.2 + 80px);
+                                height: 3px;
+                                background-color: #111827;
+                                z-index: 2;
+                        }
+
+                        .connector-line::after {
+                                content: '';
+                                position: absolute;
+                                right: -4px;
+                                top: -3.5px;
+                                width: 10px;
+                                height: 10px;
+                                background-color: #111827;
+                                border: 2px solid #ffffff;
+                                border-radius: 50%;
+                                box-shadow: 0 0 0 2px #111827;
+                        }
+
+                        .connector-line-opposite {
+                                position: absolute;
+                                top: 64px;
+                                right: 0;
+                                left: auto;
+                                width: calc(100% * 1 / 2.2 + 130px);
+                                height: 3px;
+                                background-color: #111827;
+                                z-index: 2;
+                        }
+
+                        .connector-line-opposite::after {
+                                content: '';
+                                position: absolute;
+                                left: -4px;
+                                right: auto;
+                                top: -3.5px;
+                                width: 10px;
+                                height: 10px;
+                                background-color: #111827;
+                                border: 2px solid #ffffff;
+                                border-radius: 50%;
+                                box-shadow: 0 0 0 2px #111827;
+                        }
+
+                        .text-column {
+                                position: relative;
+                                z-index: 1;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                padding-top: 24px;
+                        }
+
+                        .visual-column {
+                                position: relative;
+                                z-index: 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: flex-start;
+                                width: 100%;
+                        }
+
+                        .image-wrapper {
+                                width: 100%;
+                                max-width: 520px;
+                                height: 380px;
+                                clip-path: polygon(40px 0, 100% 0, 100% 100%, 0 100%, 0 40px);
+                                background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #020617 100%);
+                                box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+                                position: relative;
+                        }
+
+                        .image-wrapper-mirror {
+                                clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%);
+                                background: linear-gradient(225deg, #7c3aed 0%, #2563eb 50%, #020617 100%);
+                        }
+
+                        .image-wrapper-2 {
+                                background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #0f172a 100%);
+                        }
+
+                        .image-wrapper-3 {
+                                background: linear-gradient(225deg, #9333ea 0%, #4c1d95 50%, #09090b 100%);
+                        }
+
+                        .image-wrapper-4 {
+                                background: linear-gradient(135deg, #059669 0%, #0d9488 50%, #020617 100%);
+                        }
+
+                        @media (min-width: 960px) {
+                                .image-wrapper {
+                                        height: 450px;
+                                        clip-path: polygon(80px 0, 100% 0, 100% 100%, 0 100%, 0 80px);
+                                }
+
+                                .image-wrapper-mirror {
+                                        clip-path: polygon(0 0, calc(100% - 80px) 0, 100% 80px, 100% 100%, 0 100%);
+                                }
+                        }
+                </style>
+
+                <!-- Protocol Section 1: Native MEV Protection (Image Left - Mirrored) -->
+                <section class="mb-16 relative">
+                        <div class="protocol-container protocol-container-reverse mx-auto">
+                                <!-- Top decorative connection line (Opposite) -->
+                                <div class="connector-line-opposite hidden md:block"></div>
+
+                                <!-- Visual / Image Content (Left - Mirrored) -->
+                                <div class="visual-column">
+                                        <div
+                                                class="image-wrapper image-wrapper-mirror rounded-bl-2xl p-4 flex items-center justify-center">
+                                                <svg class="w-full h-full" viewBox="0 0 500 450" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <!-- Grid Overlay -->
+                                                        <path d="M 0,50 L 500,50 M 0,100 L 500,100 M 0,150 L 500,150 M 0,200 L 500,200 M 0,250 L 500,250 M 0,300 L 500,300 M 0,350 L 500,350 M 0,400 L 500,400"
+                                                                stroke="white" stroke-opacity="0.05" stroke-width="1" />
+                                                        <path d="M 50,0 L 50,450 M 100,0 L 100,450 M 150,0 L 150,450 M 200,0 L 200,450 M 250,0 L 250,450 M 300,0 L 300,450 M 350,0 L 350,450 M 400,0 L 400,450 M 450,0 L 450,450"
+                                                                stroke="white" stroke-opacity="0.05" stroke-width="1" />
+
+                                                        <!-- Central Encrypted Shield / Keyhole -->
+                                                        <g transform="translate(250, 220)">
+                                                                <!-- Outer Glowing Hexagon Rings -->
+                                                                <polygon points="-80,-138.5 80,-138.5 160,0 80,138.5 -80,138.5 -160,0"
+                                                                        stroke="#38bdf8" stroke-width="2"
+                                                                        stroke-opacity="0.3" stroke-dasharray="10 5"
+                                                                        fill="none" />
+                                                                <polygon points="-65,-112.5 65,-112.5 130,0 65,112.5 -65,112.5 -130,0"
+                                                                        stroke="#a78bfa" stroke-width="1.5"
+                                                                        stroke-opacity="0.5" fill="none" />
+
+                                                                <!-- Central 3D Solid Shield -->
+                                                                <path d="M -40,-60 L 0,-80 L 40,-60 L 40,10 L 0,50 L -40,10 Z"
+                                                                        fill="#1e1b4b" fill-opacity="0.9"
+                                                                        stroke="#38bdf8" stroke-width="2" />
+                                                                <path d="M -20,-45 L 0,-55 L 20,-45 L 20,5 L 0,30 L -20,5 Z"
+                                                                        fill="#0284c7" fill-opacity="0.4"
+                                                                        stroke="#a78bfa" stroke-width="1" />
+
+                                                                <!-- Keyhole Shape inside -->
+                                                                <circle cx="0" cy="-10" r="10" fill="#38bdf8" />
+                                                                <polygon points="-5,-10 5,-10 10,15 -10,15"
+                                                                        fill="#38bdf8" />
+                                                        </g>
+
+                                                        <!-- Hashing Input streams (Left side) -->
+                                                        <g transform="translate(20, 220)">
+                                                                <!-- Tx Input Node -->
+                                                                <rect x="0" y="-80" width="80" height="40" rx="6"
+                                                                        fill="#1e293b" fill-opacity="0.8"
+                                                                        stroke="#38bdf8" stroke-width="1.5" />
+                                                                <text x="40" y="-55" font-family="monospace"
+                                                                        font-size="12" fill="#38bdf8" font-weight="bold"
+                                                                        text-anchor="middle">Plain Tx</text>
+
+                                                                <!-- Blinding Factor Node -->
+                                                                <rect x="0" y="40" width="80" height="40" rx="6"
+                                                                        fill="#1e293b" fill-opacity="0.8"
+                                                                        stroke="#a78bfa" stroke-width="1.5" />
+                                                                <text x="40" y="65" font-family="monospace"
+                                                                        font-size="12" fill="#a78bfa" font-weight="bold"
+                                                                        text-anchor="middle">Blinder (r)</text>
+
+                                                                <!-- Converging paths -->
+                                                                <path d="M 80,-60 L 130,-60 Q 180,-60 210,-20"
+                                                                        stroke="#38bdf8" stroke-width="1.5"
+                                                                        stroke-dasharray="4 2" fill="none" />
+                                                                <path d="M 80,60 L 130,60 Q 180,60 210,20"
+                                                                        stroke="#a78bfa" stroke-width="1.5"
+                                                                        stroke-dasharray="4 2" fill="none" />
+                                                                <circle cx="210" cy="-20" r="4" fill="#38bdf8" />
+                                                                <circle cx="210" cy="20" r="4" fill="#a78bfa" />
+                                                        </g>
+
+                                                        <!-- Output Streams (Right side) -->
+                                                        <g transform="translate(380, 220)">
+                                                                <!-- Mempool Block -->
+                                                                <rect x="20" y="-20" width="80" height="40" rx="6"
+                                                                        fill="#1e293b" fill-opacity="0.8"
+                                                                        stroke="#34d399" stroke-width="1.5" />
+                                                                <text x="60" y="5" font-family="monospace"
+                                                                        font-size="11" fill="#34d399" font-weight="bold"
+                                                                        text-anchor="middle">Commit C</text>
+
+                                                                <!-- Outgoing path -->
+                                                                <path d="M -90,0 L 20,0" stroke="#34d399"
+                                                                        stroke-width="2" stroke-dasharray="6 3"
+                                                                        fill="none" />
+                                                                <polygon points="20,0 12,-4 12,4" fill="#34d399" />
+                                                        </g>
+
+                                                        <!-- Titles / Subtitles -->
+                                                        <text x="250" y="40" font-family="monospace" font-size="14"
+                                                                fill="#38bdf8" letter-spacing="2" font-weight="bold"
+                                                                text-anchor="middle">MEV SHIELD ARCHITECTURE</text>
+                                                        <text x="250" y="420" font-family="monospace" font-size="10"
+                                                                fill="#a78bfa" letter-spacing="1"
+                                                                text-anchor="middle">COMMIT-REVEAL CRYPTO-ENGINE</text>
+                                                </svg>
+                                        </div>
+                                </div>
+
+                                <!-- Text Content (Right) -->
+                                <div class="text-column">
+                                        <h1 class="text-3xl md:text-4xl font-medium tracking-tight mb-6 text-black">
+                                                Native MEV Protection: Commit-Reveal Cryptography</h1>
+
+                                        <p class="text-gray-600 text-base leading-relaxed mb-4">
+                                                The public mempool has become a "dark forest" where searchers extract
+                                                value via front-running, sandwich attacks, and liquidation sniping.
+                                                SXIAUM implements a bipartite transaction lifecycle:
+                                        </p>
+
+                                        <ul class="list-disc pl-5 text-gray-600 text-base space-y-2 mb-6">
+                                                <li><strong>Phase 1 (Commitment):</strong> Users broadcast C(Tx, r) =
+                                                        SHA-256(Tx ∥ r) with a 256-bit blinding factor r to hide
+                                                        transaction intent prior to ordering.</li>
+                                                <li><strong>Information Asymmetry Elimination:</strong> Theorem 7.1
+                                                        proves extractable MEV profit π* = 0 for all strategies
+                                                        requiring pre-execution payload visibility.</li>
+                                                <li><strong>Transparent RPC Integration:</strong> eth_sendRawTransaction
+                                                        automatically wraps payloads natively with zero changes to
+                                                        developer workflows or dApp code.</li>
+                                        </ul>
+
+                                        <p class="text-gray-600 text-base leading-relaxed mb-4">
+                                                Makes front-running, sandwiching, and censorship-based extraction
+                                                mathematically impossible at the protocol level.
+                                        </p>
+                                </div>
+                        </div>
+                </section>
+
+                <!-- Protocol Section 2: Parallel EVM Execution Engine (Image Right) -->
+                <section class="mb-16 relative">
+                        <div class="protocol-container mx-auto">
+                                <div class="connector-line hidden md:block"></div>
+
+                                <div class="text-column">
+                                        <h1 class="text-3xl md:text-4xl font-medium tracking-tight mb-6 text-black">
+                                                Parallel EVM Execution Engine (OCC)</h1>
+
+                                        <p class="text-gray-600 text-base leading-relaxed mb-4">
+                                                Sequential transaction execution severely throttles smart contract
+                                                throughput. SXIAUM adapts Optimistic Concurrency Control (OCC) from
+                                                software transactional memory systems:
+                                        </p>
+
+                                        <ul class="list-disc pl-5 text-gray-600 text-base space-y-2 mb-6">
+                                                <li><strong>Multi-Threaded Worker Pool:</strong> Executes transactions
+                                                        concurrently against snapshot state S while recording ReadSet
+                                                        and WriteSet access paths.</li>
+                                                <li><strong>Dynamic Conflict Resolution:</strong> Automatically detects
+                                                        overlapping state access dependencies (ReadSet(Tx_j) ∩
+                                                        WriteSet(Tx_i) ≠ ∅) and re-executes conflicted transactions.
+                                                </li>
+                                                <li><strong>Near-Linear Speedup:</strong> Delivers 4,500+ TPS on simple
+                                                        transfers (8.5x speedup) and 1,200+ TPS on complex DeFi swaps
+                                                        (26.7x speedup).</li>
+                                        </ul>
+
+                                        <p class="text-gray-600 text-base leading-relaxed mb-4">
+                                                Maintains 100% full Solidity/EVM compatibility with same tools
+                                                (MetaMask, Hardhat, Foundry) while unlocking multi-core throughput
+                                                scaling.
+                                        </p>
+                                </div>
+
+                                <div class="visual-column">
+                                        <div
+                                                class="image-wrapper image-wrapper-2 rounded-br-2xl p-4 flex items-center justify-center">
+                                                <svg class="w-full h-full" viewBox="0 0 500 450" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <!-- Grid Overlay -->
+                                                        <path d="M 0,50 L 500,50 M 0,100 L 500,100 M 0,150 L 500,150 M 0,200 L 500,200 M 0,250 L 500,250 M 0,300 L 500,300 M 0,350 L 500,350 M 0,400 L 500,400"
+                                                                stroke="white" stroke-opacity="0.05" stroke-width="1" />
+                                                        <path d="M 50,0 L 50,450 M 100,0 L 100,450 M 150,0 L 150,450 M 200,0 L 200,450 M 250,0 L 250,450 M 300,0 L 300,450 M 350,0 L 350,450 M 400,0 L 400,450 M 450,0 L 450,450"
+                                                                stroke="white" stroke-opacity="0.05" stroke-width="1" />
+
+                                                        <!-- Dispatcher / Router (Left) -->
+                                                        <g transform="translate(30, 220)">
+                                                                <path d="M 20,-40 L 50,-20 L 50,20 L 20,40 L -10,20 L -10,-20 Z"
+                                                                        fill="#0f172a" stroke="#38bdf8"
+                                                                        stroke-width="1.5" />
+                                                                <text x="20" y="5" font-family="monospace"
+                                                                        font-size="10" fill="#38bdf8" font-weight="bold"
+                                                                        text-anchor="middle">EVM</text>
+                                                                <text x="20" y="15" font-family="monospace"
+                                                                        font-size="9" fill="#38bdf8" font-weight="bold"
+                                                                        text-anchor="middle">INPUT</text>
+                                                        </g>
+
+                                                        <!-- 3 Parallel Transaction Lanes (Center) -->
+                                                        <g transform="translate(100, 120)">
+                                                                <!-- Lane 1 (Top) -->
+                                                                <path d="M 0,40 L 250,40" stroke="#38bdf8"
+                                                                        stroke-width="2" stroke-opacity="0.6" />
+                                                                <circle cx="80" cy="40" r="10" fill="#38bdf8"
+                                                                        stroke="#000" stroke-width="1" />
+                                                                <text x="80" y="43" font-family="monospace"
+                                                                        font-size="8" fill="#fff" font-weight="bold"
+                                                                        text-anchor="middle">T1</text>
+                                                                <circle cx="170" cy="40" r="10" fill="#38bdf8"
+                                                                        stroke="#000" stroke-width="1" />
+                                                                <text x="170" y="43" font-family="monospace"
+                                                                        font-size="8" fill="#fff" font-weight="bold"
+                                                                        text-anchor="middle">T4</text>
+
+                                                                <!-- Lane 2 (Middle) -->
+                                                                <path d="M 0,100 L 250,100" stroke="#a78bfa"
+                                                                        stroke-width="2" stroke-opacity="0.6" />
+                                                                <circle cx="110" cy="100" r="10" fill="#a78bfa"
+                                                                        stroke="#000" stroke-width="1" />
+                                                                <text x="110" y="103" font-family="monospace"
+                                                                        font-size="8" fill="#fff" font-weight="bold"
+                                                                        text-anchor="middle">T2</text>
+
+                                                                <!-- Conflict indicator on middle lane -->
+                                                                <circle cx="200" cy="100" r="14" stroke="#ef4444"
+                                                                        stroke-width="2" fill="#ef4444"
+                                                                        fill-opacity="0.2" stroke-dasharray="3 2" />
+                                                                <text x="200" y="103" font-family="monospace"
+                                                                        font-size="9" fill="#ef4444" font-weight="bold"
+                                                                        text-anchor="middle">⚡</text>
+
+                                                                <!-- Lane 3 (Bottom) -->
+                                                                <path d="M 0,160 L 250,160" stroke="#06b6d4"
+                                                                        stroke-width="2" stroke-opacity="0.6" />
+                                                                <circle cx="70" cy="160" r="10" fill="#06b6d4"
+                                                                        stroke="#000" stroke-width="1" />
+                                                                <text x="70" y="163" font-family="monospace"
+                                                                        font-size="8" fill="#fff" font-weight="bold"
+                                                                        text-anchor="middle">T3</text>
+                                                                <circle cx="150" cy="160" r="10" fill="#06b6d4"
+                                                                        stroke="#000" stroke-width="1" />
+                                                                <text x="150" y="163" font-family="monospace"
+                                                                        font-size="8" fill="#fff" font-weight="bold"
+                                                                        text-anchor="middle">T5</text>
+
+                                                                <!-- Dispatched arrows from Router -->
+                                                                <path d="M -50,100 L 0,40" stroke="#38bdf8"
+                                                                        stroke-width="1.5" stroke-dasharray="3 3" />
+                                                                <path d="M -50,100 L 0,100" stroke="#a78bfa"
+                                                                        stroke-width="1.5" stroke-dasharray="3 3" />
+                                                                <path d="M -50,100 L 0,160" stroke="#06b6d4"
+                                                                        stroke-width="1.5" stroke-dasharray="3 3" />
+                                                        </g>
+
+                                                        <!-- OCC Scheduler & Committer (Right) -->
+                                                        <g transform="translate(370, 120)">
+                                                                <rect x="0" y="20" width="80" height="160" rx="8"
+                                                                        fill="#0f172a" fill-opacity="0.9"
+                                                                        stroke="#38bdf8" stroke-width="2" />
+                                                                <text x="40" y="80" font-family="monospace"
+                                                                        font-size="10" fill="#38bdf8" font-weight="bold"
+                                                                        text-anchor="middle">VALIDATION</text>
+                                                                <text x="40" y="95" font-family="monospace"
+                                                                        font-size="9" fill="#a78bfa" font-weight="bold"
+                                                                        text-anchor="middle">&amp; COMMIT</text>
+                                                                <text x="40" y="110" font-family="monospace"
+                                                                        font-size="8" fill="#06b6d4" font-weight="bold"
+                                                                        text-anchor="middle">(OCC)</text>
+
+                                                                <!-- Re-route line for aborted tx (T2 conflict) -->
+                                                                <path d="M -170,100 Q -85,10 0,30" stroke="#ef4444"
+                                                                        stroke-width="1.5" stroke-dasharray="4 2"
+                                                                        fill="none" />
+                                                                <polygon points="0,30 -6,26 -2,32" fill="#ef4444" />
+                                                                <text x="-85" y="15" font-family="monospace"
+                                                                        font-size="8" fill="#ef4444" font-weight="bold"
+                                                                        text-anchor="middle">ABORT &amp; RETRY</text>
+
+                                                                <!-- Commit Outputs -->
+                                                                <path d="M 80,100 L 110,100" stroke="#10b981"
+                                                                        stroke-width="2" />
+                                                                <polygon points="110,100 102,96 102,104"
+                                                                        fill="#10b981" />
+                                                                <text x="110" y="90" font-family="monospace"
+                                                                        font-size="8" fill="#10b981"
+                                                                        font-weight="bold">BLOCK</text>
+                                                        </g>
+
+                                                        <!-- Title -->
+                                                        <text x="250" y="40" font-family="monospace" font-size="14"
+                                                                fill="#38bdf8" letter-spacing="2" font-weight="bold"
+                                                                text-anchor="middle">PARALLEL EVM ENGINE (OCC)</text>
+                                                        <text x="250" y="420" font-family="monospace" font-size="10"
+                                                                fill="#a78bfa" letter-spacing="1"
+                                                                text-anchor="middle">OPTIMISTIC CONCURRENCY WORKER
+                                                                POOL</text>
+                                                </svg>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+
+                <!-- Protocol Section 3: Verkle Tree State Cryptography (Image Left - Mirrored) -->
+                <section class="mb-16 relative">
+                        <div class="protocol-container protocol-container-reverse mx-auto">
+                                <div class="connector-line-opposite hidden md:block"></div>
+
+                                <!-- Visual / Image Content (Left - Mirrored) -->
+                                <div class="visual-column">
+                                        <div
+                                                class="image-wrapper image-wrapper-mirror image-wrapper-3 rounded-bl-2xl p-4 flex items-center justify-center">
+                                                <svg class="w-full h-full" viewBox="0 0 500 450" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <!-- Grid Overlay -->
+                                                        <path d="M 0,50 L 500,50 M 0,100 L 500,100 M 0,150 L 500,150 M 0,200 L 500,200 M 0,250 L 500,250 M 0,300 L 500,300 M 0,350 L 500,350 M 0,400 L 500,400"
+                                                                stroke="white" stroke-opacity="0.05" stroke-width="1" />
+                                                        <path d="M 50,0 L 50,450 M 100,0 L 100,450 M 150,0 L 150,450 M 200,0 L 200,450 M 250,0 L 250,450 M 300,0 L 300,450 M 350,0 L 350,450 M 400,0 L 400,450 M 450,0 L 450,450"
+                                                                stroke="white" stroke-opacity="0.05" stroke-width="1" />
+
+                                                        <!-- Tree Node structure (Center) -->
+                                                        <!-- Root Node (center 250, 90) -->
+                                                        <g transform="translate(250, 90)">
+                                                                <polygon points="0,-20 20,0 0,20 -20,0" fill="#a78bfa"
+                                                                        stroke="#38bdf8" stroke-width="1.5" />
+                                                                <text x="0" y="5" font-family="monospace" font-size="9"
+                                                                        fill="#000" font-weight="bold"
+                                                                        text-anchor="middle">ROOT</text>
+                                                        </g>
+
+                                                        <!-- Wide branching lines (Root to Level 1) -->
+                                                        <path d="M 250,110 L 100,180" stroke="#a78bfa"
+                                                                stroke-width="1.5" stroke-opacity="0.8" />
+                                                        <path d="M 250,110 L 200,180" stroke="#a78bfa"
+                                                                stroke-width="1.5" stroke-opacity="0.4"
+                                                                stroke-dasharray="2 2" />
+                                                        <path d="M 250,110 L 300,180" stroke="#a78bfa"
+                                                                stroke-width="1.5" stroke-opacity="0.4"
+                                                                stroke-dasharray="2 2" />
+                                                        <path d="M 250,110 L 400,180" stroke="#a78bfa"
+                                                                stroke-width="1.5" stroke-opacity="0.8" />
+
+                                                        <!-- Multi-Branch indicator (256-wide) -->
+                                                        <path d="M 120,160 Q 250,125 380,160" stroke="#38bdf8"
+                                                                stroke-width="1" stroke-opacity="0.4" />
+                                                        <text x="250" y="145" font-family="monospace" font-size="8"
+                                                                fill="#38bdf8" font-weight="bold" text-anchor="middle">d
+                                                                = 256 branching factor</text>
+
+                                                        <!-- Level 1 Nodes -->
+                                                        <g transform="translate(100, 195)">
+                                                                <polygon points="0,-15 15,0 0,15 -15,0" fill="#7c3aed"
+                                                                        stroke="#c084fc" stroke-width="1.2" />
+                                                                <text x="0" y="3" font-family="monospace" font-size="7"
+                                                                        fill="#fff" text-anchor="middle">C1</text>
+                                                        </g>
+                                                        <g transform="translate(400, 195)">
+                                                                <polygon points="0,-15 15,0 0,15 -15,0" fill="#7c3aed"
+                                                                        stroke="#c084fc" stroke-width="1.2" />
+                                                                <text x="0" y="3" font-family="monospace" font-size="7"
+                                                                        fill="#fff" text-anchor="middle">C2</text>
+                                                        </g>
+
+                                                        <!-- Level 1 to Leaves -->
+                                                        <path d="M 100,210 L 50,280" stroke="#a78bfa"
+                                                                stroke-width="1" />
+                                                        <path d="M 100,210 L 150,280" stroke="#a78bfa"
+                                                                stroke-width="1" />
+                                                        <path d="M 400,210 L 350,280" stroke="#a78bfa"
+                                                                stroke-width="1" />
+                                                        <path d="M 400,210 L 450,280" stroke="#a78bfa"
+                                                                stroke-width="1" />
+
+                                                        <!-- Leaves -->
+                                                        <circle cx="50" cy="285" r="5" fill="#38bdf8" stroke="#000"
+                                                                stroke-width="0.8" />
+                                                        <circle cx="150" cy="285" r="5" fill="#38bdf8" stroke="#000"
+                                                                stroke-width="0.8" />
+                                                        <circle cx="350" cy="285" r="5" fill="#38bdf8" stroke="#000"
+                                                                stroke-width="0.8" />
+                                                        <circle cx="450" cy="285" r="5" fill="#38bdf8" stroke="#000"
+                                                                stroke-width="0.8" />
+
+                                                        <!-- Witness Size comparison side card (Bottom) -->
+                                                        <g transform="translate(70, 310)">
+                                                                <!-- Merkle Witness (Big pile) -->
+                                                                <rect x="20" y="55" width="100" height="20" rx="3"
+                                                                        fill="#ef4444" fill-opacity="0.3"
+                                                                        stroke="#ef4444" stroke-width="1" />
+                                                                <text x="70" y="68" font-family="monospace"
+                                                                        font-size="9" fill="#fca5a5"
+                                                                        text-anchor="middle">Merkle: &gt;100 KB</text>
+
+                                                                <!-- Verkle Witness (Tiny single slice) -->
+                                                                <rect x="210" y="55" width="100" height="20" rx="3"
+                                                                        fill="#10b981" fill-opacity="0.3"
+                                                                        stroke="#10b981" stroke-width="1" />
+                                                                <text x="260" y="68" font-family="monospace"
+                                                                        font-size="9" fill="#a7f3d0"
+                                                                        text-anchor="middle">Verkle: ~2.5 KB</text>
+
+                                                                <!-- Vector Commitment math indicator (KZG) -->
+                                                                <text x="165" y="30" font-family="monospace"
+                                                                        font-size="10" fill="#38bdf8" font-weight="bold"
+                                                                        text-anchor="middle">f(x) Vector Commitments
+                                                                        (KZG Polynomials)</text>
+                                                        </g>
+
+                                                        <!-- Title -->
+                                                        <text x="250" y="40" font-family="monospace" font-size="14"
+                                                                fill="#38bdf8" letter-spacing="2" font-weight="bold"
+                                                                text-anchor="middle">VERKLE CRYPTO STATE</text>
+                                                        <text x="250" y="420" font-family="monospace" font-size="10"
+                                                                fill="#a78bfa" letter-spacing="1"
+                                                                text-anchor="middle">CONSTANT-SIZE PROOFS O(1) &amp;
+                                                                STATELESS VALIDATION</text>
+                                                </svg>
+                                        </div>
+                                </div>
+
+                                <!-- Text Content (Right) -->
+                                <div class="text-column">
+                                        <h1 class="text-3xl md:text-4xl font-medium tracking-tight mb-6 text-black">
+                                                Verkle Tree State Cryptography & Stateless Validation</h1>
+
+                                        <p class="text-gray-600 text-base leading-relaxed mb-4">
+                                                Ethereum's Merkle-Patricia Trie (MPT) generates logarithmic proof bloat
+                                                O(D × 32 bytes). SXIAUM replaces hash nodes with Vector Commitments
+                                                using KZG/IPA polynomials:
+                                        </p>
+
+                                        <ul class="list-disc pl-5 text-gray-600 text-base space-y-2 mb-6">
+                                                <li><strong>Constant-Size Proofs O(1):</strong> Block witness sizes
+                                                        reduced from >100 KB down to ~2.5 KB (a 40x improvement in proof
+                                                        efficiency).</li>
+                                                <li><strong>256-Wide Branching Factor:</strong> Vector Commitments lower
+                                                        trie depth from ~30 levels down to ~4-5 levels, reducing storage
+                                                        read costs.</li>
+                                                <li><strong>Stateless-Ready Light Clients:</strong> Enables edge nodes,
+                                                        mobile devices, and browser extensions to verify consensus
+                                                        instantly without syncing full state history.</li>
+                                        </ul>
+
+                                        <p class="text-gray-600 text-base leading-relaxed mb-4">
+                                                Unlocks instant node synchronization, low-overhead storage access, and
+                                                ZK-provable state transitions using SP1 and Groth16.
+                                        </p>
+                                </div>
+                        </div>
+                </section>
+
+                <!-- Protocol Section 4: Consensus Engine (Image Right) -->
+                <section class="mb-16 relative">
+                        <div class="protocol-container mx-auto">
+                                <div class="connector-line hidden md:block"></div>
+
+                                <div class="text-column">
+                                        <h1 class="text-3xl md:text-4xl font-medium tracking-tight mb-6 text-black">
+                                                Consensus Engine: Pipelined HotStuff BFT</h1>
+
+                                        <p class="text-gray-600 text-base leading-relaxed mb-4">
+                                                Traditional BFT protocols suffer from O(n²) communication complexity.
+                                                SXIAUM utilizes a pipelined variant of HotStuff BFT providing safety and
+                                                liveness under partial synchrony:
+                                        </p>
+
+                                        <ul class="list-disc pl-5 text-gray-600 text-base space-y-2 mb-6">
+                                                <li><strong>Linear Authenticator Complexity O(n):</strong> Utilizes
+                                                        threshold signatures and leader relays to reduce message
+                                                        overhead by 40%.</li>
+                                                <li><strong>1.2-Second Deterministic Finality:</strong> Absolute block
+                                                        finality with 1.0s block time, eliminating probabilistic chain
+                                                        reorganizations.</li>
+                                                <li><strong>Execution-Consensus Decoupling:</strong> HotStuff orders
+                                                        encrypted commitments independently, guaranteeing execution
+                                                        delays cannot stall consensus.</li>
+                                        </ul>
+
+                                        <p class="text-gray-600 text-base leading-relaxed mb-4">
+                                                Delivers BFT fault tolerance for up to f ≤ ⌊(n-1)/3⌋ Byzantine nodes
+                                                with zero probabilistic rollbacks.
+                                        </p>
+                                </div>
+
+                                <div class="visual-column">
+                                        <div
+                                                class="image-wrapper image-wrapper-4 rounded-br-2xl p-4 flex items-center justify-center">
+                                                <svg class="w-full h-full" viewBox="0 0 500 450" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <!-- Grid Overlay -->
+                                                        <path d="M 0,50 L 500,50 M 0,100 L 500,100 M 0,150 L 500,150 M 0,200 L 500,200 M 0,250 L 500,250 M 0,300 L 500,300 M 0,350 L 500,350 M 0,400 L 500,400"
+                                                                stroke="white" stroke-opacity="0.05" stroke-width="1" />
+                                                        <path d="M 50,0 L 50,450 M 100,0 L 100,450 M 150,0 L 150,450 M 200,0 L 200,450 M 250,0 L 250,450 M 300,0 L 300,450 M 350,0 L 350,450 M 400,0 L 400,450 M 450,0 L 450,450"
+                                                                stroke="white" stroke-opacity="0.05" stroke-width="1" />
+
+                                                        <!-- Pipelined Blocks (Center) -->
+                                                        <!-- Block i (Left) -->
+                                                        <g transform="translate(60, 200)">
+                                                                <rect x="0" y="0" width="70" height="70" rx="8"
+                                                                        fill="#111827" fill-opacity="0.9"
+                                                                        stroke="#10b981" stroke-width="2" />
+                                                                <text x="35" y="25" font-family="monospace"
+                                                                        font-size="10" fill="#10b981" font-weight="bold"
+                                                                        text-anchor="middle">BLOCK i</text>
+                                                                <text x="35" y="45" font-family="monospace"
+                                                                        font-size="8" fill="#a7f3d0"
+                                                                        text-anchor="middle">DECIDE</text>
+                                                                <text x="35" y="55" font-family="monospace"
+                                                                        font-size="7" fill="#6b7280"
+                                                                        text-anchor="middle">(Finalized)</text>
+                                                        </g>
+
+                                                        <!-- Connection Arrow 1 -->
+                                                        <path d="M 130,235 L 170,235" stroke="#10b981"
+                                                                stroke-width="2" />
+                                                        <polygon points="170,235 162,231 162,239" fill="#10b981" />
+
+                                                        <!-- Block i+1 (Center) -->
+                                                        <g transform="translate(170, 200)">
+                                                                <rect x="0" y="0" width="80" height="70" rx="8"
+                                                                        fill="#111827" fill-opacity="0.9"
+                                                                        stroke="#38bdf8" stroke-width="2" />
+                                                                <text x="40" y="25" font-family="monospace"
+                                                                        font-size="10" fill="#38bdf8" font-weight="bold"
+                                                                        text-anchor="middle">BLOCK i+1</text>
+                                                                <text x="40" y="45" font-family="monospace"
+                                                                        font-size="8" fill="#93c5fd"
+                                                                        text-anchor="middle">COMMIT</text>
+                                                                <text x="40" y="55" font-family="monospace"
+                                                                        font-size="7" fill="#6b7280"
+                                                                        text-anchor="middle">(Pipelined)</text>
+                                                        </g>
+
+                                                        <!-- Connection Arrow 2 -->
+                                                        <path d="M 250,235 L 290,235" stroke="#38bdf8"
+                                                                stroke-width="2" />
+                                                        <polygon points="290,235 282,231 282,239" fill="#38bdf8" />
+
+                                                        <!-- Block i+2 (Right) -->
+                                                        <g transform="translate(290, 200)">
+                                                                <rect x="0" y="0" width="80" height="70" rx="8"
+                                                                        fill="#111827" fill-opacity="0.9"
+                                                                        stroke="#a78bfa" stroke-width="2" />
+                                                                <text x="40" y="25" font-family="monospace"
+                                                                        font-size="10" fill="#a78bfa" font-weight="bold"
+                                                                        text-anchor="middle">BLOCK i+2</text>
+                                                                <text x="40" y="45" font-family="monospace"
+                                                                        font-size="8" fill="#c084fc"
+                                                                        text-anchor="middle">PREPARE</text>
+                                                                <text x="40" y="55" font-family="monospace"
+                                                                        font-size="7" fill="#6b7280"
+                                                                        text-anchor="middle">(Proposing)</text>
+                                                        </g>
+
+                                                        <!-- O(n) Star Network (Top Right) -->
+                                                        <g transform="translate(410, 110)">
+                                                                <!-- Leader Node -->
+                                                                <circle cx="0" cy="0" r="14" fill="#38bdf8"
+                                                                        stroke="#000" stroke-width="1" />
+                                                                <text x="0" y="3" font-family="monospace" font-size="9"
+                                                                        fill="#000" font-weight="bold"
+                                                                        text-anchor="middle">L</text>
+
+                                                                <!-- Validator Nodes around Leader -->
+                                                                <circle cx="-35" cy="-20" r="6" fill="#a78bfa"
+                                                                        stroke="#000" stroke-width="0.8" />
+                                                                <circle cx="35" cy="-20" r="6" fill="#a78bfa"
+                                                                        stroke="#000" stroke-width="0.8" />
+                                                                <circle cx="-35" cy="20" r="6" fill="#a78bfa"
+                                                                        stroke="#000" stroke-width="0.8" />
+                                                                <circle cx="35" cy="20" r="6" fill="#a78bfa"
+                                                                        stroke="#000" stroke-width="0.8" />
+                                                                <circle cx="0" cy="-40" r="6" fill="#a78bfa"
+                                                                        stroke="#000" stroke-width="0.8" />
+
+                                                                <!-- Star connections to Leader -->
+                                                                <line x1="0" y1="0" x2="-35" y2="-20" stroke="#38bdf8"
+                                                                        stroke-width="1" opacity="0.6" />
+                                                                <line x1="0" y1="0" x2="35" y2="-20" stroke="#38bdf8"
+                                                                        stroke-width="1" opacity="0.6" />
+                                                                <line x1="0" y1="0" x2="-35" y2="20" stroke="#38bdf8"
+                                                                        stroke-width="1" opacity="0.6" />
+                                                                <line x1="0" y1="0" x2="35" y2="20" stroke="#38bdf8"
+                                                                        stroke-width="1" opacity="0.6" />
+                                                                <line x1="0" y1="0" x2="0" y2="-40" stroke="#38bdf8"
+                                                                        stroke-width="1" opacity="0.6" />
+
+                                                                <!-- Message Complexity label -->
+                                                                <text x="0" y="45" font-family="monospace" font-size="8"
+                                                                        fill="#38bdf8" font-weight="bold"
+                                                                        text-anchor="middle">Complexity: O(n)</text>
+                                                        </g>
+
+                                                        <!-- Consensus speed stat card (Bottom) -->
+                                                        <g transform="translate(150, 310)">
+                                                                <rect x="0" y="0" width="200" height="40" rx="6"
+                                                                        fill="#0f172a" fill-opacity="0.8"
+                                                                        stroke="#10b981" stroke-width="1" />
+                                                                <text x="100" y="18" font-family="monospace"
+                                                                        font-size="10" fill="#10b981" font-weight="bold"
+                                                                        text-anchor="middle">1.2-SECOND FINALITY</text>
+                                                                <text x="100" y="32" font-family="monospace"
+                                                                        font-size="8" fill="#a7f3d0"
+                                                                        text-anchor="middle">Zero probabilistic
+                                                                        reorgs</text>
+                                                        </g>
+
+                                                        <!-- Title -->
+                                                        <text x="250" y="40" font-family="monospace" font-size="14"
+                                                                fill="#38bdf8" letter-spacing="2" font-weight="bold"
+                                                                text-anchor="middle">HOTSTUFF BFT CONSENSUS</text>
+                                                        <text x="250" y="420" font-family="monospace" font-size="10"
+                                                                fill="#a78bfa" letter-spacing="1"
+                                                                text-anchor="middle">PIPELINED CONSENSUS STAGES &amp;
+                                                                LINEAR AUTHENTICATORS</text>
+                                                </svg>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- Performance Benchmarks & Competitive Analysis Section (Replaces VM Section) -->
+                <section
+                        class="bg-[#090d16] text-white rounded-2xl border border-slate-800/80 overflow-hidden relative shadow-2xl p-6 md:p-10 mb-16">
+                        <!-- Background Grid Overlay -->
+                        <div
+                                class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:32px_32px]">
+                        </div>
+
+                        <div class="relative z-10 space-y-10">
+                                <!-- Section Header -->
+                                <div class="space-y-4 max-w-3xl">
+                                        <div
+                                                class="inline-flex items-center space-x-2 bg-blue-950/60 border border-blue-500/30 px-3 py-1 rounded-full">
+                                                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                                                <span class="text-xs font-mono uppercase tracking-widest text-cyan-300">Empirical
+                                                        Benchmarks</span>
+                                        </div>
+                                        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                                                Performance Benchmarks & Competitive Landscape
+                                        </h2>
+                                        <p class="text-slate-400 text-base leading-relaxed">
+                                                Empirical performance targets measured on a 4-validator BFT testbed and
+                                                multi-threaded Parallel EVM runtime using Optimistic Concurrency Control
+                                                (OCC) and Verkle Trees.
+                                        </p>
+                                </div>
+
+                                <!-- Benchmarks Grid (2 Columns on Desktop) -->
+                                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+                                        <!-- Left Column: Key Protocol Benchmarks (Table 11) -->
+                                        <div
+                                                class="lg:col-span-6 bg-slate-900/60 backdrop-blur border border-slate-800 rounded-xl p-6 space-y-4">
+                                                <div
+                                                        class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                                        <h3
+                                                                class="text-lg font-semibold text-white flex items-center gap-2">
+                                                                <span
+                                                                        class="material-symbols-outlined text-cyan-400 text-sm">speed</span>
+                                                                Key Benchmark Metrics
+                                                        </h3>
+                                                </div>
+
+                                                <div class="overflow-x-auto">
+                                                        <table class="w-full text-sm text-left text-slate-300">
+                                                                <thead
+                                                                        class="text-xs uppercase bg-slate-950/80 text-slate-400 font-mono">
+                                                                        <tr>
+                                                                                <th scope="col" class="py-3 px-4">Metric
+                                                                                </th>
+                                                                                <th scope="col"
+                                                                                        class="py-3 px-4 text-cyan-400">
+                                                                                        SXIAUM</th>
+                                                                                <th scope="col" class="py-3 px-4">Legacy
+                                                                                        EVM</th>
+                                                                                <th scope="col"
+                                                                                        class="py-3 px-4 text-right">
+                                                                                        Gain</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody
+                                                                        class="divide-y divide-slate-800/60 font-mono text-xs md:text-sm">
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-3 px-4 font-sans font-medium text-white">
+                                                                                        Max TPS (Transfers)</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 font-bold text-cyan-400">
+                                                                                        4,500+ TPS</td>
+                                                                                <td class="py-3 px-4 text-slate-400">
+                                                                                        100–300 TPS</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 text-right text-emerald-400 font-bold">
+                                                                                        15–45×</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-3 px-4 font-sans font-medium text-white">
+                                                                                        Max TPS (Contracts)</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 font-bold text-cyan-400">
+                                                                                        1,200+ TPS</td>
+                                                                                <td class="py-3 px-4 text-slate-400">
+                                                                                        15–50 TPS</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 text-right text-emerald-400 font-bold">
+                                                                                        24–80×</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-3 px-4 font-sans font-medium text-white">
+                                                                                        Time to Finality</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 font-bold text-cyan-400">
+                                                                                        1.2 s</td>
+                                                                                <td class="py-3 px-4 text-slate-400">12
+                                                                                        min (ETH)</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 text-right text-emerald-400 font-bold">
+                                                                                        600×</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-3 px-4 font-sans font-medium text-white">
+                                                                                        State Proof Witness</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 font-bold text-cyan-400">
+                                                                                        ~2.5 KB</td>
+                                                                                <td class="py-3 px-4 text-slate-400">
+                                                                                        &gt;100 KB</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 text-right text-emerald-400 font-bold">
+                                                                                        40×</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-3 px-4 font-sans font-medium text-white">
+                                                                                        Block Time</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 font-bold text-cyan-400">
+                                                                                        1.0 s</td>
+                                                                                <td class="py-3 px-4 text-slate-400">12
+                                                                                        s (ETH)</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 text-right text-emerald-400 font-bold">
+                                                                                        12×</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-3 px-4 font-sans font-medium text-white">
+                                                                                        Parallel Efficiency</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 font-bold text-cyan-400">
+                                                                                        8.5×</td>
+                                                                                <td class="py-3 px-4 text-slate-400">
+                                                                                        1.0×</td>
+                                                                                <td
+                                                                                        class="py-3 px-4 text-right text-emerald-400 font-bold">
+                                                                                        8.5×</td>
+                                                                        </tr>
+                                                                </tbody>
+                                                        </table>
+                                                </div>
+                                        </div>
+
+                                        <!-- Right Column: Competitive Landscape Matrix (Table 12) -->
+                                        <div
+                                                class="lg:col-span-6 bg-slate-900/60 backdrop-blur border border-slate-800 rounded-xl p-6 space-y-4">
+                                                <div
+                                                        class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                                        <h3
+                                                                class="text-lg font-semibold text-white flex items-center gap-2">
+                                                                <span
+                                                                        class="material-symbols-outlined text-purple-400 text-sm">compare_arrows</span>
+                                                                Competitive Matrix
+                                                        </h3>
+                                                </div>
+
+                                                <div class="overflow-x-auto">
+                                                        <table class="w-full text-sm text-left text-slate-300">
+                                                                <thead
+                                                                        class="text-xs uppercase bg-slate-950/80 text-slate-400 font-mono">
+                                                                        <tr>
+                                                                                <th scope="col" class="py-3 px-3">
+                                                                                        Feature</th>
+                                                                                <th scope="col"
+                                                                                        class="py-3 px-3 text-cyan-400">
+                                                                                        SXIAUM</th>
+                                                                                <th scope="col" class="py-3 px-3">
+                                                                                        Ethereum</th>
+                                                                                <th scope="col" class="py-3 px-3">Solana
+                                                                                </th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody
+                                                                        class="divide-y divide-slate-800/60 font-mono text-xs">
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-sans font-medium text-white">
+                                                                                        Language</td>
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-bold text-cyan-400">
+                                                                                        Rust</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Solidity</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Rust/C++</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-sans font-medium text-white">
+                                                                                        EVM Support</td>
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-bold text-cyan-400">
+                                                                                        Native (Par.)</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Native (Seq.)</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Neon (L2)</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-sans font-medium text-white">
+                                                                                        Finality</td>
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-bold text-cyan-400">
+                                                                                        &lt; 1.2 s</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        ~12.8 min</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        0.4–12.8 s</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-sans font-medium text-white">
+                                                                                        State Trie</td>
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-bold text-cyan-400">
+                                                                                        Verkle Trees</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        MPT</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Flat Accounts</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-sans font-medium text-white">
+                                                                                        MEV Protection</td>
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-bold text-cyan-400">
+                                                                                        Commit-Reveal</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Flashbots</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Priority/Jito</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-sans font-medium text-white">
+                                                                                        ZK Proofs</td>
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-bold text-cyan-400">
+                                                                                        Native (SP1)</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Moving to L2</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        N/A</td>
+                                                                        </tr>
+                                                                        <tr class="hover:bg-slate-800/30">
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-sans font-medium text-white">
+                                                                                        Migration Cost</td>
+                                                                                <td
+                                                                                        class="py-2.5 px-3 font-bold text-emerald-400">
+                                                                                        Zero</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        N/A</td>
+                                                                                <td class="py-2.5 px-3 text-slate-400">
+                                                                                        Full rewrite</td>
+                                                                        </tr>
+                                                                </tbody>
+                                                        </table>
+                                                </div>
+                                        </div>
+
+                                </div>
+                        </div>
+                </section>
+        </main>
+        <!-- Footer -->
+        <footer class="w-full py-12 bg-surface-container-lowest border-t border-outline-variant relative z-10">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 px-gutter max-w-container-max mx-auto">
+                        <div class="col-span-2 lg:col-span-2 space-y-4">
+                                <div class="flex items-center gap-2 mb-4">
+                                        <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                                        <span
+                                                class="font-headline-lg text-headline-lg-mobile text-primary tracking-tighter">SXIAUM</span>
+                                </div>
+                                <p class="font-technical-sm text-technical-sm text-on-surface-variant max-w-xs">
+                                        © 2026 SXIAUM Foundation. Institutional-Grade Blockchain Infrastructure.
+                                </p>
+                        </div>
+                        <div class="flex flex-col space-y-3">
+                                <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                        href="#">Network Status</a>
+                                <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                        href="#">Documentation</a>
+                        </div>
+                        <div class="flex flex-col space-y-3">
+                                <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                        href="#">Whitepaper</a>
+                                <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                        href="#">Security Audits</a>
+                        </div>
+                        <div class="flex flex-col space-y-3 lg:col-span-2">
+                                <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                        href="#">Privacy Policy</a>
+                                <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
+                                        href="#">Terms of Service</a>
+                        </div>
+                </div>
+        </footer>
+</body>
+
+</html>
