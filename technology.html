@@ -178,7 +178,7 @@
         <!-- TopNavBar -->
         <header
                 class="fixed top-0 w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-sm border-b border-outline-variant/30 transition-colors duration-300 ease-in-out">
-                <div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+                <div class="flex items-center justify-between gap-4 h-16 px-gutter max-w-container-max mx-auto">
                         <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
                                 <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
                                 <span
@@ -194,12 +194,38 @@
                                 <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
                                         href="Governance.html">Governance</a>
                         </nav>
-                        <div class="flex items-center gap-4">
+                        <div class="hidden md:flex items-center gap-4">
                                 <button
                                         class="hidden md:block px-4 py-2 border border-outline-variant rounded text-primary font-technical-sm text-technical-sm hover:border-primary hover:text-secondary-fixed-dim transition-all duration-300 ease-in-out">Connect</button>
                                 <button
                                         class="bg-primary text-on-primary px-5 py-2 rounded font-technical-sm text-technical-sm hover:opacity-80 transition-all duration-300 ease-in-out">Launch
                                         App</button>
+                        </div>
+                        <button id="mobile-menu-toggle"
+                                class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded border border-outline-variant text-primary hover:border-primary transition-colors"
+                                type="button" aria-controls="mobile-menu-panel" aria-expanded="false"
+                                aria-label="Open navigation menu">
+                                <span id="mobile-menu-icon" class="material-symbols-outlined text-[24px]">menu</span>
+                        </button>
+                </div>
+                <div id="mobile-menu-panel"
+                        class="md:hidden hidden border-b border-outline-variant/30 bg-white/95 dark:bg-black/95 backdrop-blur-md">
+                        <div class="px-gutter max-w-container-max mx-auto py-4 flex flex-col gap-4 font-body-md text-body-md">
+                                <a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-300 ease-in-out"
+                                        href="technology.html">Technology</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="ecosystem.html">Ecosystem</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="developers.html">Developers</a>
+                                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
+                                        href="Governance.html">Governance</a>
+                                <div class="pt-2 flex flex-col gap-3">
+                                        <button
+                                                class="w-full px-4 py-2 border border-outline-variant rounded text-primary font-technical-sm text-technical-sm hover:border-primary hover:text-secondary-fixed-dim transition-all duration-300 ease-in-out">Connect</button>
+                                        <button
+                                                class="w-full bg-primary text-on-primary px-5 py-2 rounded font-technical-sm text-technical-sm hover:opacity-80 transition-all duration-300 ease-in-out">Launch
+                                                App</button>
+                                </div>
                         </div>
                 </div>
         </header>
@@ -1274,6 +1300,35 @@
                         </div>
                 </div>
         </footer>
+<script>
+        (() => {
+                const toggle = document.getElementById("mobile-menu-toggle");
+                const panel = document.getElementById("mobile-menu-panel");
+                const icon = document.getElementById("mobile-menu-icon");
+
+                if (!toggle || !panel || !icon) return;
+
+                const setOpen = (isOpen) => {
+                        panel.classList.toggle("hidden", !isOpen);
+                        toggle.setAttribute("aria-expanded", String(isOpen));
+                        icon.textContent = isOpen ? "close" : "menu";
+                };
+
+                toggle.addEventListener("click", () => {
+                        setOpen(panel.classList.contains("hidden"));
+                });
+
+                panel.querySelectorAll("a, button").forEach((item) => {
+                        item.addEventListener("click", () => setOpen(false));
+                });
+
+                window.addEventListener("resize", () => {
+                        if (window.matchMedia("(min-width: 768px)").matches) {
+                                setOpen(false);
+                        }
+                });
+        })();
+</script>
 </body>
 
 </html>
