@@ -24,23 +24,28 @@ If you use the VS Code Live Server extension, you can right-click `home.html` an
 
 ## Contributing
 
-Contributions are welcome. Please keep changes focused and consistent with the existing site style.
+We welcome contributions from the community! This project is open for improvements, bug fixes, content updates, and new features.
 
-When contributing:
+### Quick Start
 
-- Keep navigation links consistent across all pages.
-- Preserve the current visual style unless you are intentionally updating the design across the site.
-- Test changes in a browser before opening a pull request.
-- Update shared assets carefully so image and document links do not break.
-- If you add a new page, link it from the navigation and update this README.
+1. **Fork the repository** on GitHub.
+2. **Create a feature branch**: `git checkout -b feature/your-feature-name`
+3. **Make your changes** and test them locally.
+4. **Push to your fork** and **open a pull request** with a clear description.
 
-Suggested workflow:
+### Guidelines
 
-1. Fork the repository.
-2. Create a feature branch.
-3. Make your edits in the relevant HTML files.
-4. Preview the site in a browser.
-5. Open a pull request with a short summary of what changed.
+- Keep navigation links **consistent across all pages**.
+- Preserve the current visual style unless intentionally updating the design site-wide.
+- Test changes in a browser (desktop and mobile).
+- Update shared assets carefully to avoid breaking links.
+- If you add a new page, link it from navigation and update the README.
+
+For detailed contribution guidelines, please see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Code of Conduct
+
+By contributing, you agree to maintain a respectful and professional environment for all contributors.
 
 ## Project Notes
 
