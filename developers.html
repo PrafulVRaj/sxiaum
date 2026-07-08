@@ -344,7 +344,7 @@
     <!-- TopNavBar -->
     <header
         class="fixed top-0 w-full z-50 bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-sm border-b border-outline-variant/30 transition-colors duration-300 ease-in-out">
-        <div class="flex items-center justify-between gap-4 h-16 px-gutter max-w-container-max mx-auto">
+        <div class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
             <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
                 <span
@@ -360,38 +360,12 @@
                 <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
                     href="Governance.html">Governance</a>
             </nav>
-            <div class="hidden md:flex items-center gap-4">
+            <div class="flex items-center gap-4">
                 <button
                     class="hidden md:block px-4 py-2 border border-outline-variant rounded text-primary font-technical-sm text-technical-sm hover:border-primary hover:text-secondary-fixed-dim transition-all duration-300 ease-in-out">Connect</button>
-                <button
-                    class="bg-primary text-on-primary px-5 py-2 rounded font-technical-sm text-technical-sm hover:opacity-80 transition-all duration-300 ease-in-out">Launch
-                    App</button>
-            </div>
-            <button id="mobile-menu-toggle"
-                class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded border border-outline-variant text-primary hover:border-primary transition-colors"
-                type="button" aria-controls="mobile-menu-panel" aria-expanded="false"
-                aria-label="Open navigation menu">
-                <span id="mobile-menu-icon" class="material-symbols-outlined text-[24px]">menu</span>
-            </button>
-        </div>
-        <div id="mobile-menu-panel"
-            class="md:hidden hidden border-b border-outline-variant/30 bg-white/95 dark:bg-black/95 backdrop-blur-md">
-            <div class="px-gutter max-w-container-max mx-auto py-4 flex flex-col gap-4 font-body-md text-body-md">
-                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
-                    href="technology.html">Technology</a>
-                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
-                    href="ecosystem.html">Ecosystem</a>
-                <a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-300 ease-in-out"
-                    href="developers.html">Developers</a>
-                <a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors duration-300 ease-in-out"
-                    href="Governance.html">Governance</a>
-                <div class="pt-2 flex flex-col gap-3">
-                    <button
-                        class="w-full px-4 py-2 border border-outline-variant rounded text-primary font-technical-sm text-technical-sm hover:border-primary hover:text-secondary-fixed-dim transition-all duration-300 ease-in-out">Connect</button>
-                    <button
-                        class="w-full bg-primary text-on-primary px-5 py-2 rounded font-technical-sm text-technical-sm hover:opacity-80 transition-all duration-300 ease-in-out">Launch
-                        App</button>
-                </div>
+                <a href="console.html"
+                    class="hidden md:flex bg-primary text-on-primary px-5 py-2 rounded font-technical-sm text-technical-sm hover:opacity-80 transition-all duration-300 ease-in-out items-center justify-center">Launch
+                    App</a>
             </div>
         </div>
     </header>
@@ -456,7 +430,7 @@
                                     class="font-technical-sm text-technical-sm text-on-surface-variant"><code><span class="text-secondary">curl</span> -X GET "https://api.sxiaum.network/v1/status"</code></pre>
                             </div>
                             <a class="inline-flex items-center gap-2 font-technical-sm text-technical-sm text-primary hover:text-secondary transition-colors group"
-                                href="#">
+                                href="docs.html#api">
                                 Explore API Ref
                                 <span
                                     class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -514,10 +488,10 @@
                             <span class="material-symbols-outlined text-primary" style="font-size: 48px;">dns</span>
                         </div>
                     </div>
-                    <button
-                        class="w-full bg-white border-2 border-primary text-primary font-technical-sm text-technical-sm py-3 rounded hover:bg-primary hover:text-white transition-colors uppercase tracking-wider">
+                    <a href="console.html?tab=faucet"
+                        class="w-full bg-white border-2 border-primary text-primary font-technical-sm text-technical-sm py-3 rounded hover:bg-primary hover:text-white transition-colors uppercase tracking-wider block text-center">
                         Access Faucet
-                    </button>
+                    </a>
                 </div>
                 <!-- API Card -->
                 <div
@@ -536,11 +510,11 @@
                                 Reliable RPC endpoints and APIs that enable seamless communication between your
                                 applications and the SXIAUM network.
                             </p>
-                            <button
-                                class="bg-primary text-on-primary font-technical-sm text-technical-sm px-6 py-3 rounded flex items-center gap-2 hover:bg-primary/90 transition-colors uppercase tracking-wider">
+                            <a href="docs.html#endpoints"
+                                class="bg-primary text-on-primary font-technical-sm text-technical-sm px-6 py-3 rounded flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors uppercase tracking-wider">
                                 View Endpoints
                                 <span class="material-symbols-outlined text-[16px]">open_in_new</span>
-                            </button>
+                            </a>
                         </div>
                         <div
                             class="w-32 h-32 flex-shrink-0 border border-primary/20 bg-white/40 rounded flex items-center justify-center shadow-inner">
@@ -572,45 +546,45 @@
                         <div class="lg:col-span-5 flex flex-col gap-12">
                             <!-- Item 1: Scalable Architecture -->
                             <div
-                                class="flex items-start w-full group cursor-pointer text-white transition-transform duration-300 hover:-translate-y-1">
+                                class="flex items-start w-full lg:flex-row-reverse group cursor-pointer text-white transition-transform duration-300 hover:-translate-y-1">
+                                <div class="w-[110px] h-[110px] shrink-0 relative">
+                                    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300 transform scale-x-[-1] lg:scale-x-[1]"
+                                        viewBox="0 0 120 120" preserveAspectRatio="none" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0,0.5 L119.5,0.5 L119.5,119.5 L24,119.5 L0.5,96 Z" stroke-width="1"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <div class="absolute top-4 right-5 lg:right-auto lg:left-5 text-[18px] font-medium text-white tracking-wide">
+                                        01</div>
+                                </div>
                                 <div
-                                    class="flex-1 border-t border-white/40 pt-4 pr-6 group-hover:border-white transition-colors duration-300">
+                                    class="flex-1 border-t border-white/40 pt-4 pl-6 lg:pl-0 lg:pr-6 group-hover:border-white transition-colors duration-300">
                                     <h3 class="text-[24px] font-medium text-white mb-2 tracking-tight leading-tight">
                                         Scalable Architecture</h3>
                                     <p class="text-[14px] font-normal text-blue-100 leading-relaxed m-0">Designed to
                                         support growing applications and network demand.</p>
                                 </div>
-                                <div class="w-[110px] h-[110px] shrink-0 relative">
-                                    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300"
-                                        viewBox="0 0 120 120" preserveAspectRatio="none" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0,0.5 L119.5,0.5 L119.5,119.5 L24,119.5 L0.5,96 Z" stroke-width="1"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                    <div class="absolute top-4 left-5 text-[18px] font-medium text-white tracking-wide">
-                                        01</div>
-                                </div>
                             </div>
 
                             <!-- Item 2: Developer-First Experience (Shifted Left) -->
                             <div
-                                class="flex items-start w-full group cursor-pointer text-white lg:-translate-x-12 transition-transform duration-300 hover:-translate-y-1">
-                                <div
-                                    class="flex-1 border-t border-white/40 pt-4 pr-6 group-hover:border-white transition-colors duration-300">
-                                    <h3 class="text-[24px] font-medium text-white mb-2 tracking-tight leading-tight">
-                                        Developer-First Experience</h3>
-                                    <p class="text-[14px] font-normal text-blue-100 leading-relaxed m-0">Clear
-                                        documentation and intuitive development tools.</p>
-                                </div>
+                                class="flex items-start w-full lg:flex-row-reverse group cursor-pointer text-white lg:-translate-x-12 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="w-[110px] h-[110px] shrink-0 relative">
-                                    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300"
+                                    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300 transform scale-x-[-1] lg:scale-x-[1]"
                                         viewBox="0 0 120 120" preserveAspectRatio="none" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0,0.5 L119.5,0.5 L119.5,119.5 L24,119.5 L0.5,96 Z" stroke-width="1"
                                             stroke-linejoin="round" />
                                     </svg>
-                                    <div class="absolute top-4 left-5 text-[18px] font-medium text-white tracking-wide">
+                                    <div class="absolute top-4 right-5 lg:right-auto lg:left-5 text-[18px] font-medium text-white tracking-wide">
                                         02</div>
+                                </div>
+                                <div
+                                    class="flex-1 border-t border-white/40 pt-4 pl-6 lg:pl-0 lg:pr-6 group-hover:border-white transition-colors duration-300">
+                                    <h3 class="text-[24px] font-medium text-white mb-2 tracking-tight leading-tight">
+                                        Developer-First Experience</h3>
+                                    <p class="text-[14px] font-normal text-blue-100 leading-relaxed m-0">Clear
+                                        documentation and intuitive development tools.</p>
                                 </div>
                             </div>
                         </div>
@@ -620,9 +594,32 @@
 
                         <!-- Right Column: 2 Cards (Mirror Opposite Layout) -->
                         <div class="lg:col-span-5 flex flex-col gap-12 justify-center">
-                            <!-- Item 4: Open Ecosystem (Mirrored: Number box on left, text on right) -->
+                            <!-- Item 3: Open Ecosystem (Mirrored: Number box on left, text on right) -->
                             <div
                                 class="flex items-start w-full group cursor-pointer text-white transition-transform duration-300 hover:-translate-y-1">
+                                <div class="w-[110px] h-[110px] shrink-0 relative">
+                                    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300 transform scale-x-[-1]"
+                                        viewBox="0 0 120 120" preserveAspectRatio="none" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0,0.5 L119.5,0.5 L119.5,119.5 L24,119.5 L0.5,96 Z" stroke-width="1"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <div
+                                        class="absolute top-4 right-5 text-[18px] font-medium text-white tracking-wide">
+                                        03</div>
+                                </div>
+                                <div
+                                    class="flex-1 border-t border-white/40 pt-4 pl-6 group-hover:border-white transition-colors duration-300">
+                                    <h3 class="text-[24px] font-medium text-white mb-2 tracking-tight leading-tight">
+                                        Open Ecosystem</h3>
+                                    <p class="text-[14px] font-normal text-blue-100 leading-relaxed m-0">Create
+                                        applications across DeFi, NFTs, gaming, identity, enterprise, and more.</p>
+                                </div>
+                            </div>
+
+                            <!-- Item 4: Research-Driven Innovation (Mirrored & Shifted Right) -->
+                            <div
+                                class="flex items-start w-full group cursor-pointer text-white lg:translate-x-12 transition-transform duration-300 hover:-translate-y-1">
                                 <div class="w-[110px] h-[110px] shrink-0 relative">
                                     <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300 transform scale-x-[-1]"
                                         viewBox="0 0 120 120" preserveAspectRatio="none" fill="none"
@@ -637,29 +634,6 @@
                                 <div
                                     class="flex-1 border-t border-white/40 pt-4 pl-6 group-hover:border-white transition-colors duration-300">
                                     <h3 class="text-[24px] font-medium text-white mb-2 tracking-tight leading-tight">
-                                        Open Ecosystem</h3>
-                                    <p class="text-[14px] font-normal text-blue-100 leading-relaxed m-0">Create
-                                        applications across DeFi, NFTs, gaming, identity, enterprise, and more.</p>
-                                </div>
-                            </div>
-
-                            <!-- Item 5: Research-Driven Innovation (Mirrored & Shifted Right) -->
-                            <div
-                                class="flex items-start w-full group cursor-pointer text-white lg:translate-x-12 transition-transform duration-300 hover:-translate-y-1">
-                                <div class="w-[110px] h-[110px] shrink-0 relative">
-                                    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300 transform scale-x-[-1]"
-                                        viewBox="0 0 120 120" preserveAspectRatio="none" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M0,0.5 L119.5,0.5 L119.5,119.5 L24,119.5 L0.5,96 Z" stroke-width="1"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                    <div
-                                        class="absolute top-4 right-5 text-[18px] font-medium text-white tracking-wide">
-                                        05</div>
-                                </div>
-                                <div
-                                    class="flex-1 border-t border-white/40 pt-4 pl-6 group-hover:border-white transition-colors duration-300">
-                                    <h3 class="text-[24px] font-medium text-white mb-2 tracking-tight leading-tight">
                                         Research-Driven Innovation</h3>
                                     <p class="text-[14px] font-normal text-blue-100 leading-relaxed m-0">Continuously
                                         evolving through protocol research and engineering.</p>
@@ -668,26 +642,26 @@
                         </div>
                     </div>
 
-                    <!-- Item 3: Secure by Design (Positioned Below the Coin) -->
+                    <!-- Item 5: Secure by Design (Positioned Below the Coin) -->
                     <div class="mt-14 flex justify-center">
                         <div
-                            class="max-w-[480px] w-full flex items-start group cursor-pointer text-white transition-transform duration-300 hover:-translate-y-1">
-                            <div
-                                class="flex-1 border-t border-white/40 pt-4 pr-6 group-hover:border-white transition-colors duration-300">
-                                <h3 class="text-[24px] font-medium text-white mb-2 tracking-tight leading-tight">Secure
-                                    by Design</h3>
-                                <p class="text-[14px] font-normal text-blue-100 leading-relaxed m-0">Built with strong
-                                    cryptographic foundations and network security principles.</p>
-                            </div>
+                            class="max-w-[480px] w-full flex items-start lg:flex-row-reverse group cursor-pointer text-white transition-transform duration-300 hover:-translate-y-1">
                             <div class="w-[110px] h-[110px] shrink-0 relative">
-                                <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300"
+                                <svg class="absolute top-0 left-0 w-full h-full pointer-events-none stroke-white/40 group-hover:stroke-white transition-colors duration-300 transform scale-x-[-1] lg:scale-x-[1]"
                                     viewBox="0 0 120 120" preserveAspectRatio="none" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0,0.5 L119.5,0.5 L119.5,119.5 L24,119.5 L0.5,96 Z" stroke-width="1"
                                         stroke-linejoin="round" />
                                 </svg>
-                                <div class="absolute top-4 left-5 text-[18px] font-medium text-white tracking-wide">03
+                                <div class="absolute top-4 right-5 lg:right-auto lg:left-5 text-[18px] font-medium text-white tracking-wide">05
                                 </div>
+                            </div>
+                            <div
+                                class="flex-1 border-t border-white/40 pt-4 pl-6 lg:pl-0 lg:pr-6 group-hover:border-white transition-colors duration-300">
+                                <h3 class="text-[24px] font-medium text-white mb-2 tracking-tight leading-tight">Secure
+                                    by Design</h3>
+                                <p class="text-[14px] font-normal text-blue-100 leading-relaxed m-0">Built with strong
+                                    cryptographic foundations and network security principles.</p>
                             </div>
                         </div>
                     </div>
@@ -872,7 +846,7 @@
                     </div>
 
                     <!-- Phase 03 -->
-                    <div class="timeline-item flex-row-reverse md:flex-row">
+                    <div class="timeline-item flex-col md:flex-row">
                         <!-- Card on Left -->
                         <div class="timeline-card card-pink w-full md:w-[45%] order-1">
                             <span class="timeline-phase-label text-pink-600">Phase 03</span>
@@ -1070,7 +1044,7 @@
                     </div>
 
                     <!-- Phase 05 -->
-                    <div class="timeline-item flex-row-reverse md:flex-row">
+                    <div class="timeline-item flex-col md:flex-row">
                         <!-- Card on Left -->
                         <div class="timeline-card card-purple w-full md:w-[45%] order-1">
                             <span class="timeline-phase-label text-purple-600">Phase 05</span>
@@ -1320,22 +1294,23 @@
             </div>
             <div class="col-span-1 flex flex-col gap-3">
                 <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
-                    href="#">Network Status</a>
+                    href="status.html">Network Status</a>
                 <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
-                    href="#">Documentation</a>
+                    href="docs.html">Documentation</a>
                 <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
-                    href="#">Whitepaper</a>
+                    href="whitepaper.pdf">Whitepaper</a>
             </div>
             <div class="col-span-1 flex flex-col gap-3">
                 <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
-                    href="#">Security Audits</a>
+                    href="docs.html#security">Security Audits</a>
                 <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
-                    href="#">Privacy Policy</a>
+                    href="legal.html#privacy">Privacy Policy</a>
                 <a class="font-technical-sm text-technical-sm text-on-surface-variant hover:text-primary hover:underline transition-all opacity-100"
-                    href="#">Terms of Service</a>
+                    href="legal.html#terms">Terms of Service</a>
             </div>
         </div>
     </footer>
+    <script src="shared.js"></script>
     <!-- Three.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
@@ -1441,35 +1416,6 @@
             });
         });
     </script>
-<script>
-    (() => {
-        const toggle = document.getElementById("mobile-menu-toggle");
-        const panel = document.getElementById("mobile-menu-panel");
-        const icon = document.getElementById("mobile-menu-icon");
-
-        if (!toggle || !panel || !icon) return;
-
-        const setOpen = (isOpen) => {
-            panel.classList.toggle("hidden", !isOpen);
-            toggle.setAttribute("aria-expanded", String(isOpen));
-            icon.textContent = isOpen ? "close" : "menu";
-        };
-
-        toggle.addEventListener("click", () => {
-            setOpen(panel.classList.contains("hidden"));
-        });
-
-        panel.querySelectorAll("a, button").forEach((item) => {
-            item.addEventListener("click", () => setOpen(false));
-        });
-
-        window.addEventListener("resize", () => {
-            if (window.matchMedia("(min-width: 768px)").matches) {
-                setOpen(false);
-            }
-        });
-    })();
-</script>
 </body>
 
 </html>

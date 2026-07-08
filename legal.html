@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SXIAUM Legal - Privacy Policy & Terms of Service</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#a855f7',
+                        secondary: '#ec4899',
+                        bgDark: '#050508',
+                        cardDark: '#0b0b0f',
+                        borderDark: 'rgba(147, 51, 234, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050508;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.05) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+        .legal-tab-btn.active {
+            color: #ffffff;
+            border-bottom: 2px solid #a855f7;
+            background: rgba(168, 85, 247, 0.05);
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen flex flex-col antialiased">
+    <!-- Top Nav -->
+    <header class="sticky top-0 w-full z-50 bg-[#050508]/80 backdrop-blur-md border-b border-purple-500/10">
+        <div class="flex justify-between items-center h-16 px-6 max-w-7xl mx-auto">
+            <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                <span class="font-display-lg text-lg font-bold tracking-tighter text-white">SXIAUM <span class="text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full ml-1 border border-purple-500/20">LEGAL</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a class="hover:text-white transition-colors" href="technology.html">Technology</a>
+                <a class="hover:text-white transition-colors" href="ecosystem.html">Ecosystem</a>
+                <a class="hover:text-white transition-colors" href="developers.html">Developers</a>
+                <a class="hover:text-white transition-colors" href="Governance.html">Governance</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button id="connect-wallet-btn" class="px-4 py-2 border border-purple-500/30 rounded text-purple-300 font-medium text-xs hover:border-purple-500 hover:text-white transition-all duration-300">Connect</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-4xl w-full mx-auto px-6 py-12 space-y-8">
+        <!-- Tab Selector -->
+        <div class="flex border-b border-purple-500/10">
+            <button onclick="switchLegalTab('privacy')" id="legal-btn-privacy" class="legal-tab-btn active px-6 py-3 font-semibold text-sm text-gray-400 hover:text-white transition-all">
+                Privacy Policy
+            </button>
+            <button onclick="switchLegalTab('terms')" id="legal-btn-terms" class="legal-tab-btn px-6 py-3 font-semibold text-sm text-gray-400 hover:text-white transition-all">
+                Terms of Service
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <article class="bg-cardDark border border-purple-500/10 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+            <!-- PRIVACY POLICY -->
+            <div id="legal-sec-privacy" class="legal-section space-y-6">
+                <h1 class="text-2xl font-bold text-white">Privacy Policy</h1>
+                <p class="text-xs text-gray-400">Last updated: July 8, 2026</p>
+                <hr class="border-purple-500/10" />
+                
+                <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
+                    <h3 class="text-base font-bold text-white">1. Information Collection</h3>
+                    <p>SXIAUM Foundation is committed to shielding decentralized user parameters. We do not collect personal identifying parameters, IP locations, or session keys when using the public portal. Node participation requires broadcasting cryptographically signed blockchain headers which are immutable property of the decentralized network.</p>
+
+                    <h3 class="text-base font-bold text-white">2. Wallet Connection & Nonces</h3>
+                    <p>Connecting your browser extension wallet (MetaMask, Coinbase Wallet, Ledger, etc.) does not transmit private keys or balance schemas. Transactions executed via our Commit-Reveal RPC endpoints broadcast encrypted hashes, securing data privacy during node queue sorting.</p>
+
+                    <h3 class="text-base font-bold text-white">3. Network Cookies</h3>
+                    <p>This site does not utilize advertisement trackers. Local storage variables are set solely to persist wallet address connections across page reloads.</p>
+                </div>
+            </div>
+
+            <!-- TERMS OF SERVICE -->
+            <div id="legal-sec-terms" class="legal-section hidden space-y-6">
+                <h1 class="text-2xl font-bold text-white">Terms of Service</h1>
+                <p class="text-xs text-gray-400">Last updated: July 8, 2026</p>
+                <hr class="border-purple-500/10" />
+                
+                <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
+                    <h3 class="text-base font-bold text-white">1. Agreement to Terms</h3>
+                    <p>By interfacing with the SXIAUM portal, APIs, and consensus testnets, you agree to comply with decentralized protocol validation requirements. If you do not agree to these terms, you must terminate network routing connections immediately.</p>
+
+                    <h3 class="text-base font-bold text-white">2. Testnet Tokens & Assets</h3>
+                    <p>Testnet SXIAUM tokens (SXUM) requested via the Faucet hold zero financial value. Staking, delegations, and transaction simulator actions are executed for diagnostic and evaluation purposes in sandbox scopes.</p>
+
+                    <h3 class="text-base font-bold text-white">3. Disclaimer of Warranty</h3>
+                    <p>The SXIAUM network and related portal interfaces are provided "as is" and "as available" without warranty of any kind. Participating in cryptographic validation algorithms carries inherent protocol risk. The Foundation holds no liability for loss of testnet balances due to validator slashing or shard reorgs.</p>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="w-full py-8 bg-[#050508] border-t border-purple-500/10 text-center text-xs text-gray-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 SXIAUM Foundation. Institutional-Grade Blockchain Infrastructure.</p>
+            <div class="flex gap-6 text-gray-400">
+                <a href="home.html" class="hover:text-white transition-colors">Home</a>
+                <a href="status.html" class="hover:text-white transition-colors">Network Status</a>
+                <a href="docs.html" class="hover:text-white transition-colors">Documentation</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared JS -->
+    <script src="shared.js"></script>
+
+    <!-- Legal Routing Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            syncLegalHash();
+            window.addEventListener('hashchange', syncLegalHash);
+        });
+
+        function switchLegalTab(tabId) {
+            window.location.hash = tabId;
+        }
+
+        function syncLegalHash() {
+            let tabId = window.location.hash.substring(1);
+            if (!tabId || !['privacy', 'terms'].includes(tabId)) {
+                tabId = 'privacy';
+            }
+
+            document.querySelectorAll('.legal-section').forEach(sec => sec.classList.add('hidden'));
+            document.querySelectorAll('.legal-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            const sec = document.getElementById(`legal-sec-${tabId}`);
+            const btn = document.getElementById(`legal-btn-${tabId}`);
+
+            if (sec && btn) {
+                sec.classList.remove('hidden');
+                btn.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

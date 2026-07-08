@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SXIAUM Console - Live Testnet Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#a855f7',
+                        secondary: '#ec4899',
+                        bgDark: '#0b0b0f',
+                        cardDark: '#12121a',
+                        borderDark: 'rgba(147, 51, 234, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050508;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glow-border {
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glow-border:hover {
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+        }
+        .tab-btn.active {
+            color: #ffffff;
+            border-bottom: 2px solid #a855f7;
+            background: rgba(168, 85, 247, 0.05);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(168, 85, 247, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(168, 85, 247, 0.5);
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col antialiased">
+    <!-- Top Nav -->
+    <header class="sticky top-0 w-full z-50 bg-[#09090d]/80 backdrop-blur-md border-b border-purple-500/10">
+        <div class="flex justify-between items-center h-16 px-6 max-w-7xl mx-auto">
+            <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                <span class="font-display-lg text-lg font-bold tracking-tighter text-white">SXIAUM <span class="text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full ml-1 border border-purple-500/20">TESTNET</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a class="hover:text-white transition-colors" href="technology.html">Technology</a>
+                <a class="hover:text-white transition-colors" href="ecosystem.html">Ecosystem</a>
+                <a class="hover:text-white transition-colors" href="developers.html">Developers</a>
+                <a class="hover:text-white transition-colors" href="Governance.html">Governance</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button id="connect-wallet-btn" class="px-4 py-2 border border-purple-500/30 rounded text-purple-300 font-medium text-xs hover:border-purple-500 hover:text-white transition-all duration-300 flex items-center gap-2">Connect</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8 flex flex-col md:flex-row gap-8">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 flex-shrink-0 flex flex-col gap-2">
+            <div class="bg-cardDark border border-purple-500/10 rounded-xl p-4 mb-4">
+                <div class="text-xs text-gray-400 mb-1 uppercase tracking-wider">Mock Wallet Balance</div>
+                <div class="flex items-baseline gap-1.5">
+                    <span class="text-2xl font-bold text-white mono" id="wallet-balance-display">0.00</span>
+                    <span class="text-xs text-purple-400 font-semibold uppercase">SXUM</span>
+                </div>
+                <div class="text-[10px] text-gray-500 mt-1 truncate" id="sidebar-address">No Wallet Connected</div>
+            </div>
+
+            <div class="flex flex-row md:flex-col gap-2 overflow-x-auto pb-3 md:pb-0 whitespace-nowrap md:whitespace-normal">
+                <button onclick="switchTab('explorer')" id="tab-btn-explorer" class="tab-btn active flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all text-gray-400 hover:text-white hover:bg-white/5 shrink-0">
+                    <span class="material-symbols-outlined text-[20px]">explore</span>
+                    Explorer & Dashboard
+                </button>
+                <button onclick="switchTab('faucet')" id="tab-btn-faucet" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all text-gray-400 hover:text-white hover:bg-white/5 shrink-0">
+                    <span class="material-symbols-outlined text-[20px]">faucet</span>
+                    Developer Faucet
+                </button>
+                <button onclick="switchTab('swap')" id="tab-btn-swap" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all text-gray-400 hover:text-white hover:bg-white/5 shrink-0">
+                    <span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+                    Commit-Reveal MEV Swap
+                </button>
+                <button onclick="switchTab('staking')" id="tab-btn-staking" class="tab-btn flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-semibold transition-all text-gray-400 hover:text-white hover:bg-white/5 shrink-0">
+                    <span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+                    Validator Staking
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <section class="flex-grow flex flex-col gap-6">
+            <!-- TAB: EXPLORER -->
+            <div id="tab-explorer" class="tab-content flex flex-col gap-6">
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-cardDark border border-purple-500/10 rounded-xl p-5 shadow-lg">
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">Live Throughput</div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-bold text-white mono" id="stat-tps">2,148</span>
+                            <span class="text-xs text-purple-400 font-semibold">TPS</span>
+                        </div>
+                        <div class="text-[10px] text-green-400 mt-1 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping"></span> Peak: 4,500+ TPS
+                        </div>
+                    </div>
+                    <div class="bg-cardDark border border-purple-500/10 rounded-xl p-5 shadow-lg">
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">Avg Gas Price</div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-bold text-white mono">1.05</span>
+                            <span class="text-xs text-purple-400 font-semibold">Gwei</span>
+                        </div>
+                        <div class="text-[10px] text-purple-300 mt-1">Highly Optimized OCC Engine</div>
+                    </div>
+                    <div class="bg-cardDark border border-purple-500/10 rounded-xl p-5 shadow-lg">
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">Block Finality</div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-bold text-white mono">1.20</span>
+                            <span class="text-xs text-purple-400 font-semibold">sec</span>
+                        </div>
+                        <div class="text-[10px] text-gray-400 mt-1">Sub-second Propagation</div>
+                    </div>
+                    <div class="bg-cardDark border border-purple-500/10 rounded-xl p-5 shadow-lg">
+                        <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">Active Shards</div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-bold text-white mono">8</span>
+                            <span class="text-xs text-purple-400 font-semibold">Active</span>
+                        </div>
+                        <div class="text-[10px] text-gray-400 mt-1">Cross-Shard routing auto-scaled</div>
+                    </div>
+                </div>
+
+                <!-- Live Block Stream Card -->
+                <div class="bg-cardDark border border-purple-500/10 rounded-xl p-6 shadow-lg flex-grow flex flex-col min-h-[400px]">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Live Block Explorer Stream</h3>
+                            <p class="text-xs text-gray-400">Blocks propagate every 1.0 second on the SXIAUM Sharding network.</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs bg-purple-500/10 text-purple-400 border border-purple-500/20 px-3 py-1 rounded-full">
+                            <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span> Live Broadcast
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto flex-grow">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="text-gray-400 border-b border-purple-500/10 pb-3 text-xs uppercase tracking-wider">
+                                    <th class="py-3 font-semibold">Block Height</th>
+                                    <th class="py-3 font-semibold">Shard ID</th>
+                                    <th class="py-3 font-semibold">Block Hash</th>
+                                    <th class="py-3 font-semibold">TX Count</th>
+                                    <th class="py-3 font-semibold">Validator</th>
+                                    <th class="py-3 font-semibold text-right">Age</th>
+                                </tr>
+                            </thead>
+                            <tbody id="block-stream-tbody" class="mono text-xs">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: FAUCET -->
+            <div id="tab-faucet" class="tab-content hidden bg-cardDark border border-purple-500/10 rounded-xl p-8 shadow-lg">
+                <div class="max-w-xl mx-auto space-y-6">
+                    <div class="text-center space-y-2">
+                        <div class="w-12 h-12 bg-purple-500/10 border border-purple-500/20 rounded-full flex items-center justify-center mx-auto text-purple-400">
+                            <span class="material-symbols-outlined text-[28px]">faucet</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">SXIAUM Testnet Faucet</h3>
+                        <p class="text-sm text-gray-400">Request testnet tokens once every 24 hours to test your deployments and transactions.</p>
+                    </div>
+
+                    <div class="space-y-4 pt-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Connected Address</label>
+                            <input id="faucet-address-input" type="text" placeholder="0x8F9a... or connect wallet" class="w-full bg-[#050508] border border-purple-500/20 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all mono">
+                        </div>
+
+                        <button id="faucet-request-btn" onclick="requestFaucetTokens()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm py-4 rounded-lg transition-colors uppercase tracking-wider">
+                            Request 10.00 SXUM
+                        </button>
+                    </div>
+
+                    <!-- Faucet Loading / Animation State -->
+                    <div id="faucet-loading-state" class="hidden border border-purple-500/20 bg-purple-500/5 rounded-xl p-6 flex flex-col items-center justify-center space-y-4">
+                        <div class="sxiaum-spinner"></div>
+                        <div class="text-sm font-semibold text-white" id="faucet-loading-msg">Generating Cryptographic PoW Proof...</div>
+                        <div class="w-full bg-[#050508] rounded-full h-1">
+                            <div class="bg-purple-500 h-1 rounded-full transition-all duration-1000" id="faucet-progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Faucet Receipt -->
+                    <div id="faucet-receipt" class="hidden border border-green-500/20 bg-green-500/5 rounded-xl p-6 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-green-400 text-[24px]">check_circle</span>
+                            <h4 class="text-base font-bold text-white">Faucet Request Successful</h4>
+                        </div>
+                        <div class="space-y-2 text-xs text-gray-400 border-t border-green-500/10 pt-3 mono">
+                            <div class="flex justify-between"><span class="text-gray-500">Amount Sent:</span> <span class="text-white font-semibold">10.00 SXUM</span></div>
+                            <div class="flex justify-between"><span class="text-gray-500">Transaction Hash:</span> <span class="text-purple-400 select-all" id="faucet-tx-hash">0x8a92f...39c2d</span></div>
+                            <div class="flex justify-between"><span class="text-gray-500">Block Height:</span> <span class="text-white" id="faucet-block-height">#14,502</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: COMMIT-REVEAL SWAP -->
+            <div id="tab-swap" class="tab-content hidden bg-cardDark border border-purple-500/10 rounded-xl p-8 shadow-lg">
+                <div class="max-w-2xl mx-auto space-y-6">
+                    <div class="text-center space-y-2">
+                        <div class="w-12 h-12 bg-purple-500/10 border border-purple-500/20 rounded-full flex items-center justify-center mx-auto text-purple-400">
+                            <span class="material-symbols-outlined text-[28px]">lock</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">MEV-Resistant Swap Playground</h3>
+                        <p class="text-sm text-gray-400">Experience how SXIAUM's Native Commit-Reveal elimination mechanism mathematical proofs render frontrunning, JIT liquidity, and sandwich attacks obsolete.</p>
+                    </div>
+
+                    <!-- Swap Inputs -->
+                    <div id="swap-step-inputs" class="space-y-4 bg-[#050508]/60 p-6 rounded-xl border border-purple-500/10">
+                        <div class="flex justify-between items-center text-xs font-semibold text-gray-400 uppercase">
+                            <span>From</span>
+                            <span class="cursor-pointer hover:text-white" onclick="setMaxSwap()">Max</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-[#050508] border border-purple-500/20 rounded-lg p-4">
+                            <input id="swap-input-amount" type="number" value="2.00" class="flex-grow bg-transparent border-none text-xl text-white focus:outline-none focus:ring-0 font-bold mono">
+                            <span class="text-base font-bold text-white">SXUM</span>
+                        </div>
+
+                        <div class="flex justify-between items-center text-xs font-semibold text-gray-400 uppercase pt-2">
+                            <span>To (Estimated)</span>
+                        </div>
+                        <div class="flex items-center gap-3 bg-[#050508] border border-purple-500/20 rounded-lg p-4">
+                            <div class="flex-grow text-xl text-white font-bold mono" id="swap-output-amount">0.020</div>
+                            <span class="text-base font-bold text-white">mBTC</span>
+                        </div>
+
+                        <button onclick="startCommitPhase()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm py-4 rounded-lg transition-colors uppercase tracking-wider">
+                            Initialize Commit-Reveal Swap
+                        </button>
+                    </div>
+
+                    <!-- Stepper Progress -->
+                    <div id="swap-stepper" class="hidden space-y-6">
+                        <!-- Step Icons -->
+                        <div class="flex justify-between items-center max-w-md mx-auto relative px-6">
+                            <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-purple-500/10 -translate-y-1/2 z-0"></div>
+                            <div class="absolute top-1/2 left-0 h-0.5 bg-purple-500 -translate-y-1/2 z-0 transition-all duration-500" id="stepper-line" style="width: 0%"></div>
+                            
+                            <div class="z-10 flex flex-col items-center">
+                                <div id="step-dot-1" class="w-8 h-8 rounded-full bg-purple-600 border border-purple-500 flex items-center justify-center text-white text-xs font-bold font-technical">1</div>
+                                <span class="text-[10px] text-white mt-1 uppercase font-semibold">Commit</span>
+                            </div>
+                            <div class="z-10 flex flex-col items-center">
+                                <div id="step-dot-2" class="w-8 h-8 rounded-full bg-[#050508] border border-purple-500/20 flex items-center justify-center text-gray-400 text-xs font-bold font-technical">2</div>
+                                <span class="text-[10px] text-gray-400 mt-1 uppercase font-semibold">Order</span>
+                            </div>
+                            <div class="z-10 flex flex-col items-center">
+                                <div id="step-dot-3" class="w-8 h-8 rounded-full bg-[#050508] border border-purple-500/20 flex items-center justify-center text-gray-400 text-xs font-bold font-technical">3</div>
+                                <span class="text-[10px] text-gray-400 mt-1 uppercase font-semibold">Reveal</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Contents -->
+                        <!-- Step 1 Info -->
+                        <div id="swap-step-card-1" class="bg-[#050508]/60 p-6 rounded-xl border border-purple-500/10 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white uppercase tracking-wider">Phase 1: Encrypt & Commit</h4>
+                                    <p class="text-xs text-gray-400 mt-1">We hash the transaction contents using SHA-256 and attach a secret nonce `r` to encrypt the intent before sending it to the mempool.</p>
+                                </div>
+                                <div class="sxiaum-spinner" id="step-spinner-1"></div>
+                            </div>
+                            <div class="space-y-2 text-xs mono bg-[#050508] p-4 rounded border border-purple-500/15">
+                                <div class="text-gray-500"><span class="text-purple-400">Plaintext TX:</span> Swap 2.00 SXUM to mBTC</div>
+                                <div class="text-gray-500"><span class="text-purple-400">Secret Nonce r:</span> <span id="nonce-display">0x82f9d...32c</span></div>
+                                <div class="text-gray-400"><span class="text-pink-400">Commitment Hash C:</span> <span id="hash-display">Computing...</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 Info -->
+                        <div id="swap-step-card-2" class="hidden bg-[#050508]/60 p-6 rounded-xl border border-purple-500/10 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white uppercase tracking-wider">Phase 2: Decentralized Ordering</h4>
+                                    <p class="text-xs text-gray-400 mt-1">Validators order the transaction in the next block using the commitment hash. Nobody, including the validators, can read what trade you are making, eliminating frontrunning.</p>
+                                </div>
+                                <div class="sxiaum-spinner" id="step-spinner-2"></div>
+                            </div>
+                            <div class="space-y-1 text-xs mono text-gray-400 bg-[#050508] p-4 rounded border border-purple-500/15">
+                                <div class="text-green-400">✓ Added to block #14,506 queue</div>
+                                <div>Block Ordering: [Tx_Commit_01, <span class="text-pink-400">Your_Tx_Commit</span>, Tx_Commit_03]</div>
+                                <div class="text-gray-500 text-[10px] mt-2">Zero-knowledge mempool ordering prevents sandwich attacks.</div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 Info -->
+                        <div id="swap-step-card-3" class="hidden bg-[#050508]/60 p-6 rounded-xl border border-purple-500/10 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white uppercase tracking-wider">Phase 3: Decrypt & Execute</h4>
+                                    <p class="text-xs text-gray-400 mt-1">The block headers are verified. The private nonce is revealed automatically, decrypting your swap and executing it transparently at the pre-committed block index.</p>
+                                </div>
+                                <div class="sxiaum-spinner" id="step-spinner-3"></div>
+                            </div>
+                            <div class="space-y-2 text-xs mono bg-[#050508] p-4 rounded border border-purple-500/15">
+                                <div class="text-green-400">✓ Decrypted Swap successfully</div>
+                                <div class="text-gray-400">Settled: 2.00 SXUM converted to 0.020 mBTC</div>
+                                <div class="text-gray-500">Transaction Hash: <span id="swap-final-hash">0x81b7e23...a9d</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Finished State -->
+                        <div id="swap-finished" class="hidden border border-green-500/20 bg-green-500/5 rounded-xl p-6 text-center space-y-4">
+                            <div class="w-10 h-10 bg-green-500/10 rounded-full flex items-center justify-center mx-auto text-green-400">
+                                <span class="material-symbols-outlined text-[24px]">verified</span>
+                            </div>
+                            <h4 class="text-base font-bold text-white">Swap Succeeded & MEV Eliminated!</h4>
+                            <p class="text-xs text-gray-400 max-w-md mx-auto">Your swap was executed safely at the exact pre-ordered block sequence. MEV extraction = 0.00 SXUM.</p>
+                            <button onclick="resetSwapTab()" class="px-6 py-2 bg-[#050508] border border-purple-500/20 hover:border-purple-500 text-white text-xs font-semibold rounded-lg uppercase tracking-wider transition-colors">Swap Again</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: STAKING -->
+            <div id="tab-staking" class="tab-content hidden bg-cardDark border border-purple-500/10 rounded-xl p-6 shadow-lg flex flex-col gap-6">
+                <div>
+                    <h3 class="text-lg font-bold text-white">Active Validator Staking</h3>
+                    <p class="text-xs text-gray-400">Stake your SXIAUM tokens to nodes to secure the network consensus and earn dynamic staking yields.</p>
+                </div>
+
+                <!-- Validator List -->
+                <div class="space-y-4">
+                    <!-- Validator 1 -->
+                    <div class="border border-purple-500/10 hover:border-purple-500/35 bg-[#050508]/60 p-5 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                                <span class="material-symbols-outlined">dns</span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white flex items-center gap-1.5">Zenith Node <span class="text-[9px] bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">Active</span></h4>
+                                <div class="text-[10px] text-gray-500 mono mt-0.5">0x71A9F...de621</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 md:gap-12">
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Staking APR</div>
+                                <div class="text-sm font-bold text-white mono">8.42%</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Commission</div>
+                                <div class="text-sm font-medium text-gray-400 mono">5.0%</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Total Staked</div>
+                                <div class="text-sm font-medium text-gray-400 mono">14.2M SXUM</div>
+                            </div>
+                        </div>
+                        <button onclick="openStakeModal('Zenith Node', '0x71A9F...de621', 8.42)" class="w-full md:w-auto px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs rounded-lg uppercase tracking-wider transition-colors">Stake</button>
+                    </div>
+
+                    <!-- Validator 2 -->
+                    <div class="border border-purple-500/10 hover:border-purple-500/35 bg-[#050508]/60 p-5 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/20 flex items-center justify-center text-blue-400">
+                                <span class="material-symbols-outlined">hub</span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white flex items-center gap-1.5">Aether Capital <span class="text-[9px] bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">Active</span></h4>
+                                <div class="text-[10px] text-gray-500 mono mt-0.5">0x3B99f...82e14</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 md:gap-12">
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Staking APR</div>
+                                <div class="text-sm font-bold text-white mono">8.15%</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Commission</div>
+                                <div class="text-sm font-medium text-gray-400 mono">3.5%</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Total Staked</div>
+                                <div class="text-sm font-medium text-gray-400 mono">9.8M SXUM</div>
+                            </div>
+                        </div>
+                        <button onclick="openStakeModal('Aether Capital', '0x3B99f...82e14', 8.15)" class="w-full md:w-auto px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs rounded-lg uppercase tracking-wider transition-colors">Stake</button>
+                    </div>
+
+                    <!-- Validator 3 -->
+                    <div class="border border-purple-500/10 hover:border-purple-500/35 bg-[#050508]/60 p-5 rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-pink-500/20 flex items-center justify-center text-pink-400">
+                                <span class="material-symbols-outlined">lan</span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white flex items-center gap-1.5">Nexus Operations <span class="text-[9px] bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">Active</span></h4>
+                                <div class="text-[10px] text-gray-500 mono mt-0.5">0xec489...d8a55</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 md:gap-12">
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Staking APR</div>
+                                <div class="text-sm font-bold text-white mono">8.60%</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Commission</div>
+                                <div class="text-sm font-medium text-gray-400 mono">7.0%</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-400 uppercase font-semibold">Total Staked</div>
+                                <div class="text-sm font-medium text-gray-400 mono">11.5M SXUM</div>
+                            </div>
+                        </div>
+                        <button onclick="openStakeModal('Nexus Operations', '0xec489...d8a55', 8.60)" class="w-full md:w-auto px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs rounded-lg uppercase tracking-wider transition-colors">Stake</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Staking Dialog / Modal -->
+    <div id="staking-modal" class="sxiaum-modal-overlay">
+        <div class="sxiaum-modal">
+            <button class="sxiaum-modal-close" onclick="closeStakeModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h3 class="font-headline-lg text-lg font-bold mb-1 text-white">Delegate to Validator</h3>
+            <p class="text-xs text-gray-400 mb-6" id="staking-modal-subtitle">Zenith Node</p>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Stake Amount</label>
+                    <div class="flex items-center gap-3 bg-[#050508] border border-purple-500/20 rounded-lg p-4">
+                        <input id="staking-amount-input" type="number" placeholder="0.0" class="flex-grow bg-transparent border-none text-xl text-white focus:outline-none focus:ring-0 font-bold mono">
+                        <span class="text-xs font-bold text-purple-400">SXUM</span>
+                    </div>
+                    <div class="text-[10px] text-gray-500 mt-1 flex justify-between">
+                        <span id="staking-max-balance">Available: 0.00 SXUM</span>
+                        <span class="cursor-pointer hover:text-white" onclick="setStakingMax()">Use Max</span>
+                    </div>
+                </div>
+
+                <button onclick="submitStaking()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm py-4 rounded-lg transition-colors uppercase tracking-wider">
+                    Confirm Delegation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="w-full py-8 bg-[#050508] border-t border-purple-500/10 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 SXIAUM Foundation. Institutional-Grade Blockchain Infrastructure.</p>
+            <div class="flex gap-6 text-gray-400">
+                <a href="status.html" class="hover:text-white transition-colors">Network Status</a>
+                <a href="docs.html" class="hover:text-white transition-colors">Documentation</a>
+                <a href="legal.html" class="hover:text-white transition-colors">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared JS -->
+    <script src="shared.js"></script>
+
+    <!-- Console Logic -->
+    <script>
+        let walletBalance = 0.0;
+        let selectedValidator = '';
+        let selectedValidatorApr = 0.0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update wallet balance display
+            updateBalanceUI();
+            
+            // Check query param for default tab
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            if (tabParam && ['explorer', 'faucet', 'swap', 'staking'].includes(tabParam)) {
+                switchTab(tabParam);
+            }
+
+            // Sync wallet connection events
+            window.addEventListener('sxiaum-wallet-changed', (e) => {
+                const isConnected = e.detail.connected;
+                const address = e.detail.address;
+                const addrDisplay = document.getElementById('sidebar-address');
+                const faucetInput = document.getElementById('faucet-address-input');
+                
+                if (isConnected) {
+                    addrDisplay.textContent = address;
+                    addrDisplay.classList.add('mono', 'text-purple-300');
+                    addrDisplay.classList.remove('text-gray-500');
+                    if (faucetInput) faucetInput.value = address;
+                } else {
+                    addrDisplay.textContent = 'No Wallet Connected';
+                    addrDisplay.classList.remove('mono', 'text-purple-300');
+                    addrDisplay.classList.add('text-gray-500');
+                    if (faucetInput) faucetInput.value = '';
+                }
+            });
+
+            // Trigger load for wallet if saved
+            const savedWallet = localStorage.getItem('sxiaum_wallet');
+            if (savedWallet) {
+                const addrDisplay = document.getElementById('sidebar-address');
+                addrDisplay.textContent = savedWallet;
+                addrDisplay.classList.add('mono', 'text-purple-300');
+                addrDisplay.classList.remove('text-gray-500');
+                const faucetInput = document.getElementById('faucet-address-input');
+                if (faucetInput) faucetInput.value = savedWallet;
+            }
+
+            // Generate explorer live blocks
+            initExplorer();
+        });
+
+        // Tab Switcher
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            const targetBtn = document.getElementById(`tab-btn-${tabId}`);
+            if (targetTab && targetBtn) {
+                targetTab.classList.remove('hidden');
+                targetBtn.classList.add('active');
+            }
+        }
+
+        // Update Staked/Faucet Balance UI
+        function updateBalanceUI() {
+            const savedBalance = localStorage.getItem('sxiaum_balance');
+            if (savedBalance) {
+                walletBalance = parseFloat(savedBalance);
+            } else {
+                walletBalance = 0.0;
+                localStorage.setItem('sxiaum_balance', walletBalance);
+            }
+            document.getElementById('wallet-balance-display').textContent = walletBalance.toFixed(2);
+            document.getElementById('staking-max-balance').textContent = `Available: ${walletBalance.toFixed(2)} SXUM`;
+        }
+
+        function incrementBalance(amount) {
+            walletBalance += amount;
+            localStorage.setItem('sxiaum_balance', walletBalance);
+            updateBalanceUI();
+        }
+
+        function deductBalance(amount) {
+            walletBalance = Math.max(0, walletBalance - amount);
+            localStorage.setItem('sxiaum_balance', walletBalance);
+            updateBalanceUI();
+        }
+
+        // Live Explorer Block Stream Generation
+        let blockHeight = 14502;
+        function initExplorer() {
+            const tbody = document.getElementById('block-stream-tbody');
+            if (!tbody) return;
+
+            // Generate initial mock blocks
+            for (let i = 0; i < 6; i++) {
+                blockHeight++;
+                const row = createBlockRow(blockHeight, i);
+                tbody.prepend(row);
+            }
+
+            // Start live loop
+            setInterval(() => {
+                blockHeight++;
+                const newRow = createBlockRow(blockHeight, 0);
+                tbody.prepend(newRow);
+                
+                // Animate row insert
+                newRow.classList.add('bg-purple-500/10');
+                setTimeout(() => {
+                    newRow.classList.remove('bg-purple-500/10');
+                }, 1000);
+
+                // Cap block display length
+                if (tbody.children.length > 10) {
+                    tbody.lastElementChild.remove();
+                }
+
+                // Update TPS counter dynamically
+                const tpsEl = document.getElementById('stat-tps');
+                if (tpsEl) {
+                    const newTps = Math.floor(1800 + Math.random() * 800);
+                    tpsEl.textContent = newTps.toLocaleString();
+                }
+            }, 1000);
+        }
+
+        function createBlockRow(height, index) {
+            const tr = document.createElement('tr');
+            tr.className = 'border-b border-purple-500/5 hover:bg-white/5 transition-colors';
+            
+            const shards = ['0', '1', '2', '3', '4', '5', '6', '7'];
+            const shardId = shards[Math.floor(Math.random() * shards.length)];
+            const txCount = Math.floor(50 + Math.random() * 250);
+            
+            const validators = ['Zenith Node', 'Aether Capital', 'Vector Staking', 'Nexus Operations'];
+            const val = validators[Math.floor(Math.random() * validators.length)];
+
+            // Create fake block hash
+            const chars = 'abcdef0123456789';
+            let hash = '0x';
+            for (let i = 0; i < 16; i++) hash += chars[Math.floor(Math.random() * chars.length)];
+            hash += '...';
+
+            tr.innerHTML = `
+                <td class="py-3.5 font-bold text-white">#${height.toLocaleString()}</td>
+                <td class="py-3.5 text-purple-400">Shard ${shardId}</td>
+                <td class="py-3.5 text-gray-400 select-all">${hash}</td>
+                <td class="py-3.5 text-white">${txCount}</td>
+                <td class="py-3.5 text-gray-300 font-medium">${val}</td>
+                <td class="py-3.5 text-right text-gray-500">${index === 0 ? 'Just now' : `${index}s ago`}</td>
+            `;
+
+            return tr;
+        }
+
+        // Faucet Logic
+        function requestFaucetTokens() {
+            const input = document.getElementById('faucet-address-input');
+            const addr = input.value.trim();
+
+            if (!addr) {
+                if (window.showToast) window.showToast('Please enter an address or connect your wallet.', 'error');
+                else alert('Please enter an address.');
+                return;
+            }
+
+            // Hide normal state, show loader
+            document.getElementById('faucet-request-btn').classList.add('hidden');
+            const loader = document.getElementById('faucet-loading-state');
+            loader.classList.remove('hidden');
+            
+            const bar = document.getElementById('faucet-progress-bar');
+            const msg = document.getElementById('faucet-loading-msg');
+            
+            bar.style.width = '0%';
+            
+            // Step 1: PoW proof
+            setTimeout(() => {
+                bar.style.width = '35%';
+                msg.textContent = 'Generating Cryptographic PoW Proof...';
+                
+                // Step 2: Verification
+                setTimeout(() => {
+                    bar.style.width = '70%';
+                    msg.textContent = 'Verifying Sharding State...';
+                    
+                    // Step 3: Broadcast
+                    setTimeout(() => {
+                        bar.style.width = '100%';
+                        msg.textContent = 'Broadcasting Faucet Transaction...';
+                        
+                        // Final Receipt
+                        setTimeout(() => {
+                            loader.classList.add('hidden');
+                            
+                            // Generate Receipt Details
+                            const chars = '0123456789abcdef';
+                            let txHash = '0x';
+                            for(let i=0; i<32; i++) txHash += chars[Math.floor(Math.random() * chars.length)];
+                            
+                            document.getElementById('faucet-tx-hash').textContent = txHash.substring(0, 16) + '...' + txHash.substring(24);
+                            document.getElementById('faucet-block-height').textContent = `#${(blockHeight + 1).toLocaleString()}`;
+                            
+                            document.getElementById('faucet-receipt').classList.remove('hidden');
+                            
+                            // Update balance
+                            incrementBalance(10.00);
+                            
+                            if (window.showToast) {
+                                window.showToast('Received 10.00 SXUM testnet tokens!', 'success');
+                            }
+                        }, 800);
+                    }, 1000);
+                }, 1000);
+            }, 100);
+        }
+
+        // Commit Reveal Swap Logic
+        function setMaxSwap() {
+            document.getElementById('swap-input-amount').value = walletBalance.toFixed(2);
+            calculateSwapOutput();
+        }
+
+        document.getElementById('swap-input-amount').addEventListener('input', calculateSwapOutput);
+
+        function calculateSwapOutput() {
+            const amount = parseFloat(document.getElementById('swap-input-amount').value) || 0;
+            const output = amount * 0.0102; // Fake rate
+            document.getElementById('swap-output-amount').textContent = output.toFixed(3);
+        }
+
+        function startCommitPhase() {
+            const amount = parseFloat(document.getElementById('swap-input-amount').value) || 0;
+            if (amount <= 0) {
+                if (window.showToast) window.showToast('Please enter an amount to swap.', 'error');
+                return;
+            }
+            if (amount > walletBalance) {
+                if (window.showToast) window.showToast('Insufficient SXUM balance.', 'error');
+                return;
+            }
+
+            // Deduct balance initially (committed)
+            deductBalance(amount);
+
+            // Hide inputs, show stepper
+            document.getElementById('swap-step-inputs').classList.add('hidden');
+            const stepper = document.getElementById('swap-stepper');
+            stepper.classList.remove('hidden');
+
+            // Reset stepper dots
+            document.getElementById('step-dot-1').className = 'w-8 h-8 rounded-full bg-purple-600 border border-purple-500 flex items-center justify-center text-white text-xs font-bold';
+            document.getElementById('step-dot-2').className = 'w-8 h-8 rounded-full bg-[#050508] border border-purple-500/20 flex items-center justify-center text-gray-400 text-xs font-bold';
+            document.getElementById('step-dot-3').className = 'w-8 h-8 rounded-full bg-[#050508] border border-purple-500/20 flex items-center justify-center text-gray-400 text-xs font-bold';
+            
+            document.getElementById('swap-step-card-1').classList.remove('hidden');
+            document.getElementById('swap-step-card-2').classList.add('hidden');
+            document.getElementById('swap-step-card-3').classList.add('hidden');
+            document.getElementById('swap-finished').classList.add('hidden');
+            document.getElementById('stepper-line').style.width = '0%';
+
+            // Generate hashes
+            const chars = '0123456789abcdef';
+            let nonce = '0x';
+            for (let i = 0; i < 24; i++) nonce += chars[Math.floor(Math.random() * 16)];
+            document.getElementById('nonce-display').textContent = nonce;
+
+            let commitHash = 'SHA256:';
+            for (let i = 0; i < 32; i++) commitHash += chars[Math.floor(Math.random() * 16)];
+            
+            setTimeout(() => {
+                document.getElementById('hash-display').textContent = commitHash;
+                document.getElementById('step-spinner-1').innerHTML = '<span class="material-symbols-outlined text-green-400">check_circle</span>';
+                
+                // Move to Step 2: Ordering
+                setTimeout(() => {
+                    document.getElementById('stepper-line').style.width = '50%';
+                    document.getElementById('step-dot-2').className = 'w-8 h-8 rounded-full bg-purple-600 border border-purple-500 flex items-center justify-center text-white text-xs font-bold';
+                    document.getElementById('swap-step-card-2').classList.remove('hidden');
+                    
+                    setTimeout(() => {
+                        document.getElementById('step-spinner-2').innerHTML = '<span class="material-symbols-outlined text-green-400">check_circle</span>';
+                        
+                        // Move to Step 3: Reveal
+                        setTimeout(() => {
+                            document.getElementById('stepper-line').style.width = '100%';
+                            document.getElementById('step-dot-3').className = 'w-8 h-8 rounded-full bg-purple-600 border border-purple-500 flex items-center justify-center text-white text-xs font-bold';
+                            document.getElementById('swap-step-card-3').classList.remove('hidden');
+                            
+                            let finalHash = '0x';
+                            for (let i = 0; i < 32; i++) finalHash += chars[Math.floor(Math.random() * 16)];
+                            document.getElementById('swap-final-hash').textContent = finalHash.substring(0,16) + '...' + finalHash.substring(24);
+
+                            setTimeout(() => {
+                                document.getElementById('step-spinner-3').innerHTML = '<span class="material-symbols-outlined text-green-400">check_circle</span>';
+                                
+                                // Finished State
+                                setTimeout(() => {
+                                    document.getElementById('swap-finished').classList.remove('hidden');
+                                    if (window.showToast) window.showToast('Swap Succeeded (MEV Elimination: 100%)', 'success');
+                                }, 800);
+                            }, 1200);
+                        }, 1000);
+                    }, 1200);
+                }, 1000);
+            }, 1200);
+        }
+
+        function resetSwapTab() {
+            document.getElementById('swap-stepper').classList.add('hidden');
+            document.getElementById('swap-step-inputs').classList.remove('hidden');
+            document.getElementById('swap-input-amount').value = '2.00';
+            calculateSwapOutput();
+        }
+
+        // Staking Logic
+        function openStakeModal(valName, valAddr, valApr) {
+            selectedValidator = valName;
+            selectedValidatorApr = valApr;
+            document.getElementById('staking-modal-subtitle').textContent = `${valName} (${valAddr}) - ${valApr}% APR`;
+            document.getElementById('staking-amount-input').value = '';
+            document.getElementById('staking-modal').classList.add('active');
+        }
+
+        function closeStakeModal() {
+            document.getElementById('staking-modal').classList.remove('active');
+        }
+
+        function setStakingMax() {
+            document.getElementById('staking-amount-input').value = walletBalance.toFixed(2);
+        }
+
+        function submitStaking() {
+            const amount = parseFloat(document.getElementById('staking-amount-input').value) || 0;
+            if (amount <= 0) {
+                if (window.showToast) window.showToast('Please enter an amount to stake.', 'error');
+                return;
+            }
+            if (amount > walletBalance) {
+                if (window.showToast) window.showToast('Insufficient SXUM balance.', 'error');
+                return;
+            }
+
+            deductBalance(amount);
+            closeStakeModal();
+
+            if (window.showToast) {
+                window.showToast(`Successfully delegated ${amount.toFixed(2)} SXUM to ${selectedValidator}!`, 'success');
+            }
+        }
+    </script>
+</body>
+</html>

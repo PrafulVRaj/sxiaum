@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SXIAUM Docs - Technical Documentation & Specifications</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#a855f7',
+                        secondary: '#ec4899',
+                        bgDark: '#050508',
+                        cardDark: '#0b0b0f',
+                        borderDark: 'rgba(147, 51, 234, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050508;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.05) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .doc-nav-btn.active {
+            color: #a855f7;
+            border-left: 2px solid #a855f7;
+            background: rgba(168, 85, 247, 0.05);
+            padding-left: 14px;
+        }
+        @media (max-width: 767px) {
+            .doc-nav-btn.active {
+                border-left: none;
+                border-bottom: 2px solid #a855f7;
+                padding-left: 12px;
+                padding-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen flex flex-col antialiased">
+    <!-- Top Nav -->
+    <header class="sticky top-0 w-full z-50 bg-[#050508]/80 backdrop-blur-md border-b border-purple-500/10">
+        <div class="flex justify-between items-center h-16 px-6 max-w-7xl mx-auto">
+            <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                <span class="font-display-lg text-lg font-bold tracking-tighter text-white">SXIAUM <span class="text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full ml-1 border border-purple-500/20">DOCS</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a class="hover:text-white transition-colors" href="technology.html">Technology</a>
+                <a class="hover:text-white transition-colors" href="ecosystem.html">Ecosystem</a>
+                <a class="hover:text-white transition-colors" href="developers.html">Developers</a>
+                <a class="hover:text-white transition-colors" href="Governance.html">Governance</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button id="connect-wallet-btn" class="px-4 py-2 border border-purple-500/30 rounded text-purple-300 font-medium text-xs hover:border-purple-500 hover:text-white transition-all duration-300">Connect</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-12 flex flex-col md:flex-row gap-10">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 flex-shrink-0 flex flex-col gap-1 border-b md:border-b-0 md:border-r border-purple-500/5 pb-4 md:pb-0 pr-0 md:pr-4 h-fit md:sticky md:top-24">
+            <div class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-4 px-2 hidden md:block">Table of Contents</div>
+            
+            <div class="flex flex-row md:flex-col gap-2 overflow-x-auto pb-3 md:pb-0 whitespace-nowrap md:whitespace-normal">
+                <button onclick="navigateDoc('guides')" id="doc-btn-guides" class="doc-nav-btn active text-left text-sm py-2 px-3 pl-4 rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all shrink-0">
+                    Developer Guides
+                </button>
+                <button onclick="navigateDoc('mev')" id="doc-btn-mev" class="doc-nav-btn text-left text-sm py-2 px-3 pl-4 rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all shrink-0">
+                    MEV Proof Spec
+                </button>
+                <button onclick="navigateDoc('benchmarks')" id="doc-btn-benchmarks" class="doc-nav-btn text-left text-sm py-2 px-3 pl-4 rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all shrink-0">
+                    Benchmark Data
+                </button>
+                <button onclick="navigateDoc('rust')" id="doc-btn-rust" class="doc-nav-btn text-left text-sm py-2 px-3 pl-4 rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all shrink-0">
+                    Rust Architecture
+                </button>
+                <button onclick="navigateDoc('verkle')" id="doc-btn-verkle" class="doc-nav-btn text-left text-sm py-2 px-3 pl-4 rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all shrink-0">
+                    Verkle & ZK
+                </button>
+                <button onclick="navigateDoc('endpoints')" id="doc-btn-endpoints" class="doc-nav-btn text-left text-sm py-2 px-3 pl-4 rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all shrink-0">
+                    API & RPC
+                </button>
+                <button onclick="navigateDoc('security')" id="doc-btn-security" class="doc-nav-btn text-left text-sm py-2 px-3 pl-4 rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all shrink-0">
+                    Security Audits
+                </button>
+            </div>
+        </aside>
+
+        <!-- Documentation Content -->
+        <article class="flex-grow max-w-3xl space-y-12">
+            <!-- SECTION: DEVELOPER GUIDES -->
+            <section id="doc-sec-guides" class="doc-section space-y-6">
+                <h1 class="text-3xl font-bold text-white tracking-tight">Developer Guides</h1>
+                <p class="text-sm text-gray-400 leading-relaxed">Getting started with SXIAUM. Connect to the testnet, deploy Solidity smart contracts, and build using native tooling.</p>
+                
+                <h2 class="text-xl font-bold text-white pt-4">Quick Start</h2>
+                <p class="text-sm text-gray-400 leading-relaxed">SXIAUM is 100% equivalent to the EVM execution spec. Standard tooling like Hardhat, Foundry, and MetaMask work out-of-the-box. The only difference is the requirement to wrap public state modifications in a pre-ordered cryptographic commitment phase.</p>
+
+                <div class="bg-cardDark border border-purple-500/10 rounded-xl p-5 space-y-4 shadow-lg">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-purple-400 mono">Foundry Config Example</h3>
+                    <pre class="mono text-xs text-gray-300 bg-[#050508] p-4 rounded overflow-x-auto border border-purple-500/5"><code>[profile.default]
+src = 'src'
+out = 'out'
+libs = ['lib']
+
+[rpc_endpoints]
+sxiaum_testnet = "https://rpc-testnet.sxiaum.network/v1"</code></pre>
+                </div>
+            </section>
+
+            <!-- SECTION: MEV PROOF SPECIFICATION -->
+            <section id="doc-sec-mev" class="doc-section hidden space-y-6">
+                <h1 class="text-3xl font-bold text-white tracking-tight">MEV Proof Specification</h1>
+                <p class="text-sm text-gray-400 leading-relaxed">Technical implementation details of SXIAUM's Native Commit-Reveal elimination mechanism.</p>
+                
+                <h2 class="text-xl font-bold text-white pt-4">Mempool Encryption & Commitments</h2>
+                <p class="text-sm text-gray-400 leading-relaxed">To resolve the frontrunning vulnerability inherent to public mempools, transactions are submitted in two phases:</p>
+                <ol class="list-decimal pl-6 space-y-3 text-sm text-gray-400">
+                    <li><strong class="text-white">Commitment Phase:</strong> The client computes a SHA-256 hash $C = H(Tx || r)$ representing the payload encrypted with a secret nonce $r$. Only $C$ is transmitted and ordered in the block, shielding trade contents from frontrunning validators.</li>
+                    <li><strong class="text-white">Reveal Phase:</strong> Once the block sequence is finalized, the nonce $r$ is revealed to execute the payload. Frontrunning is mathematically impossible since ordering is completed prior to content exposure.</li>
+                </ol>
+
+                <div class="border-l-2 border-purple-500 pl-4 py-1 my-4">
+                    <p class="text-xs text-purple-400 italic">Theorem (Zero MEV): Under the SHA-256 pre-image resistance assumption, the expected profit of an ordering arbitrageur is exactly zero (π* = 0).</p>
+                </div>
+            </section>
+
+            <!-- SECTION: BENCHMARK DATA -->
+            <section id="doc-sec-benchmarks" class="doc-section hidden space-y-6">
+                <h1 class="text-3xl font-bold text-white tracking-tight">Benchmark Data</h1>
+                <p class="text-sm text-gray-400 leading-relaxed">Empirical performance diagnostics and comparisons across major consensus networks.</p>
+                
+                <h2 class="text-xl font-bold text-white pt-4">Parallel Throughput Benchmarks</h2>
+                <p class="text-sm text-gray-400 leading-relaxed">By introducing Optimistic Concurrency Control (OCC) and EIP-2930 transaction routing matrices, SXIAUM scales execution throughput linearly with validator core counts.</p>
+
+                <div class="bg-cardDark border border-purple-500/10 rounded-xl p-6 shadow-lg space-y-4">
+                    <div class="text-xs font-semibold text-gray-400 uppercase mb-2">Throughput Comparison (Peak TPS)</div>
+                    <div class="space-y-3 text-xs mono">
+                        <div class="space-y-1">
+                            <div class="flex justify-between"><span>Ethereum (L1)</span> <span>15 TPS</span></div>
+                            <div class="w-full bg-[#050508] h-2 rounded"><div class="bg-red-500 h-2 rounded" style="width: 1%"></div></div>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex justify-between"><span>Arbitrum One</span> <span>150 TPS</span></div>
+                            <div class="w-full bg-[#050508] h-2 rounded"><div class="bg-orange-500 h-2 rounded" style="width: 5%"></div></div>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex justify-between"><span>Solana (Typical)</span> <span>2,200 TPS</span></div>
+                            <div class="w-full bg-[#050508] h-2 rounded"><div class="bg-blue-500 h-2 rounded" style="width: 48%"></div></div>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-purple-400 font-bold"><span>SXIAUM (OCC Sharded)</span> <span>4,500+ TPS</span></div>
+                            <div class="w-full bg-[#050508] h-2 rounded"><div class="bg-purple-500 h-2 rounded" style="width: 100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: RUST ARCHITECTURE -->
+            <section id="doc-sec-rust" class="doc-section hidden space-y-6">
+                <h1 class="text-3xl font-bold text-white tracking-tight">Rust Architecture</h1>
+                <p class="text-sm text-gray-400 leading-relaxed">Internal core structural design of the memory-safe L1 engine.</p>
+                
+                <h2 class="text-xl font-bold text-white pt-4">Libp2p & Redb Ledger DB</h2>
+                <p class="text-sm text-gray-400 leading-relaxed">SXIAUM is implemented entirely in Rust without a garbage collector. Consensus nodes run on an actor model architecture communicating via Libp2p. State variables are persisted inside an embedded `redb` state ledger, providing ACID-compliant read-write guarantees with sub-millisecond seek speeds.</p>
+            </section>
+
+            <!-- SECTION: VERKLE & ZK RUNTIMES -->
+            <section id="doc-sec-verkle" class="doc-section hidden space-y-6">
+                <h1 class="text-3xl font-bold text-white tracking-tight">Verkle & ZK Runtimes</h1>
+                <p class="text-sm text-gray-400 leading-relaxed">State trie space reduction and cryptographic validation proofs.</p>
+                
+                <h2 class="text-xl font-bold text-white pt-4">Verkle State Trees</h2>
+                <p class="text-sm text-gray-400 leading-relaxed">Replacing legacy Merkle Patricia Tries with 256-branch Verkle Trees (using IPA polynomial commitments) reduces consensus witness proof sizes from 100 KB down to just ~2.5 KB. Transactions are validated inside zero-knowledge execution templates using the SP1 prover framework, generating verifiable Groth16 proofs.</p>
+            </section>
+
+            <!-- SECTION: API & RPC REFERENCE -->
+            <section id="doc-sec-endpoints" class="doc-section hidden space-y-6">
+                <h1 class="text-3xl font-bold text-white tracking-tight">API & RPC Reference</h1>
+                <p class="text-sm text-gray-400 leading-relaxed">API and RPC gateway specifications.</p>
+                
+                <h2 class="text-xl font-bold text-white pt-4">Custom Commit-Reveal RPC Methods</h2>
+                <p class="text-sm text-gray-400 leading-relaxed">To submit encrypted transactions, client software interfaces with the following RPC endpoints:</p>
+
+                <div class="space-y-4">
+                    <div class="bg-cardDark border border-purple-500/10 rounded-xl p-5 shadow-lg space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-green-500/10 text-green-400 px-2 py-0.5 rounded text-[10px] font-bold mono">POST</span>
+                            <span class="text-sm font-semibold text-white mono">sxiaum_sendCommitment</span>
+                        </div>
+                        <p class="text-xs text-gray-400">Broadcasts a SHA-256 commitment hash payload to validator block queues.</p>
+                    </div>
+
+                    <div class="bg-cardDark border border-purple-500/10 rounded-xl p-5 shadow-lg space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-green-500/10 text-green-400 px-2 py-0.5 rounded text-[10px] font-bold mono">POST</span>
+                            <span class="text-sm font-semibold text-white mono">sxiaum_revealTransaction</span>
+                        </div>
+                        <p class="text-xs text-gray-400">Exposes the nonce key to trigger block execution of pre-ordered commitments.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: SECURITY AUDITS -->
+            <section id="doc-sec-security" class="doc-section hidden space-y-6">
+                <h1 class="text-3xl font-bold text-white tracking-tight">Security Audits</h1>
+                <p class="text-sm text-gray-400 leading-relaxed">Validator consensus audits and smart contract engine evaluations.</p>
+                
+                <h2 class="text-xl font-bold text-white pt-4">Audit Summaries</h2>
+                <p class="text-sm text-gray-400 leading-relaxed">SXIAUM is evaluated under continuous audit streams by premier cryptographic security firms. Our commit-reveal protocol design has been verified against replay attacks, validator frontrunning collusions, and validator block withholding vectors.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer class="w-full py-8 bg-[#050508] border-t border-purple-500/10 text-center text-xs text-gray-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 SXIAUM Foundation. Institutional-Grade Blockchain Infrastructure.</p>
+            <div class="flex gap-6 text-gray-400">
+                <a href="home.html" class="hover:text-white transition-colors">Home</a>
+                <a href="status.html" class="hover:text-white transition-colors">Network Status</a>
+                <a href="legal.html" class="hover:text-white transition-colors">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared JS -->
+    <script src="shared.js"></script>
+
+    <!-- Docs routing logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Read hash from URL on load
+            syncHashTab();
+
+            // Listen for hash changes
+            window.addEventListener('hashchange', syncHashTab);
+        });
+
+        function navigateDoc(docId) {
+            window.location.hash = docId;
+        }
+
+        function syncHashTab() {
+            let docId = window.location.hash.substring(1);
+            if (!docId || !['guides', 'mev', 'benchmarks', 'rust', 'verkle', 'endpoints', 'security'].includes(docId)) {
+                // Default fallback
+                docId = 'guides';
+            }
+
+            // Hide all sections
+            document.querySelectorAll('.doc-section').forEach(sec => sec.classList.add('hidden'));
+            
+            // Deactivate all buttons
+            document.querySelectorAll('.doc-nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Show target section and button
+            const sec = document.getElementById(`doc-sec-${docId}`);
+            const btn = document.getElementById(`doc-btn-${docId}`);
+            
+            if (sec && btn) {
+                sec.classList.remove('hidden');
+                btn.classList.add('active');
+            }
+
+            // Scroll to top of article on click
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

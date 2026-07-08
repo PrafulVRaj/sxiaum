@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SXIAUM Community - Blog & Forums</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#a855f7',
+                        secondary: '#ec4899',
+                        bgDark: '#050508',
+                        cardDark: '#0b0b0f',
+                        borderDark: 'rgba(147, 51, 234, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050508;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.05) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+        }
+        .com-tab-btn.active {
+            color: #ffffff;
+            border-bottom: 2px solid #a855f7;
+            background: rgba(168, 85, 247, 0.05);
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen flex flex-col antialiased">
+    <!-- Top Nav -->
+    <header class="sticky top-0 w-full z-50 bg-[#050508]/80 backdrop-blur-md border-b border-purple-500/10">
+        <div class="flex justify-between items-center h-16 px-6 max-w-7xl mx-auto">
+            <a href="home.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <img src="logo.png" alt="SXIAUM Logo" class="h-8 w-auto">
+                <span class="font-display-lg text-lg font-bold tracking-tighter text-white">SXIAUM <span class="text-xs text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full ml-1 border border-purple-500/20">HUB</span></span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a class="hover:text-white transition-colors" href="technology.html">Technology</a>
+                <a class="hover:text-white transition-colors" href="ecosystem.html">Ecosystem</a>
+                <a class="hover:text-white transition-colors" href="developers.html">Developers</a>
+                <a class="hover:text-white transition-colors" href="Governance.html">Governance</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button id="connect-wallet-btn" class="px-4 py-2 border border-purple-500/30 rounded text-purple-300 font-medium text-xs hover:border-purple-500 hover:text-white transition-all duration-300">Connect</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl w-full mx-auto px-6 py-12 space-y-8">
+        <!-- Tab selector -->
+        <div class="flex border-b border-purple-500/10">
+            <button onclick="switchComTab('blog')" id="com-btn-blog" class="com-tab-btn active px-6 py-3 font-semibold text-sm text-gray-400 hover:text-white transition-all">
+                Research Blog
+            </button>
+            <button onclick="switchComTab('forum')" id="com-btn-forum" class="com-tab-btn px-6 py-3 font-semibold text-sm text-gray-400 hover:text-white transition-all">
+                Governance Forum
+            </button>
+        </div>
+
+        <!-- BLOG SECTION -->
+        <div id="com-sec-blog" class="com-section grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Blog Card 1 -->
+            <div onclick="openPostModal('The Cryptography of Commit-Reveal: Eliminating MEV Mathematically', 'July 2, 2026', 'In public mempools, transaction visibility creates ordering arbitrage risk. Frontrunning validators read transactions and inject their own trades beforehand, extracting billions in Miner Extractable Value (MEV).<br><br>SXIAUM mitigates this entirely by separating transaction broadcast from content exposure. Users commit to a transaction hash SHA-256(Tx, r) where r is a secret nonce. The protocol orders transaction commitment hashes blindly. Once the sequence is immutable, nonces are revealed automatically to decrypt and execute trades. Arbitrageurs cannot frontrun because they do not know what trade to sandwich.', 'Consensus Team')" class="bg-cardDark border border-purple-500/10 hover:border-purple-500/30 p-6 rounded-2xl shadow-xl flex flex-col justify-between gap-6 cursor-pointer transition-all">
+                <div class="space-y-3">
+                    <div class="text-[10px] text-purple-400 font-semibold uppercase tracking-wider">Research</div>
+                    <h3 class="text-lg font-bold text-white leading-tight">The Cryptography of Commit-Reveal: Eliminating MEV Mathematically</h3>
+                    <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">In public mempools, transaction visibility creates ordering arbitrage risk. Frontrunning validators read transactions and inject their own trades beforehand...</p>
+                </div>
+                <div class="flex justify-between items-center text-[10px] text-gray-500 pt-3 border-t border-purple-500/5">
+                    <span>By: Consensus Team</span>
+                    <span>July 2, 2026</span>
+                </div>
+            </div>
+
+            <!-- Blog Card 2 -->
+            <div onclick="openPostModal('Verkle State Trees vs Merkle Patricia Tries', 'June 18, 2026', 'Merkle Patricia Tries have served as Ethereum\'s state validation standard, but their proof sizes scale poorly. As the state size grows, witness sizes increase, requiring significant consensus node network overhead.<br><br>SXIAUM introduces 256-branch Verkle Trees. Leveraging Inner Product Arguments (IPA) and KZG polynomial commitments, we compress proof sizes by 40x. Block proofs that occupied 100 KB in Merkle roots are condensed to just ~2.5 KB. This enables thin client syncing and full ZK verification validation in sub-second frames.', 'Core Architecture')" class="bg-cardDark border border-purple-500/10 hover:border-purple-500/30 p-6 rounded-2xl shadow-xl flex flex-col justify-between gap-6 cursor-pointer transition-all">
+                <div class="space-y-3">
+                    <div class="text-[10px] text-purple-400 font-semibold uppercase tracking-wider">Engineering</div>
+                    <h3 class="text-lg font-bold text-white leading-tight">Verkle State Trees vs Merkle Patricia Tries</h3>
+                    <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">Merkle Patricia Tries have served as Ethereum\'s state validation standard, but their proof sizes scale poorly. As the state size grows...</p>
+                </div>
+                <div class="flex justify-between items-center text-[10px] text-gray-500 pt-3 border-t border-purple-500/5">
+                    <span>By: Core Architecture</span>
+                    <span>June 18, 2026</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORUM SECTION -->
+        <div id="com-sec-forum" class="com-section hidden space-y-4">
+            <!-- Forum Thread 1 -->
+            <div onclick="openPostModal('SIP-1: Transitioning Consensus to Succinct Verkle Proofs', 'Proposal Status: DRAFT', 'Proposing the implementation of IPA Verkle Tree updates on the Testnet Phase II to replace initial genesis Merkle templates.<br><br>This transition will optimize validator memory consumption, reduce cross-shard network sync latency, and pave the way for full Groth16 zero-knowledge provers. Expected outcome: 40% reduction in average consensus latency.', 'Proposed by: Zenith Validator (0x71A9...)')" class="bg-cardDark border border-purple-500/10 hover:border-purple-500/30 p-5 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 cursor-pointer transition-all shadow">
+                <div class="space-y-1">
+                    <h4 class="text-sm font-bold text-white flex flex-wrap items-center gap-2">SIP-1: Transitioning Consensus to Succinct Verkle Proofs <span class="text-[9px] bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded-full font-semibold uppercase">Proposal</span></h4>
+                    <p class="text-xs text-gray-400">Proposing the implementation of IPA Verkle Tree updates on the Testnet Phase II...</p>
+                </div>
+                <div class="text-[10px] text-gray-500 text-left sm:text-right shrink-0">
+                    <div>18 replies</div>
+                    <div class="mt-1">Last active: 2h ago</div>
+                </div>
+            </div>
+
+            <!-- Forum Thread 2 -->
+            <div onclick="openPostModal('SIP-2: Dynamic Faucet PoW Difficulty Adjustment', 'Proposal Status: ACTIVE', 'In order to prevent sybil attacks and server congestion on the developer faucet, we propose implementing a dynamic Proof-of-Work difficulty adjustment model.<br><br>When server demand spikes, client browser PoW requirements scale dynamically to throttle request frequencies, protecting resources without requiring KYC layers.', 'Proposed by: Aether Node (0x3B99...)')" class="bg-cardDark border border-purple-500/10 hover:border-purple-500/30 p-5 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 cursor-pointer transition-all shadow">
+                <div class="space-y-1">
+                    <h4 class="text-sm font-bold text-white flex flex-wrap items-center gap-2">SIP-2: Dynamic Faucet PoW Difficulty Adjustment <span class="text-[9px] bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2 py-0.5 rounded-full font-semibold uppercase">Proposal</span></h4>
+                    <p class="text-xs text-gray-400">In order to prevent sybil attacks and server congestion on the developer faucet...</p>
+                </div>
+                <div class="text-[10px] text-gray-500 text-left sm:text-right shrink-0">
+                    <div>12 replies</div>
+                    <div class="mt-1">Last active: 5h ago</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Post Details Modal Overlay -->
+    <div id="post-modal" class="sxiaum-modal-overlay">
+        <div class="sxiaum-modal max-w-lg">
+            <button class="sxiaum-modal-close" onclick="closePostModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="space-y-4">
+                <div class="space-y-1 border-b border-purple-500/10 pb-4">
+                    <h3 class="font-headline-lg text-lg font-bold text-white" id="modal-post-title">Post Title</h3>
+                    <div class="flex justify-between text-[10px] text-gray-500 pt-1 font-semibold">
+                        <span id="modal-post-author">By: Author</span>
+                        <span id="modal-post-date">Date</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-300 leading-relaxed max-h-[300px] overflow-y-auto pr-2" id="modal-post-content">
+                    Post detailed content body.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="w-full py-8 bg-[#050508] border-t border-purple-500/10 text-center text-xs text-gray-500 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 SXIAUM Foundation. Institutional-Grade Blockchain Infrastructure.</p>
+            <div class="flex gap-6 text-gray-400">
+                <a href="home.html" class="hover:text-white transition-colors">Home</a>
+                <a href="status.html" class="hover:text-white transition-colors">Network Status</a>
+                <a href="docs.html" class="hover:text-white transition-colors">Documentation</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared JS -->
+    <script src="shared.js"></script>
+
+    <!-- Community Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            syncComHash();
+            window.addEventListener('hashchange', syncComHash);
+        });
+
+        function switchComTab(tabId) {
+            window.location.hash = tabId;
+        }
+
+        function syncComHash() {
+            let tabId = window.location.hash.substring(1);
+            if (!tabId || !['blog', 'forum'].includes(tabId)) {
+                tabId = 'blog';
+            }
+
+            document.querySelectorAll('.com-section').forEach(sec => sec.classList.add('hidden'));
+            document.querySelectorAll('.com-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            const sec = document.getElementById(`com-sec-${tabId}`);
+            const btn = document.getElementById(`com-btn-${tabId}`);
+
+            if (sec && btn) {
+                sec.classList.remove('hidden');
+                btn.classList.add('active');
+            }
+        }
+
+        // Post Modal Logic
+        function openPostModal(title, date, content, author) {
+            document.getElementById('modal-post-title').textContent = title;
+            document.getElementById('modal-post-author').textContent = author;
+            document.getElementById('modal-post-date').textContent = date;
+            document.getElementById('modal-post-content').innerHTML = content;
+            
+            document.getElementById('post-modal').classList.add('active');
+        }
+
+        function closePostModal() {
+            document.getElementById('post-modal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
